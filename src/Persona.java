@@ -1,4 +1,4 @@
-public class Persona {
+public abstract class Persona {
     private String nombre;
     private String direccion;
     private String dni;
@@ -12,12 +12,17 @@ public class Persona {
         this.telefono = telefono;
     }
 
+
+
+
+
+
     //getter y setter
     public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    private void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -25,7 +30,7 @@ public class Persona {
         return direccion;
     }
 
-    public void setDireccion(String direccion) {
+    private void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
@@ -33,7 +38,7 @@ public class Persona {
         return dni;
     }
 
-    public void setDni(String dni) {
+    private void setDni(String dni) {
         this.dni = dni;
     }
 
@@ -41,7 +46,7 @@ public class Persona {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    private void setTelefono(int telefono) {
         this.telefono = telefono;
     }
 
