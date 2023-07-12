@@ -40,7 +40,7 @@ public class Concesionario {
         int valor = scanner.nextInt();
         if (valor == 1) {
 
-            System.out.println("Que quieres hacer?");
+            System.out.println("Que quieres hacer");
             System.out.println("1. Comprar un coche");
             System.out.println("2. Reservar un coche");
             valor = scanner.nextInt();
