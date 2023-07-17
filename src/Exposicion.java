@@ -59,3 +59,8 @@ public class Exposicion {
 
 
 }
+
+// public void AltaExposicion (tipoExpo, numeroExpo)
+// public void BajaExposicion (tipoExpo, numeroExpo)
+// public void MoverCocheaExpo (CocheStock, tipoExpo, numeroExpo)
+

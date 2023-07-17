@@ -9,6 +9,9 @@ public class Concesionario {
     private HashMap<String, Coche> CochesStock;
     private HashMap<String, Coche> CochesReservados;
 
+    private HashMap<String,Reparacion> CochesEnReparacion;
+
+
 
     public Concesionario(String nombre) {
         this.nombre = nombre;
@@ -18,6 +21,7 @@ public class Concesionario {
         Coches = new HashMap<>();
         CochesStock = new HashMap<>();
         CochesReservados = new HashMap<>();
+        CochesEnReparacion = new HashMap<>();
 
         addCliente();
         addCliente();
