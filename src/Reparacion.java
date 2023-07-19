@@ -36,3 +36,7 @@ public class Reparacion {
         this.reparacionResuelta = reparacionResuelta;
     }
 }
+
+// public void CambiarEstadoCoche (CochesStock, isReparacionResuelta)
+// public void ReparacionCoche (CochesenReparacion, CochesStock)
+// public void ConsultasReparacionesCoche (Coche, ListaCochesReparacion)
