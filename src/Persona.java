@@ -1,8 +1,8 @@
 public abstract class Persona {
-    private String nombre;
-    private String direccion;
-    private String dni;
-    private int telefono;
+    protected String nombre;
+    protected String direccion;
+    protected String dni;
+    protected int telefono;
 
 
     public Persona(String nombre, String direccion, String dni, int telefono) {

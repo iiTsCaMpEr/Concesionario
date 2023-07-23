@@ -1,42 +1,30 @@
+import java.util.Date;
+
 public class Reparacion {
 
-    private String tipoReparacion;
-    private boolean reparacionResuelta;
+    private String tipo;
+    private Date fecha;
 
-
-
-    public Reparacion(String tipoReparacion, boolean reparacionResuelta) {
-        this.tipoReparacion = tipoReparacion;
-        this.reparacionResuelta = reparacionResuelta;
-    }
-    public void resolverReparacion () {
-
+    public Reparacion(String tipo, Date fecha) {
+        this.tipo = tipo;
+        this.fecha = fecha;
     }
 
+    // Getters y Setters
 
-
-
-    // getters and setters
-
-
-
-    public String getTipoReparacion() {
-        return tipoReparacion;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTipoReparacion(String tipoReparacion) {
-        this.tipoReparacion = tipoReparacion;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
-    public boolean isReparacionResuelta() {
-        return reparacionResuelta;
+    public Date getFecha() {
+        return fecha;
     }
 
-    public void setReparacionResuelta(boolean reparacionResuelta) {
-        this.reparacionResuelta = reparacionResuelta;
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }
-
-// public void CambiarEstadoCoche (CochesStock, isReparacionResuelta)
-// public void ReparacionCoche (CochesenReparacion, CochesStock)
-// public void ConsultasReparacionesCoche (Coche, ListaCochesReparacion)

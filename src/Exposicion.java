@@ -1,66 +1,63 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Exposicion {
 
-    private String tipoExpo;
-    private int numeroExpo;
-    private String telefonoExpo;
-    private String direccionExpo;
+    private int numeroExposicion;
+    private String direccion;
+    private String telefono;
+    private List<Coche> cochesPresentes;
 
-    public Exposicion(String tipoExpo, int numeroExpo, String telefonoExpo, String direccionExpo) {
-        this.tipoExpo = tipoExpo;
-        this.numeroExpo = numeroExpo;
-        this.telefonoExpo = telefonoExpo;
-        this.direccionExpo = direccionExpo;
+    public Exposicion(int numeroExposicion, String direccion, String telefono) {
+        this.numeroExposicion = numeroExposicion;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.cochesPresentes = new ArrayList<>();
     }
 
 
-
-
-
-
-
-
-
-
-
-
-// getters and setters
-
-    public String getTipoExpo() {
-        return tipoExpo;
+    public void agregarCoche(Coche coche) {
+        cochesPresentes.add(coche);
     }
 
-    public void setTipoExpo(String tipoExpo) {
-        this.tipoExpo = tipoExpo;
-    }
-
-    public int getNumeroExpo() {
-        return numeroExpo;
-    }
-
-    public void setNumeroExpo(int numeroExpo) {
-        this.numeroExpo = numeroExpo;
-    }
-
-    public String getTelefonoExpo() {
-        return telefonoExpo;
-    }
-
-    public void setTelefonoExpo(String telefonoExpo) {
-        this.telefonoExpo = telefonoExpo;
-    }
-
-    public String getDireccionExpo() {
-        return direccionExpo;
-    }
-
-    public void setDireccionExpo(String direccionExpo) {
-        this.direccionExpo = direccionExpo;
+    public void eliminarCoche(Coche coche) {
+        cochesPresentes.remove(coche);
     }
 
 
+    // Getters y Setters
+
+
+    public int getNumeroExposicion() {
+        return numeroExposicion;
+    }
+
+    public void setNumeroExposicion(int numeroExposicion) {
+        this.numeroExposicion = numeroExposicion;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public List<Coche> getCochesPresentes() {
+        return cochesPresentes;
+    }
+
+    public void setCochesPresentes(List<Coche> cochesPresentes) {
+        this.cochesPresentes = cochesPresentes;
+    }
 }
-
-// public void AltaExposicion (tipoExpo, numeroExpo)
-// public void BajaExposicion (tipoExpo, numeroExpo)
-// public void MoverCocheaExpo (CocheStock, tipoExpo, numeroExpo)
 

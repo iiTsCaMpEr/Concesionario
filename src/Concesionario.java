@@ -1,5 +1,139 @@
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.*;
+public class Concesionario {
+    private List<Coche> coches;
+    private List<Vendedor> vendedores;
+    private List<Cliente> clientes;
+    private List<Exposicion> exposiciones;
+
+    public Concesionario(String nombre) {
+        coches = new ArrayList<>();
+        vendedores = new ArrayList<>();
+        clientes = new ArrayList<>();
+        exposiciones = new ArrayList<>();
+    }
+
+
+    // Métodos para agregar coches, vendedores, clientes y exposiciones
+    // ...
+
+    // Listado de coches en venta
+    public void listarCochesEnVenta() {
+        System.out.println("Coches en venta:");
+        for (Coche coche : coches) {
+            if (coche.getEstado().equals("En Venta")) {
+                System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
+            }
+        }
+    }
+
+    // Listado de coches reservados
+    public void listarCochesReservados() {
+        System.out.println("Coches reservados:");
+        for (Coche coche : coches) {
+            if (coche.getEstado().equals("Reservado")) {
+                System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
+            }
+        }
+    }
+
+    // Listado de coches en reparación
+    public void listarCochesEnReparacion() {
+        System.out.println("Coches en reparación:");
+        for (Coche coche : coches) {
+            if (coche.getEstado().equals("En Reparación")) {
+                System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
+            }
+        }
+    }
+
+    // Listado de coches vendidos por un vendedor a comisión
+    public void listarCochesVendidosPorVendedor(Vendedor vendedor) {
+        System.out.println("Coches vendidos por " + vendedor.getNombre() + ":");
+        int contadorCochesVendidos = 0;
+        for (Coche coche : vendedor.getCochesVendidos()) {
+            System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
+            contadorCochesVendidos++;
+        }
+        System.out.println("Sueldo de " + vendedor.getNombre() + ": " + (contadorCochesVendidos * 200) + " euros");
+    }
+
+    // Listado de clientes que tienen un coche reservado
+    public void listarClientesConReserva() {
+        System.out.println("Clientes con coches reservados:");
+        for (Cliente cliente : clientes) {
+            List<Coche> cochesReservados = cliente.getCochesReservados();
+            if (!cochesReservados.isEmpty()) {
+                System.out.println("Cliente: " + cliente.getNombre() + " (DNI: " + cliente.getDni() + ")");
+                System.out.println("Coches reservados:");
+                for (Coche coche : cochesReservados) {
+                    System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
+                }
+            }
+        }
+    }
+
+
+
+    // Cliente que compró un determinado coche
+    public void clienteQueComproCoche(Coche coche) {
+        System.out.println("Cliente que compró el coche " + coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + "):");
+        for (Cliente cliente: clientes) {
+            List<Coche> cochesComprados = cliente.getCochesComprados();
+            if (cochesComprados.contains(coche)) {
+                System.out.println("Comprador: " + cliente.getNombre() + " (DNI: " + cliente.getDni() + ")");
+                break; // Mostramos solo un vendedor que vendió el coche
+            }
+        }
+    }
+
+    public void addVendedor(Vendedor vendedor) {
+        vendedores.add(vendedor);
+    }
+    public void addCliente(Cliente cliente) {
+        clientes.add(cliente);
+    }
+
+
+    // getters and setters
+
+
+    public List<Coche> getCoches() {
+        return coches;
+    }
+
+    public void setCoches(List<Coche> coches) {
+        this.coches = coches;
+    }
+
+    public List<Vendedor> getVendedores() {
+        return vendedores;
+    }
+
+    public void setVendedores(List<Vendedor> vendedores) {
+        this.vendedores = vendedores;
+    }
+
+    public List<Cliente> getClientes() {
+        return clientes;
+    }
+
+    public void setClientes(List<Cliente> clientes) {
+        this.clientes = clientes;
+    }
+
+    public List<Exposicion> getExposiciones() {
+        return exposiciones;
+    }
+
+    public void setExposiciones(List<Exposicion> exposiciones) {
+        this.exposiciones = exposiciones;
+    }
+}
+
+
+/*  import java.util.*;
 
 public class Concesionario {
 
@@ -127,8 +261,4 @@ public class Concesionario {
 
         }
     }
-
-
-
-
-
+*/
