@@ -1,4 +1,9 @@
-public class DirectorComercial extends Persona{
+package Personas;
+
+import Inventario.Exposicion;
+import Vehiculos.Coche;
+
+public class DirectorComercial extends Persona {
 
 
 
@@ -7,20 +12,27 @@ public class DirectorComercial extends Persona{
         super(nombre, direccion, dni, telefono);
     }
 
-    public void agregarCocheCompradoACliente(Cliente cliente, Coche coche){
+    public void agregarCocheCompradoAListaCliente(Cliente cliente, Coche coche){
         cliente.getCochesComprados().add(coche);
     }
 
-    public void agregarCocheReservadoACliente (Cliente cliente, Coche coche){
+    public void agregarCocheReservadoAListaCliente (Cliente cliente, Coche coche){
         cliente.getCochesReservados().add(coche);
     }
 
-    public void agregarCocheVendidoAVendedor (Vendedor vendedor, Coche coche){
+    public void agregarCocheVendidoAListaVendedor (Vendedor vendedor, Coche coche){
         vendedor.getCochesVendidos().add(coche);
     }
     public void agregarCocheAExposicion (Exposicion exposicion, Coche coche){
         exposicion.agregarCoche(coche);
     }
+    public void agregarCocheReservadoACliente (Coche coche, Cliente cliente){
+        coche.reservar();
+    }
+
+    public void agregarCocheCompradoACliente(Cliente cliente1, Coche coche1) {
+    }
+    //public void
 
 
     //queCliente(coche)

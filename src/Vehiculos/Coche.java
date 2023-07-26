@@ -1,3 +1,8 @@
+package Vehiculos;
+
+import Inventario.Reparacion;
+import Personas.Cliente;
+
 import java.util.ArrayList;
 import java.util.List;
 

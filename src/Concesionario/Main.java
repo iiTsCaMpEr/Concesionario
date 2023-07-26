@@ -1,3 +1,12 @@
+package Concesionario;
+
+import Inventario.Exposicion;
+import Personas.Cliente;
+import Personas.DirectorComercial;
+import Personas.Persona;
+import Personas.Vendedor;
+import Vehiculos.Coche;
+
 import java.util.List;
 
 public class Main {

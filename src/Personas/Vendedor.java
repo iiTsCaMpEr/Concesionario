@@ -1,7 +1,12 @@
+package Personas;
+
+import Personas.Persona;
+import Vehiculos.Coche;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Vendedor extends Persona{
+public class Vendedor extends Persona {
 
     private List<Coche> cochesVendidos;
 

@@ -1,4 +1,7 @@
+package Inventario;
+
 import java.util.ArrayList;
+import Vehiculos.Coche;
 import java.util.List;
 
 public class Exposicion {

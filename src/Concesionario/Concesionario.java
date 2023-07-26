@@ -1,3 +1,10 @@
+package Concesionario;
+
+import Inventario.Exposicion;
+import Personas.Cliente;
+import Personas.Vendedor;
+import Vehiculos.Coche;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +72,7 @@ public class Concesionario {
         for (Cliente cliente : clientes) {
             List<Coche> cochesReservados = cliente.getCochesReservados();
             if (!cochesReservados.isEmpty()) {
-                System.out.println("Cliente: " + cliente.getNombre() + " (DNI: " + cliente.getDni() + ")");
+                System.out.println("Personas.Cliente: " + cliente.getNombre() + " (DNI: " + cliente.getDni() + ")");
                 System.out.println("Coches reservados:");
                 for (Coche coche : cochesReservados) {
                     System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
@@ -76,9 +83,9 @@ public class Concesionario {
 
 
 
-    // Cliente que compró un determinado coche
+    // Personas.Cliente que compró un determinado coche
     public void clienteQueComproCoche(Coche coche) {
-        System.out.println("Cliente que compró el coche " + coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + "):");
+        System.out.println("Personas.Cliente que compró el coche " + coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + "):");
         for (Cliente cliente: clientes) {
             List<Coche> cochesComprados = cliente.getCochesComprados();
             if (cochesComprados.contains(coche)) {
@@ -135,19 +142,19 @@ public class Concesionario {
 
 /*  import java.util.*;
 
-public class Concesionario {
+public class Concesionario.Concesionario {
 
     private String nombre;
-    private HashMap<String, Persona> Personas;
-    private HashMap<String, Coche> Coches;
-    private HashMap<String, Coche> CochesStock;
-    private HashMap<String, Coche> CochesReservados;
+    private HashMap<String, Personas.Persona> Personas;
+    private HashMap<String, Vehiculos.Coche> Coches;
+    private HashMap<String, Vehiculos.Coche> CochesStock;
+    private HashMap<String, Vehiculos.Coche> CochesReservados;
 
-    private HashMap<String,Reparacion> CochesEnReparacion;
+    private HashMap<String,Inventario.Reparacion> CochesEnReparacion;
 
 
 
-    public Concesionario(String nombre) {
+    public Concesionario.Concesionario(String nombre) {
         this.nombre = nombre;
 
 
@@ -170,8 +177,8 @@ public class Concesionario {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Que tipo de usuario eres");
-        System.out.println("1. Cliente");
-        System.out.println("2. Vendedor");
+        System.out.println("1. Personas.Cliente");
+        System.out.println("2. Personas.Vendedor");
         System.out.println("3. Director Comercial");
         System.out.println("4. Mecanico");
 
@@ -226,7 +233,7 @@ public class Concesionario {
         System.out.println("telefono");
         int telefono = scanner.nextInt();
 
-        Personas.put(dni, new Cliente(nombre,direcion,dni,telefono));
+        Personas.put(dni, new Personas.Cliente(nombre,direcion,dni,telefono));
 
 
         imprimir();
@@ -234,7 +241,7 @@ public class Concesionario {
     }
 
     public void imprimir() {
-        for (Map.Entry<String, Persona> entry : Personas.entrySet()) {
+        for (Map.Entry<String, Personas.Persona> entry : Personas.entrySet()) {
             System.out.println("Clave: " + entry.getKey() + ", Valor: " + entry.getValue());
 
 
