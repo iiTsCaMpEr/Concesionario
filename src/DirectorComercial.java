@@ -7,9 +7,22 @@ public class DirectorComercial extends Persona{
         super(nombre, direccion, dni, telefono);
     }
 
-    //agregarCocheComprado(coche);
-    //agregarCocheReservado(coche);
-    //agregarCocheVendido(coche);
+    public void agregarCocheCompradoACliente(Cliente cliente, Coche coche){
+        cliente.getCochesComprados().add(coche);
+    }
+
+    public void agregarCocheReservadoACliente (Cliente cliente, Coche coche){
+        cliente.getCochesReservados().add(coche);
+    }
+
+    public void agregarCocheVendidoAVendedor (Vendedor vendedor, Coche coche){
+        vendedor.getCochesVendidos().add(coche);
+    }
+    public void agregarCocheAExposicion (Exposicion exposicion, Coche coche){
+        exposicion.agregarCoche(coche);
+    }
+
+
     //queCliente(coche)
     //queCoches(vendedor)
     //cochesStock()

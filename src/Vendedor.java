@@ -34,7 +34,7 @@ public class Vendedor extends Persona{
         return cochesVendidos;
     }
 
-    public void setCochesVendidos(List<Coche> cochesVendidos) {
+    private void setCochesVendidos(List<Coche> cochesVendidos) {
         this.cochesVendidos = cochesVendidos;
     }
 

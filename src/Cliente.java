@@ -10,7 +10,7 @@ public class Cliente extends Persona {
     public Cliente(String nombre, String direccion, String dni, int telefono) {
         super(nombre, direccion, dni, telefono);
 
-        this.nombre = nombre;
+        //this.nombre = nombre;
         this.dni = dni;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -43,7 +43,7 @@ public class Cliente extends Persona {
         return cochesComprados;
     }
 
-    public void setCochesComprados(List<Coche> cochesComprados) {
+    private void setCochesComprados(List<Coche> cochesComprados) {
         this.cochesComprados = cochesComprados;
     }
 

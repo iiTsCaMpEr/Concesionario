@@ -16,7 +16,7 @@ public class Reparacion {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    private void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
@@ -24,7 +24,7 @@ public class Reparacion {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    private void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 }
