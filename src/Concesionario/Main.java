@@ -1,51 +1,17 @@
 package Concesionario;
 
-import Inventario.Exposicion;
-import Personas.Cliente;
-import Personas.DirectorComercial;
-import Personas.Persona;
-import Personas.Vendedor;
-import Vehiculos.Coche;
-
-import java.util.List;
+import Interfaz.Interfaz;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("");
 
-        //interfaz interfaz = new interfaz();
+            Interfaz interfaz = new Interfaz();
 
-        DirectorComercial director = new DirectorComercial("makina", "gaga","6657890U", 2345235);
-        Coche coche1 = new Coche("opel", "corsa", "12456OY", 342523.80, 2352626.90, "turismo");
-        Coche coche2 = new Coche("opel", "astra", "12456OX", 342523.80, 2352626.90, "turismo");
-        Cliente cliente1 = new Cliente("paquito", "DireccionCliente1", "DNI2", 547474745);
-        Exposicion expo1 = new Exposicion(45,"afag","69798088");
-        Vendedor lalo = new Vendedor("Lalo", "fafas", "2352789U", 55566677);
-
-        director.agregarCocheCompradoACliente(cliente1, coche1);
-        director.agregarCocheCompradoACliente(cliente1, coche2);
-        director.agregarCocheAExposicion(expo1,coche1);
-
-        List<Coche>cochesCompradosCliente1 = cliente1.getCochesComprados();
-
-        List<Coche> cochesPresentes = expo1.getCochesPresentes();
-        System.out.println("Los coches que se encuentran en la exposición número " + expo1.getNumeroExposicion() + " son: " + expo1.getCochesPresentes());
-        for (Coche coche : cochesPresentes){
-            System.out.println(expo1.getCochesPresentes());
-        }
-
-        System.out.println("Coches comprados por " + cliente1.getNombre() + ":");
-        for (Coche coche : cochesCompradosCliente1){
-            System.out.println(coche.getMarca() + " " + coche.getModelo() + " " + coche.getMatricula());
-        }
+        // Concesionario.Concesionario Ademuz = new Concesionario.Concesionario("Ademuz");
 
 
-
-
-        Concesionario Ademuz = new Concesionario("Ademuz");
-
-
-        Persona alberto = new Cliente("pedro","calle", "2334433L", 62262262);
+        // Personas.Persona alberto = new Personas.Cliente("pedro","calle", "2334433L", 62262262);
 
 
 

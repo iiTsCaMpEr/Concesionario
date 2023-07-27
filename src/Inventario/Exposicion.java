@@ -1,17 +1,18 @@
 package Inventario;
 
-import java.util.ArrayList;
 import Vehiculos.Coche;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Exposicion {
 
-    private int numeroExposicion;
+    private Integer numeroExposicion;
     private String direccion;
     private String telefono;
     private List<Coche> cochesPresentes;
 
-    public Exposicion(int numeroExposicion, String direccion, String telefono) {
+    public Exposicion(Integer numeroExposicion, String direccion, String telefono) {
         this.numeroExposicion = numeroExposicion;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -35,7 +36,7 @@ public class Exposicion {
         return numeroExposicion;
     }
 
-    public void setNumeroExposicion(int numeroExposicion) {
+    public void setNumeroExposicion(Integer numeroExposicion) {
         this.numeroExposicion = numeroExposicion;
     }
 
