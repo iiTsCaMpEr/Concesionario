@@ -15,6 +15,10 @@ public abstract class Persona {
         this.telefono = telefono;
         this.concesionario = concesionario;
     }
+    public Persona (Concesionario concesionario) {
+        this.concesionario = concesionario;
+
+    }
 
 
     //getter y setter
@@ -50,6 +54,12 @@ public abstract class Persona {
         this.telefono = telefono;
     }
 
-
+    @Override
+    public String toString() {
+        return "nombre='" + nombre + '\'' +
+                ", dni='" + dni + '\'' +
+                ", telefono=" + telefono +
+                '}';
+    }
 }
 

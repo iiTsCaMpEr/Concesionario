@@ -2,14 +2,23 @@ package Personas;
 
 import Vehiculos.Coche;
 import Concesionario.Concesionario;
+import Vehiculos.Estado;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Cliente extends Persona {
 
-    private List<Coche> cochesComprados;
-    private List<Coche> cochesReservados;
+
+    private ArrayList<Coche> cochesComprados;
+    private ArrayList<Coche> cochesReservados;
+
+    public Cliente (Concesionario concesionario) {
+        super(concesionario);
+        this.cochesComprados = new ArrayList<>();
+        this.cochesReservados = new ArrayList<>();
+    }
 
 
     public Cliente(Concesionario concesionario, String nombre, String direccion, String dni, int telefono) {
@@ -25,21 +34,6 @@ public class Cliente extends Persona {
         this.cochesReservados = new ArrayList<>();
 
     }
-    public Cliente crearClienteDesdeEntradaUsuario(Scanner scanner) {
-        System.out.println("Ingrese el nombre del cliente:");
-        String nombre = scanner.nextLine();
-
-        System.out.println("Ingrese el DNI del cliente:");
-        String dni = scanner.nextLine();
-
-        System.out.println("Ingrese el domicilio del cliente:");
-        String domicilio = scanner.nextLine();
-
-        System.out.println("Ingrese el teléfono del cliente:");
-        int telefono = scanner.nextInt();
-
-        return new Cliente(concesionario, nombre,dni,domicilio,telefono);
-    }
 
     public void comprarCoche(Coche coche) {
         cochesComprados.add(coche);
@@ -48,12 +42,17 @@ public class Cliente extends Persona {
 
     public void reservarCoche(Coche coche) {
         cochesReservados.add(coche);
-        coche.reservar();
+        coche.setEstado(Estado.Reservado);
     }
 
     public void cancelarReserva(Coche coche) {
         cochesReservados.remove(coche);
-        coche.cancelarReserva();
+        coche.setEstado(Estado.Stock);
+    }
+    public  void imprimirCochesReservados() {
+        for (Coche coche : cochesReservados){
+            System.out.println(coche.toString());
+        }
     }
 
 
@@ -64,7 +63,7 @@ public class Cliente extends Persona {
         return cochesComprados;
     }
 
-    public void setCochesComprados(List<Coche> cochesComprados) {
+    public void setCochesComprados(ArrayList<Coche> cochesComprados) {
         this.cochesComprados = cochesComprados;
     }
 
@@ -72,7 +71,7 @@ public class Cliente extends Persona {
         return cochesReservados;
     }
 
-    public void setCochesReservados(List<Coche> cochesReservados) {
+    public void setCochesReservados(ArrayList<Coche> cochesReservados) {
         this.cochesReservados = cochesReservados;
     }
 }

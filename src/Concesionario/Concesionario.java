@@ -4,6 +4,7 @@ import Inventario.Exposicion;
 import Personas.Cliente;
 import Personas.Vendedor;
 import Vehiculos.Coche;
+import Vehiculos.Estado;
 
 import java.util.HashMap;
 
@@ -28,7 +29,7 @@ public class Concesionario {
     public void listarCochesEnVenta() {
         System.out.println("Coches en venta: ");
         for (Coche coche : coches.values()) {
-            if (coche.getEstado().equals("En venta"))
+            if (coche.getEstado() == (Estado.Stock))
 
                 System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
 
@@ -39,7 +40,7 @@ public class Concesionario {
     public void listarCochesReservados() {
         System.out.println("Coches reservados:");
         for (Coche coche : coches.values()) {
-            if (coche.getEstado().equals("Reservado")) {
+            if (coche.getEstado() == (Estado.Reservado)) {
                 System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
             }
         }
@@ -77,7 +78,7 @@ public class Concesionario {
             if (coches.containsKey(matricula) && (clientes.containsKey(dni))) {
                 Coche coche = coches.get(matricula);
                 coches.remove(matricula);
-                coche.setEstado("Reservado");
+                coche.setEstado(Estado.Reservado);
 
                 Cliente cliente = clientes.get(dni);
                 cliente.reservarCoche(coche);
@@ -105,9 +106,9 @@ public class Concesionario {
 
         HashMap<String, Coche> cochesEnVenta = new HashMap<>();
         for (Coche coche : coches.values()) {
-            if (coche.getEstado().equals("En venta")) {
+            if (coche.getEstado() == Estado.Stock) {
 
-                cochesEnVenta.put(coche.getEstado(), coche);
+                cochesEnVenta.put(coche.getMatricula(), coche);
             }
             }
         return cochesEnVenta;
@@ -120,9 +121,9 @@ public class Concesionario {
 
         HashMap<String, Coche> cochesReservados = new HashMap<>();
         for (Coche coche : coches.values()) {
-            if (coche.getEstado().equals("Reservado")) {
+            if (coche.getEstado() == Estado.Reservado) {
 
-                cochesReservados.put(coche.getEstado(), coche);
+                cochesReservados.put(coche.getMatricula(), coche);
             }
         }
         return cochesReservados;
@@ -135,13 +136,25 @@ public class Concesionario {
 
         HashMap<String, Coche> cochesReparacion = new HashMap<>();
         for (Coche coche : coches.values()) {
-            if (coche.getEstado().equals("En reparacion")) {
+            if (coche.getEstado() == (Estado.Reparando)) {
 
-                cochesReparacion.put(coche.getEstado(), coche);
+                cochesReparacion.put(coche.getMatricula(), coche);
             }
         }
         return cochesReparacion;
 
+    }
+    public void imprimirVendedores() {
+        for (Vendedor vendedor : vendedores.values()) {
+
+            System.out.println(vendedor.toString());
+        }
+    }
+    public void imprimirClientes() {
+        for (Cliente cliente : clientes.values()) {
+
+            System.out.println(cliente.toString());
+        }
     }
 
 
