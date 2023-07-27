@@ -96,6 +96,28 @@ public class DirectorComercial extends Persona {
 
 
         }
+        public void anadirCliente(){
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Nombre del cliente: ");
+            String nombre = scanner.nextLine();
+
+            System.out.println("Direccion del cliente: ");
+            String direccion = scanner.nextLine();
+
+            System.out.println("DNI cliente: ");
+            String dni = scanner.nextLine();
+
+            System.out.println("Teléfono del cliente: ");
+            int telefono = scanner.nextInt();
+
+
+
+            HashMap<String, Cliente> nuevoCliente = concesionario.getClientes();
+            nuevoCliente.put(dni, new Cliente(concesionario, nombre, direccion, dni, telefono));
+            concesionario.setClientes(nuevoCliente);
+
+        }
 
 
 

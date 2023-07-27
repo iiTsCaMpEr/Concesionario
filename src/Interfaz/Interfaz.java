@@ -1,12 +1,21 @@
 package Interfaz;
 
+import Personas.Cliente;
 import Personas.DirectorComercial;
 import Concesionario.Concesionario;
- import java.util.Scanner;
+import Personas.Vendedor;
+import Vehiculos.Coche;
+
+import java.util.Scanner;
 
  public class Interfaz {
      private Concesionario concesionario = new Concesionario();
      private DirectorComercial director = new DirectorComercial(concesionario,"a", "a", "a", 4);
+
+     private Cliente cliente = new Cliente(concesionario, "a","a","a",654);
+     private Coche coche = new Coche("a", "b", "23432JHK", 50.00, 60.00,"Turismo", "");
+
+     private Vendedor vendedor = new Vendedor(concesionario,"p","j","12345P",5647475);
 
      public Interfaz() {
          Scanner scanner = new Scanner(System.in);
@@ -38,11 +47,10 @@ import Concesionario.Concesionario;
              }
          }
 
-         scanner.close();
      }
 
      public static void mostrarMenuIdentificaion() {
-         System.out.println("\n--- IDENTIFIQUESE ---");
+         System.out.println("\n--- IDENTIFÍQUESE ---");
          System.out.println("\n--- ¿Que tipo de usuario es? ---");
          System.out.println("1. Cliente");
          System.out.println("2. Vendedor");
@@ -58,7 +66,7 @@ import Concesionario.Concesionario;
          System.out.println("3. Listar coches en stock");
          System.out.println("4. Listar coches en reparación");
          System.out.println("5. Listar coches reservados");
-         System.out.println("6. --------");
+         System.out.println("6. Añadir cliente");
          System.out.println("7. Salir");
          System.out.print("Selecciona una opción: ");
      }
@@ -96,6 +104,7 @@ import Concesionario.Concesionario;
                      //listarClientesConReserva();
                      break;
                  case 6:
+                     director.anadirCliente();
                      //clienteQueComproCoche(scanner);
                      break;
                  case 7:
@@ -107,14 +116,10 @@ import Concesionario.Concesionario;
 
      public static void mostrarMenuCliente() {
          System.out.println("\n--- Menú de Clientes ---");
-         System.out.println("1. Reservar coche");
-         System.out.println("2. Cancelar reserva");
-         System.out.println("3. Ver mis reservas");
-         System.out.println("4. Ver mis coches");
-         System.out.println("5. Reparar coche");
-         System.out.println("6. Ver coches en stock");
-         System.out.println("7. Salir");
-         System.out.print("Selecciona una opción: ");
+         System.out.println("1. Consultar coches en Stock. ");
+         System.out.println("2. Salir. ");
+
+
      }
 
      public void interfazCliente() {
@@ -124,7 +129,7 @@ import Concesionario.Concesionario;
 
 
          int opcion = -1;
-         while (opcion != 7) {
+         while (opcion != 2) {
              mostrarMenuCliente();
              opcion = scanner.nextInt();
              scanner.nextLine();
@@ -133,24 +138,12 @@ import Concesionario.Concesionario;
                  case 1:
                      concesionario.listarCochesEnVenta();
                      break;
+
+
                  case 2:
-                     // listarCochesReservados();
-                     break;
-                 case 3:
-                     // listarCochesEnReparacion();
-                     break;
-                 case 4:
-                     // listarCochesVendidosPorVendedor(scanner);
-                     break;
-                 case 5:
-                     // repararCoche(Vehiculos.Coche)
-                     break;
-                 case 6:
-                     // verCochesEnStock()
-                     break;
-                 case 7:
                      System.out.println("¡Hasta luego!");
                      break;
+
              }
          }
      }
@@ -164,14 +157,13 @@ import Concesionario.Concesionario;
      }
 
      public void mostrarMenuVendedor() {
-         System.out.println("\n--- Menú de Personas.Vendedor ---");
-         System.out.println("1. Listar coches en venta");
-         System.out.println("2. Listar coches reservados");
-         System.out.println("3. Listar coches en reparación");
-         System.out.println("4. Listar coches vendidos por un vendedor a comisión");
-         System.out.println("5. Listar clientes con coches reservados");
-         System.out.println("6. Mostrar cliente que compró un coche");
-         System.out.println("0. Salir");
+         System.out.println("\n--- Menú de Vendedores ---");
+         System.out.println("1. Vender coche");
+         System.out.println("2. Reservar coche");
+         System.out.println("3. Consultas sobre clientes");
+         System.out.println("4. Consultas sobre coches");
+         System.out.println("5. Consultas sobre exposiciones");
+         System.out.println("6. Salir");
          System.out.print("Selecciona una opción: ");
      }
 
@@ -182,17 +174,17 @@ import Concesionario.Concesionario;
 
 
          int opcion = -1;
-         while (opcion != 0) {
+         while (opcion != 6) {
              mostrarMenuVendedor();
              opcion = scanner.nextInt();
              scanner.nextLine();
 
              switch (opcion) {
                  case 1:
-                     // listarCochesEnVenta();
+                     vendedor.venderCoche(coche);
                      break;
                  case 2:
-                     // listarCochesReservados();
+                    vendedor.reservarCoche();
                      break;
                  case 3:
                      // listarCochesEnReparacion();
@@ -203,12 +195,9 @@ import Concesionario.Concesionario;
                  case 5:
                      System.out.println("¡Hasta luego!");
                      break;
-                 default:
-                     System.out.println("Opción inválida, por favor intenta nuevamente.");
              }
          }
 
-         scanner.close();
      }
 
      private void listarCochesEnVenta() {

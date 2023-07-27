@@ -72,19 +72,8 @@ public class Concesionario {
             }
         }
     }
-    public void reservarCoche(String matricula, String dni) {
-
-            if (coches.containsKey(matricula) && (clientes.containsKey(dni))) {
-                Coche coche = coches.get(matricula);
-                coches.remove(matricula);
-                coche.setEstado("Reservado");
-
-                Cliente cliente = clientes.get(dni);
-                cliente.reservarCoche(coche);
 
 
-            }
-        }
 
 
     public void añadirCoche (Coche coche) {
