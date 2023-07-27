@@ -44,10 +44,10 @@ import Concesionario.Concesionario;
      public static void mostrarMenuIdentificaion() {
          System.out.println("\n--- IDENTIFIQUESE ---");
          System.out.println("\n--- ¿Que tipo de usuario es? ---");
-         System.out.println("1. Personas.Cliente");
-         System.out.println("2. Personas.Vendedor");
+         System.out.println("1. Cliente");
+         System.out.println("2. Vendedor");
          System.out.println("3. Director Comercial");
-         System.out.println("4 . Salir");
+         System.out.println("4. Salir");
          System.out.print("Selecciona una opción: ");
      }
 
@@ -57,7 +57,7 @@ import Concesionario.Concesionario;
          System.out.println("2. Eliminar coche de concesionario");
          System.out.println("3. Listar coches en stock");
          System.out.println("4. Listar coches en reparación");
-         System.out.println("5. --------");
+         System.out.println("5. Listar coches reservados");
          System.out.println("6. --------");
          System.out.println("7. Salir");
          System.out.print("Selecciona una opción: ");
@@ -85,12 +85,14 @@ import Concesionario.Concesionario;
                      concesionario.listarCochesEnVenta();
                      break;
                  case 3:
-                     listarCochesEnReparacion();
+                     listarCochesEnVenta();
                      break;
                  case 4:
+                     listarCochesEnReparacion();
                      //listarCochesVendidosPorVendedor(scanner);
                      break;
                  case 5:
+                     listarCochesReservados();
                      //listarClientesConReserva();
                      break;
                  case 6:
@@ -210,15 +212,15 @@ import Concesionario.Concesionario;
      }
 
      private void listarCochesEnVenta() {
-         concesionario.listarCochesEnVenta();
+         director.cochesEnStock();
      }
 
      private void listarCochesReservados() {
-         concesionario.listarCochesReservados();
+         director.cochesEnReserva();
      }
 
      private void listarCochesEnReparacion() {
-         concesionario.listarCochesEnReparacion();
+         director.cochesEnReparacion();
      }
 
 

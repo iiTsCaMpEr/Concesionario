@@ -28,6 +28,7 @@ public class Concesionario {
     public void listarCochesEnVenta() {
         System.out.println("Coches en venta: ");
         for (Coche coche : coches.values()) {
+            if (coche.getEstado().equals("En venta"))
 
                 System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
 
@@ -63,7 +64,7 @@ public class Concesionario {
         System.out.println("Sueldo de " + vendedor.getNombre() + ": " + (contadorCochesVendidos * 200) + " euros");
     }
     // Listado de clientes que tienen un coche reservado
-    public void listarCochesEnReservados() {
+    public void listarClientesConCocheReservado() {
         System.out.println("Coches en venta:");
         for (Coche coche : coches.values()) {
             if (coche.getEstado().equals("Reservado")) {
@@ -97,11 +98,49 @@ public class Concesionario {
         clientes.put(cliente.getDni(), cliente);
     }
 
-    public void calcularEnStock() {
+    public HashMap listarEnStock() { // para el director comercial
 
-        if (coches.containsKey("En venta")) {
+        System.out.println("Los coches en stock son: ");
 
+
+        HashMap<String, Coche> cochesEnVenta = new HashMap<>();
+        for (Coche coche : coches.values()) {
+            if (coche.getEstado().equals("En venta")) {
+
+                cochesEnVenta.put(coche.getEstado(), coche);
+            }
+            }
+        return cochesEnVenta;
+
+    }
+    public HashMap listarEnReserva() {    // para el director comercial
+
+        System.out.println("Los coches en reservados son: ");
+
+
+        HashMap<String, Coche> cochesReservados = new HashMap<>();
+        for (Coche coche : coches.values()) {
+            if (coche.getEstado().equals("Reservado")) {
+
+                cochesReservados.put(coche.getEstado(), coche);
+            }
         }
+        return cochesReservados;
+
+    }
+    public HashMap listarEnReparacion() {    // para el director comercial
+
+        System.out.println("Los coches en reparacion son: ");
+
+
+        HashMap<String, Coche> cochesReparacion = new HashMap<>();
+        for (Coche coche : coches.values()) {
+            if (coche.getEstado().equals("En reparacion")) {
+
+                cochesReparacion.put(coche.getEstado(), coche);
+            }
+        }
+        return cochesReparacion;
 
     }
 
@@ -139,134 +178,3 @@ public class Concesionario {
         this.exposiciones = exposiciones;
     }
 }
-
-
-/*  import java.util.*;
-
-public class Concesionario.Concesionario {
-
-    private String nombre;
-    private HashMap<String, Personas.Persona> Personas;
-    private HashMap<String, Vehiculos.Coche> Coches;
-    private HashMap<String, Vehiculos.Coche> CochesStock;
-    private HashMap<String, Vehiculos.Coche> CochesReservados;
-
-    private HashMap<String,Inventario.Reparacion> CochesEnReparacion;
-
-
-
-    public Concesionario.Concesionario(String nombre) {
-        this.nombre = nombre;
-
-
-        Personas = new HashMap<>();
-        Coches = new HashMap<>();
-        CochesStock = new HashMap<>();
-        CochesReservados = new HashMap<>();
-        CochesEnReparacion = new HashMap<>();
-
-        addCliente();
-        addCliente();
-
-    }
-
-
-    // metodos
-
-    public void Interfaz.Interfaz() {
-
-
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Que tipo de usuario eres");
-        System.out.println("1. Personas.Cliente");
-        System.out.println("2. Personas.Vendedor");
-        System.out.println("3. Director Comercial");
-        System.out.println("4. Mecanico");
-
-        int valor = scanner.nextInt();
-        if (valor == 1) {
-
-            System.out.println("Que quieres hacer");
-            System.out.println("1. Comprar un coche");
-            System.out.println("2. Reservar un coche");
-            valor = scanner.nextInt();
-
-        }
-        if (valor == 2) {
-
-            System.out.println("Que quieres hacer?");
-            System.out.println("1. Vender un coche");
-            System.out.println("2. Reservar un coche");
-            System.out.println("3. Consultar datos cliente");
-            System.out.println("4. Consultar datos de un coche");
-            System.out.println("5. Consultar datos de una exposicion");
-
-
-        }
-
-        if(valor ==3)
-
-    {
-
-
-    }
-
-}
-
-
-
-
-
-    public void addCliente() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("nombre");
-        String nombre = scanner.nextLine();
-
-
-        System.out.println("dirección");
-        String direcion = scanner.nextLine();
-
-
-        System.out.println("dni");
-        String dni = scanner.nextLine();
-
-        System.out.println("telefono");
-        int telefono = scanner.nextInt();
-
-        Personas.put(dni, new Personas.Cliente(nombre,direcion,dni,telefono));
-
-
-        imprimir();
-
-    }
-
-    public void imprimir() {
-        for (Map.Entry<String, Personas.Persona> entry : Personas.entrySet()) {
-            System.out.println("Clave: " + entry.getKey() + ", Valor: " + entry.getValue());
-
-
-        }
-    }
-
-
-        public void queCliente () {
-
-        }
-        public void queCoches () {
-
-        }
-        public void cochesStock () {
-
-        }
-        public void venderCoche () {
-
-        }
-        public void reservarCoche () {
-
-        }
-        public void cambiarExposicion () {
-
-        }
-    }
-*/
