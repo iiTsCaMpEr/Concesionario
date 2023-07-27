@@ -1,3 +1,8 @@
+package Vehiculos;
+
+import Inventario.Reparacion;
+import Personas.Cliente;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,16 +17,17 @@ public class Coche {
     private List<Reparacion> reparaciones;
     private Cliente clienteQueCompro;
 
-    public Coche(String marca, String modelo, String matricula, double precioCompra, double precioVenta, String tipo) {
+    public Coche(String marca, String modelo, String matricula, double precioVenta, double precioCompra,  String tipo, String estado)  { // constructor para vendedores
         this.marca = marca;
         this.modelo = modelo;
         this.matricula = matricula;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
-        this.estado = "En Venta"; // Por defecto, un coche nuevo está en venta
+        this.estado = estado;
         this.tipo = tipo;
         this.reparaciones = new ArrayList<>();
     }
+
 
     public void agregarReparacion(Reparacion reparacion) {
         reparaciones.add(reparacion);

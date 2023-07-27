@@ -1,3 +1,5 @@
+package Inventario;
+
 import java.util.Date;
 
 public class Reparacion {

@@ -1,13 +1,17 @@
+package Concesionario;
+
+import Interfaz.Interfaz;
+
 public class Main {
     public static void main(String[] args) {
         System.out.println("");
 
-        interfaz interfaz = new interfaz();
+            Interfaz interfaz = new Interfaz();
 
-        Concesionario Ademuz = new Concesionario("Ademuz");
+        // Concesionario.Concesionario Ademuz = new Concesionario.Concesionario("Ademuz");
 
 
-        Persona alberto = new Cliente("pedro","calle", "2334433L", 62262262);
+        // Personas.Persona alberto = new Personas.Cliente("pedro","calle", "2334433L", 62262262);
 
 
 
