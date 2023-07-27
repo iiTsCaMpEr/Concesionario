@@ -116,5 +116,14 @@ public class Coche {
     public void setReparaciones(List<Reparacion> reparaciones) {
         this.reparaciones = reparaciones;
     }
+
+    @Override
+    public String toString() {
+        return "Coche{" +
+                "marca='" + marca + '\'' +
+                ", modelo='" + modelo + '\'' +
+                ", matricula='" + matricula + '\'' +
+                '}';
+    }
 }
 

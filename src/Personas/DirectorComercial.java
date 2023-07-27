@@ -1,17 +1,17 @@
 package Personas;
+import java.util.Map;
 
 import Concesionario.Concesionario;
 import Personas.Persona;
 
 import Vehiculos.Coche;
 
+
 import java.util.HashMap;
+
 import java.util.Scanner;
 
 public class DirectorComercial extends Persona {
-
-    private Concesionario concesionario;
-
 
 
     public DirectorComercial(Concesionario concesionario, String nombre, String direccion, String dni, int telefono) {
@@ -65,13 +65,35 @@ public class DirectorComercial extends Persona {
 
         public void cochesEnStock() {
 
+                HashMap<String, Coche> cochesStock = concesionario.listarEnStock();
 
-                System.out.println("Los coches en stock son : ");
-                concesionario.getCoches();
+            for (Coche coche : cochesStock.values()) {
 
+                System.out.println(coche.toString());
+            }
         }
+    public void cochesEnReserva() {
+
+        HashMap<String, Coche> cochesReservados = concesionario.listarEnReserva();
+
+        for (Coche coche : cochesReservados.values()) {
+
+            System.out.println(coche.toString());
+        }
+    }
+        public void cochesEnReparacion() {
+
+            HashMap<String, Coche> cochesReparacion = concesionario.listarEnReparacion();
+
+            for (Coche coche : cochesReparacion.values()) {
+
+                System.out.println(coche.toString());
+            }
+    }
 
         public void añadirVendedor() {
+
+
 
         }
 
