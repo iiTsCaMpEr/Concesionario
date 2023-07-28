@@ -13,7 +13,7 @@ public class Coche {
     private double precioCompra;
     private double precioVenta;
     private Estado estado;
-    private String tipo;
+    private Tipo tipo;
     private List<Reparacion> reparaciones;
 
     public Coche(){
@@ -21,7 +21,7 @@ public class Coche {
     }
 
 
-    public Coche(String marca, String modelo, String matricula, double precioVenta, double precioCompra,  String tipo, Estado estado)  { // constructor para vendedores
+    public Coche(String marca, String modelo, String matricula, double precioVenta, double precioCompra,  Tipo tipo, Estado estado)  { // constructor para vendedores
         this.marca = marca;
         this.modelo = modelo;
         this.matricula = matricula;
@@ -94,11 +94,11 @@ public class Coche {
         this.estado = estado;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 
