@@ -1,5 +1,6 @@
 package Personas;
 
+import Inventario.Exposicion;
 import Vehiculos.Coche;
 import Concesionario.Concesionario;
 import Vehiculos.Estado;
@@ -44,6 +45,7 @@ public class Cliente extends Persona {
         cochesReservados.add(coche);
         coche.setEstado(Estado.Reservado);
     }
+
 
     public void cancelarReserva(Coche coche) {
         cochesReservados.remove(coche);

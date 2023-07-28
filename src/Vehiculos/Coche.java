@@ -40,7 +40,7 @@ public class Coche {
     }
 
     public void completarReparacion() {
-        estado = Estado.Reparado;
+        estado = Estado.Stock;
     }
 
     // getters and setters

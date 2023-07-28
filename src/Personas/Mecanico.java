@@ -1,6 +1,7 @@
 package Personas;
 
 import Concesionario.Concesionario;
+import Inventario.Exposicion;
 
 public class Mecanico extends Persona {
     public Mecanico (Concesionario concesionario) {
