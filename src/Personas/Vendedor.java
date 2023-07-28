@@ -29,10 +29,50 @@ public class Vendedor extends Persona {
         this.concesionario = concesionario;
         this.cochesVendidos = new ArrayList<>();
     }
-    public void venderCoche(Coche coche) {
-        cochesVendidos.add(coche);
-        coche.setEstado(Estado.Vendido);
+    public void venderCoche() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Ingrese la matrícula del vehículo que desea vender");
+        String matricula = scanner.nextLine();
+
+        System.out.println("Ingrese el DNI del cliente que va a hacer la compra");
+        String dni = scanner.nextLine();
+
+        if (concesionario.getCoches().containsKey(matricula) && (concesionario.getClientes().containsKey(dni))) {
+            Coche coche = concesionario.getCoches().get(matricula);
+            coche.setEstado(Estado.Vendido);
+
+            Cliente cliente = concesionario.getClientes().get(dni);
+            cliente.comprarCoche(coche);
+
+            cochesVendidos.add(coche);
+
+        }
+
+
+
+
+
+        }
+    public void cancelarReserva() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Ingrese el DNI del cliente que quiere cancelar su reserva");
+        String dni = scanner.nextLine();
+
+        System.out.println("Ingrese la matrícula del vehículo para cancelar su reserva");
+        String matricula = scanner.nextLine();
+
+        if (concesionario.getCoches().containsKey(matricula) && (concesionario.getClientes().containsKey(dni))) {
+            Coche coche = concesionario.getCoches().get(matricula);
+            coche.setEstado(Estado.Stock);
+
+
+            Cliente cliente = concesionario.getClientes().get(dni);
+            cliente.cancelarReserva(coche);
+
+        }
     }
+
     public void reservarCoche() {
         Scanner scanner = new Scanner(System.in);
 
