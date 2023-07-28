@@ -36,7 +36,7 @@ import java.util.Scanner;
         // identificar tipo de usuario
 
          int opcion = -1;
-         while (opcion != 4) {
+         while (opcion != 5) {
              mostrarMenuIdentificaion();
              opcion = scanner.nextInt();
              scanner.nextLine();
@@ -53,6 +53,9 @@ import java.util.Scanner;
                      interfazDirectorComercial();
                      break;
                  case 4:
+                     interfazMecanico();
+                     break;
+                 case 5:
                      System.out.println("¡Hasta luego!");
                      System.exit(0);
              }
