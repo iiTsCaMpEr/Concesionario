@@ -1,9 +1,12 @@
 package Vehiculos;
 
 import Inventario.Reparacion;
+import Inventario.TipoReparacion;
 import Personas.Cliente;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 public class Coche {
@@ -14,14 +17,15 @@ public class Coche {
     private double precioVenta;
     private Estado estado;
     private Tipo tipo;
+    private TipoReparacion reparacion;
     private List<Reparacion> reparaciones;
 
-    public Coche(){
+    public Coche() {
 
     }
 
 
-    public Coche(String marca, String modelo, String matricula, double precioVenta, double precioCompra,  Tipo tipo, Estado estado)  { // constructor para vendedores
+    public Coche(String marca, String modelo, String matricula, double precioVenta, double precioCompra, Tipo tipo, Estado estado) { // constructor para vendedores
         this.marca = marca;
         this.modelo = modelo;
         this.matricula = matricula;
@@ -33,14 +37,14 @@ public class Coche {
     }
 
 
-    public void agregarReparacion(Reparacion reparacion) {
-        reparaciones.add(reparacion);
+    public void agregarReparacion(Date fecha, TipoReparacion reparacion) {
+        reparaciones.add(new Reparacion(reparacion, fecha));
         estado = Estado.Reparando;
 
     }
 
     public void completarReparacion() {
-        estado = Estado.Reparado;
+        estado = Estado.Stock;
     }
 
     // getters and setters
@@ -119,4 +123,7 @@ public class Coche {
                 '}';
     }
 }
+
+
+
 

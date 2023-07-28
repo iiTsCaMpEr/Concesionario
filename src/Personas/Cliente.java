@@ -45,10 +45,12 @@ public class Cliente extends Persona {
         coche.setEstado(Estado.Reservado);
     }
 
-    public void cancelarReserva(Coche coche) {
+    public void cancelarReserva(Coche coche){
         cochesReservados.remove(coche);
-        coche.setEstado(Estado.Stock);
+
     }
+
+
     public  void imprimirCochesReservados() {
         for (Coche coche : cochesReservados){
             System.out.println(coche.toString());

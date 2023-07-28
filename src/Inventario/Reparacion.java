@@ -2,23 +2,25 @@ package Inventario;
 
 import java.util.Date;
 
+
 public class Reparacion {
 
-    private String tipo;
+    private TipoReparacion tipo;
     private Date fecha;
 
-    public Reparacion(String tipo, Date fecha) {
+    public Reparacion(TipoReparacion tipo, Date fecha) {
         this.tipo = tipo;
         this.fecha = fecha;
     }
 
+
     // Getters y Setters
 
-    public String getTipo() {
+    public TipoReparacion getTipo() {
         return tipo;
     }
 
-    private void setTipo(String tipo) {
+    public void setTipo(TipoReparacion tipo) {
         this.tipo = tipo;
     }
 
@@ -26,7 +28,10 @@ public class Reparacion {
         return fecha;
     }
 
-    private void setFecha(Date fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
 }
+
+

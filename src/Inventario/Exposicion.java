@@ -1,6 +1,7 @@
 package Inventario;
 
 import Vehiculos.Coche;
+import Vehiculos.Estado;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,22 +11,32 @@ public class Exposicion {
     private Integer numeroExposicion;
     private String direccion;
     private String telefono;
-    private ArrayList<Coche> cochesPresentes;
+    private ArrayList<Coche> cochesEnExposicion;
 
     public Exposicion(Integer numeroExposicion, String direccion, String telefono) {
         this.numeroExposicion = numeroExposicion;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.cochesPresentes = new ArrayList<>();
+        this.cochesEnExposicion = new ArrayList<>();
     }
 
 
-    public void agregarCoche(Coche coche) {
-        cochesPresentes.add(coche);
+
+    public void darDeAltaCocheDeExposicion(Coche coche){
+        cochesEnExposicion.add(coche);
+        coche.setEstado(Estado.Expuesto);
     }
 
-    public void eliminarCoche(Coche coche) {
-        cochesPresentes.remove(coche);
+
+    public void darDeBajaCocheDeExposicion(Coche coche) {
+        cochesEnExposicion.remove(coche);
+        coche.setEstado(Estado.Stock);
+    }
+
+    public void mostrarCochesEnExposicion() {
+        for (Coche coche : cochesEnExposicion) {
+            System.out.println("Los coches expuestos son " + coche.toString());
+        }
     }
 
 
@@ -56,12 +67,14 @@ public class Exposicion {
         this.telefono = telefono;
     }
 
-    public List<Coche> getCochesPresentes() {
-        return cochesPresentes;
+    public List<Coche> getCochesEnExposicion() {
+        return cochesEnExposicion;
     }
 
-    public void setCochesPresentes(ArrayList<Coche> cochesPresentes) {
-        this.cochesPresentes = cochesPresentes;
+    public void setCochesEnExposicion(ArrayList<Coche> cochesEnExposicion) {
+        this.cochesEnExposicion = cochesEnExposicion;
     }
+
+
 }
 
