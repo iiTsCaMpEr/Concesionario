@@ -10,7 +10,7 @@ public class Exposicion {
     private Integer numeroExposicion;
     private String direccion;
     private String telefono;
-    private List<Coche> cochesPresentes;
+    private ArrayList<Coche> cochesPresentes;
 
     public Exposicion(Integer numeroExposicion, String direccion, String telefono) {
         this.numeroExposicion = numeroExposicion;
@@ -60,7 +60,7 @@ public class Exposicion {
         return cochesPresentes;
     }
 
-    public void setCochesPresentes(List<Coche> cochesPresentes) {
+    public void setCochesPresentes(ArrayList<Coche> cochesPresentes) {
         this.cochesPresentes = cochesPresentes;
     }
 }

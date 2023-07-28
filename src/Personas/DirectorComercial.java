@@ -1,17 +1,20 @@
 package Personas;
-import java.util.Map;
 
 import Concesionario.Concesionario;
 import Personas.Persona;
 
 import Vehiculos.Coche;
-
+import Vehiculos.Estado;
 
 import java.util.HashMap;
-
 import java.util.Scanner;
 
+
 public class DirectorComercial extends Persona {
+
+    public DirectorComercial (Concesionario concesionario) {
+        super(concesionario);
+    }
 
 
     public DirectorComercial(Concesionario concesionario, String nombre, String direccion, String dni, int telefono) {
@@ -41,12 +44,8 @@ public class DirectorComercial extends Persona {
             scanner.nextLine();
             String tipo = scanner.nextLine();
 
-            System.out.println("Estado del coche: ");
-            String estado = scanner.nextLine();
-
-
             HashMap<String, Coche> nuevoCoche = concesionario.getCoches();
-            nuevoCoche.put(matricula, new Coche(marca, modelo, matricula, precioVenta, precioCompra, tipo, estado));
+            nuevoCoche.put(matricula, new Coche(marca, modelo, matricula, precioVenta, precioCompra, tipo, Estado.Stock));
             concesionario.setCoches(nuevoCoche);
         }
 
@@ -75,11 +74,26 @@ public class DirectorComercial extends Persona {
     public void cochesEnReserva() {
 
         HashMap<String, Coche> cochesReservados = concesionario.listarEnReserva();
-
         for (Coche coche : cochesReservados.values()) {
 
             System.out.println(coche.toString());
         }
+    }
+        public void queReservasTieneXCliente() {
+            Scanner scanner = new Scanner(System.in);
+
+
+            System.out.println("A que cliente desea consultar las reservas");
+            String dni = scanner.nextLine();
+
+            if (concesionario.getClientes().containsKey(dni)){
+                Cliente c = concesionario.getClientes().get(dni);
+                c.imprimirCochesReservados();
+            } else {
+                System.out.println("El cliente no existe");
+            }
+
+
     }
         public void cochesEnReparacion() {
 
@@ -92,32 +106,43 @@ public class DirectorComercial extends Persona {
     }
 
         public void añadirVendedor() {
-
-
-
-        }
-        public void anadirCliente(){
             Scanner scanner = new Scanner(System.in);
-
-            System.out.println("Nombre del cliente: ");
+            System.out.println("Ingrese el nombre del vendedor:");
             String nombre = scanner.nextLine();
-
-            System.out.println("Direccion del cliente: ");
-            String direccion = scanner.nextLine();
-
-            System.out.println("DNI cliente: ");
+            System.out.println("Ingrese el DNI del vendedor:");
             String dni = scanner.nextLine();
-
-            System.out.println("Teléfono del cliente: ");
+            System.out.println("Ingrese el domicilio del vendedor:");
+            String domicilio = scanner.nextLine();
+            System.out.println("Ingrese el teléfono del vendedor:");
             int telefono = scanner.nextInt();
 
-
-
-            HashMap<String, Cliente> nuevoCliente = concesionario.getClientes();
-            nuevoCliente.put(dni, new Cliente(concesionario, nombre, direccion, dni, telefono));
-            concesionario.setClientes(nuevoCliente);
+            HashMap<String, Vendedor> nuevoVendedor = concesionario.getVendedores();
+            nuevoVendedor.put(dni, new Vendedor (concesionario, nombre, direccion, dni, telefono));
+            concesionario.setVendedores(nuevoVendedor);
 
         }
+    public void anadirCliente(){
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Nombre del cliente: ");
+        String nombre = scanner.nextLine();
+
+        System.out.println("Direccion del cliente: ");
+        String direccion = scanner.nextLine();
+
+        System.out.println("DNI cliente: ");
+        String dni = scanner.nextLine();
+
+        System.out.println("Teléfono del cliente: ");
+        int telefono = scanner.nextInt();
+
+
+
+        HashMap<String, Cliente> nuevoCliente = concesionario.getClientes();
+        nuevoCliente.put(dni, new Cliente(concesionario, nombre, direccion, dni, telefono));
+        concesionario.setClientes(nuevoCliente);
+
+    }
 
 
 

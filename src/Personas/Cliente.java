@@ -2,66 +2,76 @@ package Personas;
 
 import Vehiculos.Coche;
 import Concesionario.Concesionario;
-
+import Vehiculos.Estado;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
 public class Cliente extends Persona {
 
-    private HashMap<String, Coche> cochesComprados;
-    private HashMap<String, Coche> cochesReservados;
+
+    private ArrayList<Coche> cochesComprados;
+    private ArrayList<Coche> cochesReservados;
+
+    public Cliente (Concesionario concesionario) {
+        super(concesionario);
+        this.cochesComprados = new ArrayList<>();
+        this.cochesReservados = new ArrayList<>();
+    }
 
 
-    public Cliente(Concesionario concesionario,String nombre, String direccion, String dni, int telefono) {
+    public Cliente(Concesionario concesionario, String nombre, String direccion, String dni, int telefono) {
         super(concesionario,nombre, direccion, dni, telefono);
 
         this.nombre = nombre;
         this.dni = dni;
         this.direccion = direccion;
         this.telefono = telefono;
+        this.concesionario = concesionario;
 
-        this.cochesComprados = new HashMap<>();
-        this.cochesReservados = new HashMap<>();
+        this.cochesComprados = new ArrayList<>();
+        this.cochesReservados = new ArrayList<>();
 
     }
 
     public void comprarCoche(Coche coche) {
-        //cochesComprados.put(coche);
+        cochesComprados.add(coche);
 
     }
 
     public void reservarCoche(Coche coche) {
-        cochesReservados.put(coche.getMatricula(), coche);
-        coche.reservar();
+        cochesReservados.add(coche);
+        coche.setEstado(Estado.Reservado);
     }
-
-
 
     public void cancelarReserva(Coche coche) {
         cochesReservados.remove(coche);
-        coche.cancelarReserva();
+        coche.setEstado(Estado.Stock);
+    }
+    public  void imprimirCochesReservados() {
+        for (Coche coche : cochesReservados){
+            System.out.println(coche.toString());
+        }
     }
 
 
     // getters and setters
 
 
-    public HashMap<String, Coche> getCochesComprados() {
+    public List<Coche> getCochesComprados() {
         return cochesComprados;
     }
 
-    public void setCochesComprados(HashMap<String, Coche> cochesComprados) {
+    public void setCochesComprados(ArrayList<Coche> cochesComprados) {
         this.cochesComprados = cochesComprados;
     }
 
-    public HashMap<String,Coche> getCochesReservados() {
+    public List<Coche> getCochesReservados() {
         return cochesReservados;
     }
 
-    public void setCochesReservados(HashMap<String, Coche> cochesReservados) {
+    public void setCochesReservados(ArrayList<Coche> cochesReservados) {
         this.cochesReservados = cochesReservados;
     }
 }

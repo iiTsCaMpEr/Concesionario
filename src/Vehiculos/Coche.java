@@ -12,18 +12,22 @@ public class Coche {
     private String matricula;
     private double precioCompra;
     private double precioVenta;
-    private String estado;
+    private Estado estado;
     private String tipo;
     private List<Reparacion> reparaciones;
-    private Cliente clienteQueCompro;
 
-    public Coche(String marca, String modelo, String matricula, double precioVenta, double precioCompra,  String tipo, String estado)  { // constructor para vendedores
+    public Coche(){
+
+    }
+
+
+    public Coche(String marca, String modelo, String matricula, double precioVenta, double precioCompra,  String tipo, Estado estado)  { // constructor para vendedores
         this.marca = marca;
         this.modelo = modelo;
         this.matricula = matricula;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
-        this.estado = estado;
+        this.estado = Estado.Stock;
         this.tipo = tipo;
         this.reparaciones = new ArrayList<>();
     }
@@ -31,23 +35,12 @@ public class Coche {
 
     public void agregarReparacion(Reparacion reparacion) {
         reparaciones.add(reparacion);
-        estado = "En Reparación";
+        estado = Estado.Reparando;
+
     }
 
     public void completarReparacion() {
-        estado = "Reparado";
-    }
-
-    public void vender() {
-        estado = "Vendido";
-    }
-
-    public void reservar() {
-        estado = "Reservado";
-    }
-
-    public void cancelarReserva() {
-        estado = "En Venta";
+        estado = Estado.Reparado;
     }
 
     // getters and setters
@@ -93,11 +86,11 @@ public class Coche {
         this.precioVenta = precioVenta;
     }
 
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
