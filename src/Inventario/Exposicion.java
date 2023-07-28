@@ -1,5 +1,6 @@
 package Inventario;
 
+import Concesionario.Concesionario;
 import Vehiculos.Coche;
 import Vehiculos.Estado;
 
@@ -12,7 +13,7 @@ public class Exposicion {
     private String direccion;
     private String telefono;
     private ArrayList<Coche> cochesEnExposicion;
-
+    
     public Exposicion(Integer numeroExposicion, String direccion, String telefono) {
         this.numeroExposicion = numeroExposicion;
         this.direccion = direccion;
@@ -21,10 +22,10 @@ public class Exposicion {
     }
 
 
-
-    public void darDeAltaCocheDeExposicion(Coche coche){
+    public void darDeAltaCocheEnExposicion(Coche coche){
         cochesEnExposicion.add(coche);
         coche.setEstado(Estado.Expuesto);
+
     }
 
 
@@ -67,7 +68,7 @@ public class Exposicion {
         this.telefono = telefono;
     }
 
-    public List<Coche> getCochesEnExposicion() {
+    public ArrayList<Coche> getCochesEnExposicion() {
         return cochesEnExposicion;
     }
 
@@ -75,6 +76,14 @@ public class Exposicion {
         this.cochesEnExposicion = cochesEnExposicion;
     }
 
-
+    @Override
+    public String toString() {
+        return "Exposicion{" +
+                "numeroExposicion=" + numeroExposicion +
+                ", direccion='" + direccion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                '}';
+    }
 }
+
 

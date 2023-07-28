@@ -99,7 +99,7 @@ public class Concesionario {
         clientes.put(cliente.getDni(), cliente);
     }
 
-    public HashMap listarEnStock() { // para el director comercial
+    public HashMap listarEnStock() {
 
         System.out.println("Los coches en stock son: ");
 
@@ -113,8 +113,8 @@ public class Concesionario {
             }
         return cochesEnVenta;
 
-    }
-    public HashMap listarEnReserva() {    // para el director comercial
+    } // para el director comercial
+    public HashMap listarEnReserva() {
 
         System.out.println("Los coches en reservados son: ");
 
@@ -128,8 +128,8 @@ public class Concesionario {
         }
         return cochesReservados;
 
-    }
-    public HashMap listarEnReparacion() {    // para el director comercial
+    } // para el director comercial
+    public HashMap listarEnReparacion() {
 
         System.out.println("Los coches en reparacion son: ");
 
@@ -143,7 +143,8 @@ public class Concesionario {
         }
         return cochesReparacion;
 
-    }
+    } // para el director comercial
+
 
     public void imprimirVendedores() {
         for (Vendedor vendedor : vendedores.values()) {
@@ -157,7 +158,12 @@ public class Concesionario {
             System.out.println(cliente.toString());
         }
     }
+    public void imprimirExposiciones() {
+        for (Exposicion exposicion : exposiciones.values()) {
 
+            System.out.println(exposicion.toString());
+        }
+    }
 
     // getters and setters
     public HashMap<String, Coche> getCoches() {

@@ -1,6 +1,9 @@
 package Personas;
 import Concesionario.Concesionario;
+import Inventario.Exposicion;
+
 public abstract class Persona {
+
     protected Concesionario concesionario;
     protected String nombre;
     protected String direccion;
@@ -17,6 +20,7 @@ public abstract class Persona {
     }
     public Persona (Concesionario concesionario) {
         this.concesionario = concesionario;
+
 
     }
 

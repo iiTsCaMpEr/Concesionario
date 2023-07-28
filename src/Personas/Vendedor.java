@@ -1,4 +1,5 @@
 package Personas;
+import Inventario.Exposicion;
 import Vehiculos.Coche;
 import Concesionario.Concesionario;
 import Vehiculos.Estado;
@@ -92,9 +93,15 @@ public class Vendedor extends Persona {
         }
 
     }
+    public  void imprimirCochesVendidos() {
+        for (Coche coche : cochesVendidos){
+            System.out.println(coche.toString());
+        }
+    }
 
-    public int calcularSueldo() {
-        return cochesVendidos.size() * 200;
+    public void imprimirSueldo() {
+        int sueldo = cochesVendidos.size() * 200;
+        System.out.println("El sueldo del vendedor con DNI" + getDni() + " es :" + sueldo);
     }
     // getters and setters
     public ArrayList<Coche> getCochesVendidos() {
