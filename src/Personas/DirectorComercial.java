@@ -5,6 +5,7 @@ import Personas.Persona;
 
 import Vehiculos.Coche;
 import Vehiculos.Estado;
+import Vehiculos.Tipo;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -42,7 +43,7 @@ public class DirectorComercial extends Persona {
 
             System.out.println("Tipo de coche: ");
             scanner.nextLine();
-            String tipo = scanner.nextLine();
+            Tipo tipo = Tipo.valueOf(scanner.nextLine());
 
             HashMap<String, Coche> nuevoCoche = concesionario.getCoches();
             nuevoCoche.put(matricula, new Coche(marca, modelo, matricula, precioVenta, precioCompra, tipo, Estado.Stock));
