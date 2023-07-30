@@ -1,22 +1,21 @@
 package Personas;
 
 import Concesionario.Concesionario;
+import Excepciones.NoSuchMatriculaException;
 import Inventario.Exposicion;
+import Inventario.Reparacion;
+import Inventario.TipoReparacion;
 import Personas.Persona;
 
 import Vehiculos.Coche;
 import Vehiculos.Estado;
 import Vehiculos.Tipo;
 
-import java.util.HashMap;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 public class DirectorComercial extends Persona {
-
-    public DirectorComercial (Concesionario concesionario) {
-        super(concesionario);
-    }
 
 
     public DirectorComercial(Concesionario concesionario, String nombre, String direccion, String dni, String telefono) {
@@ -44,29 +43,28 @@ public class DirectorComercial extends Persona {
             double precioCompra = scanner.nextDouble();
 
 
-            System.out.println("Escoja el tipo de coche: ");
-            System.out.println("1. Todoterreno");
-            System.out.println("2. Turismo");
-            System.out.println("3. Industrial");
-            Tipo tipo = null;
-            int c = scanner.nextInt();
-            switch (c) {
-                case 1:
-                    tipo = Tipo.Todoterreno;
-                    break;
-                case 2:
-                    tipo = Tipo.Turismo;
-                    break;
-                case 3:
-                    tipo = Tipo.Industrial;
-                    break;
+                System.out.println("Escoja el tipo de coche: ");
+                System.out.println("1. Todoterreno");
+                System.out.println("2. Turismo");
+                System.out.println("3. Industrial");
+                Tipo tipo = null;
+                int c = scanner.nextInt();
+                switch (c) {
+                    case 1:
+                        tipo = Tipo.Todoterreno;
+                        break;
+                    case 2:
+                        tipo = Tipo.Turismo;
+                        break;
+                    case 3:
+                        tipo = Tipo.Industrial;
+                        break;
+                }
+
+                HashMap<String, Coche> nuevoCoche = concesionario.getCoches();
+                nuevoCoche.put(matricula, new Coche(marca, modelo, matricula, precioVenta, precioCompra, tipo, Estado.Stock,concesionario));
+                concesionario.setCoches(nuevoCoche);
             }
-
-            HashMap<String, Coche> nuevoCoche = concesionario.getCoches();
-            nuevoCoche.put(matricula, new Coche(marca, modelo, matricula, precioVenta, precioCompra, tipo, Estado.Stock,concesionario));
-            concesionario.setCoches(nuevoCoche);
-        }
-
         public void modificarCoche() {
         String matricula; double nuevoPrecioCompra; double nuevoPrecioVenta; int nuevoEstado;
         Scanner scanner = new Scanner(System.in);
@@ -151,6 +149,8 @@ public class DirectorComercial extends Persona {
         }
     }
         public void cochesEnReparacion() {
+
+            System.out.println("Los coches en reparación son : ");
 
         HashMap<String, Coche> cochesReparacion = concesionario.listarEnReparacion();
 
@@ -386,7 +386,7 @@ public class DirectorComercial extends Persona {
 
 
             HashMap<Integer, Exposicion> nuevaExposicion = concesionario.getExposiciones();
-            nuevaExposicion.put(num, new Exposicion(num,direccion,telefono));
+            nuevaExposicion.put(num, new Exposicion(concesionario,num,direccion,telefono));
             concesionario.setExposiciones(nuevaExposicion);
 
         }
@@ -493,7 +493,53 @@ public class DirectorComercial extends Persona {
             }
 
         }
+
         // reparaciones
+        public void agregarReparacion(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Indique la matrícula del coche que necesite ser reparado");
+        String matricula = scanner.nextLine();
+
+        System.out.println("Elija tipo de reparación: mecánica, eléctrica, chapa o revisión. ");
+        TipoReparacion reparacion = TipoReparacion.valueOf(scanner.nextLine());
+
+        Coche coche = concesionario.getCoches().get(matricula);
+        Date fechaYHoraDeReparacion = new Date();
+
+
+        coche.agregarReparacion(fechaYHoraDeReparacion,reparacion);
+    }
+        public void elegirCocheEnReparacion(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Indique la matrícula del coche que ha sido reparado");
+        String matricula = scanner.nextLine();
+
+        Coche coche = concesionario.getCoches().get(matricula);
+        coche.setEstado(Estado.Stock);
+    }
+        public void listarCocheEspecificoEnReparacion(){
+        HashMap<String, Coche> cochesEnReparacion = concesionario.listarEnReparacion();
+
+        cochesEnReparacion();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese la matrícula del coche que desea consultar las reparaciones: ");
+        String matricula = scanner.nextLine();
+        Coche coche = cochesEnReparacion.get(matricula);
+        if (coche != null) {
+            List<Reparacion> reparaciones = coche.getReparaciones();
+            Collections.sort(reparaciones, (r1, r2) -> r2.getFecha().compareTo(r1.getFecha()));
+            for (Reparacion reparacion : reparaciones) {
+                SimpleDateFormat a = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaReparacion = a.format(reparacion.getFecha());
+                System.out.println("Fecha de reparación: " + fechaReparacion);
+                System.out.println("Tipo de reparación: " + reparacion.getTipo().toString());
+                System.out.println("-------------------------");
+            }
+        } else {
+            throw new NoSuchMatriculaException("No se encontró ningún coche con esa matrícula en reparación.");
+        }
+    }
+}
 
 
 
@@ -526,4 +572,3 @@ public class DirectorComercial extends Persona {
 
 
 
-}
