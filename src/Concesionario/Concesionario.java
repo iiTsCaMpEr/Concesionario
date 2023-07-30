@@ -27,9 +27,7 @@ public class Concesionario {
         mecanicos = new HashMap<>();
     }
 
-
-    // Métodos para agregar coches, vendedores, clientes y exposiciones y vergotas
-
+    // Métodos para agregar coches, vendedores, clientes y exposiciones
 
     public void listarCochesEnVenta() {
         System.out.println("Coches en venta: ");
