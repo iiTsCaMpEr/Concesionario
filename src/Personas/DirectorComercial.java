@@ -2,14 +2,17 @@ package Personas;
 
 import Concesionario.Concesionario;
 import Inventario.Exposicion;
+import Inventario.Reparacion;
+import Inventario.TipoReparacion;
 import Personas.Persona;
 
+import Validaciones.Validaciones;
 import Vehiculos.Coche;
 import Vehiculos.Estado;
 import Vehiculos.Tipo;
 
-import java.util.HashMap;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 public class DirectorComercial extends Persona {
@@ -386,7 +389,7 @@ public class DirectorComercial extends Persona {
 
 
             HashMap<Integer, Exposicion> nuevaExposicion = concesionario.getExposiciones();
-            nuevaExposicion.put(num, new Exposicion(num,direccion,telefono));
+            nuevaExposicion.put(num, new Exposicion(concesionario,num,direccion,telefono));
             concesionario.setExposiciones(nuevaExposicion);
 
         }
@@ -494,38 +497,54 @@ public class DirectorComercial extends Persona {
 
         }
         // reparaciones
+        public void listarCocheEspecificoEnReparacion() {
+        HashMap<String, Coche> cochesEnReparacion = concesionario.listarEnReparacion();
+        cochesEnReparacion();
+        Scanner scanner = new Scanner(System.in);
 
+        if (concesionario == null || concesionario.getCoches() == null) {
+            throw new NullPointerException("El concesionario o la lista de coches en reparación están vacíos");  //Imprimir Null
+        }
 
+        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches());
+        Coche coche = cochesEnReparacion.get(matricula);
+        if (coche != null) {
+            List<Reparacion> reparaciones = coche.getReparaciones();
+            Collections.sort(reparaciones, (r1, r2) -> r2.getFecha().compareTo(r1.getFecha()));
+            for (Reparacion reparacion : reparaciones) {
+                SimpleDateFormat a = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaReparacion = a.format(reparacion.getFecha());
+                System.out.println("Fecha de reparación: " + fechaReparacion);
+                System.out.println("Tipo de reparación: " + reparacion.getTipo().toString());
+                System.out.println("-------------------------");
+            }
 
+        }
+    }
+        public void agregarReparacion(){
+        Scanner scanner =  new Scanner(System.in);
+        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches());
+        if (concesionario == null || concesionario.listarEnReparacion() == null) {
+            throw new NullPointerException("El concesionario o la lista de coches en reparación están vacíos");    //Imprimir Null
+        }
 
+        TipoReparacion reparacion = Validaciones.leerTipoReparacion(scanner);
 
+        Coche coche = concesionario.getCoches().get(matricula);
+        Date fechaYHoraDeReparacion = new Date();
+        coche.agregarReparacion(fechaYHoraDeReparacion,reparacion);
 
+    }
+        public void elegirCocheEnReparacion() {
+        Scanner scanner = new Scanner(System.in);
 
+        if (concesionario == null || concesionario.getCoches() == null) {
+            throw new NullPointerException("El concesionario o la lista de coches en reparación están vacíos");  //Imprimir Null
+        }
+        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches());
 
-
-
-
-
-
-// que vendedor ha vendido más
-
-
-
-
-    //agregarCocheComprado(coche);
-    //agregarCocheReservado(coche);
-    //agregarCocheVendido(coche);
-    //queCliente(coche)
-    //queCoches(vendedor)
-
-    //venderCoche(coche,vendedor,cliente)
-    //reservarCoche(coche,cliente)
-    //cambiarExposicion(coche,exposicion)
-    //comprar()
-    //reservar()
-    //cambiarExposicion(exposicion)
-    //resolver()
-
-
+        Coche coche = concesionario.getCoches().get(matricula);
+        coche.setEstado(Estado.Stock);
+    }
 
 }

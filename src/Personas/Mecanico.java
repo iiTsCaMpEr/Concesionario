@@ -38,7 +38,6 @@ public class Mecanico extends Persona {
 
     }
 
-
     public void cochesEnReparacion() {
         if (concesionario == null || concesionario.listarEnReparacion() == null) {
             throw new NullPointerException("El concesionario o la lista de coches en reparación están vacíos");    //Imprimir Null
@@ -64,7 +63,6 @@ public class Mecanico extends Persona {
         Coche coche = concesionario.getCoches().get(matricula);
         coche.setEstado(Estado.Stock);
     }
-
     public void listarCocheEspecificoEnReparacion() {
         HashMap<String, Coche> cochesEnReparacion = concesionario.listarEnReparacion();
         cochesEnReparacion();
@@ -90,4 +88,3 @@ public class Mecanico extends Persona {
         }
     }
 }
-
