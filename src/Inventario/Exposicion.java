@@ -5,7 +5,6 @@ import Vehiculos.Coche;
 import Vehiculos.Estado;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Exposicion {
 
