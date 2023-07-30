@@ -4,10 +4,7 @@ import Vehiculos.Coche;
 import Concesionario.Concesionario;
 import Vehiculos.Estado;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Scanner;
 
 
@@ -20,7 +17,7 @@ public class Vendedor extends Persona {
         ;
 
     }
-    public Vendedor(Concesionario concesionario, String nombre, String direccion, String dni, int telefono) {
+    public Vendedor(Concesionario concesionario, String nombre, String direccion, String dni, String telefono) {
         super(concesionario, nombre, direccion, dni, telefono);
         this.nombre = nombre;
         this.dni = dni;
@@ -29,6 +26,8 @@ public class Vendedor extends Persona {
         this.concesionario = concesionario;
         this.cochesVendidos = new ArrayList<>();
     }
+
+    // coches
     public void venderCoche() {
         Scanner scanner = new Scanner(System.in);
 
@@ -72,7 +71,6 @@ public class Vendedor extends Persona {
 
         }
     }
-
     public void reservarCoche() {
         Scanner scanner = new Scanner(System.in);
 
@@ -93,16 +91,81 @@ public class Vendedor extends Persona {
         }
 
     }
-    public  void imprimirCochesVendidos() {
+    public void imprimirCochesVendidos() {
         for (Coche coche : cochesVendidos){
             System.out.println(coche.toString());
         }
+    }
+    public void verCochesEnStock() {
+        concesionario.listarCochesEnVenta();
     }
 
     public void imprimirSueldo() {
         int sueldo = cochesVendidos.size() * 200;
         System.out.println("El sueldo del vendedor con DNI" + getDni() + " es :" + sueldo);
     }
+    // clientes
+    public void verListaDeClientes() {
+        concesionario.imprimirClientes();
+    }
+    public void queReservasTieneX_Cliente() {
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.println("A que cliente desea consultarle las reservas");
+        String dni = scanner.nextLine();
+
+        if (concesionario.getClientes().containsKey(dni)){
+            Cliente c = concesionario.getClientes().get(dni);
+            c.imprimirCochesReservados();
+        } else {
+            System.out.println("El cliente no existe");
+        }
+    }
+    public void queComprasTieneX_Cliente() {
+        Scanner scanner = new Scanner(System.in);
+
+
+        System.out.println("A que cliente desea consultarle las compras");
+        String dni = scanner.nextLine();
+
+        if (concesionario.getClientes().containsKey(dni)){
+            Cliente c = concesionario.getClientes().get(dni);
+            c.imprimirCochesComprados();
+        } else {
+            System.out.println("El cliente no existe");
+        }
+    }
+    public void queClienteComproX_Coche() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Introduzca la matricula del coche que quiere consultar por quien fue comprado");
+        String matricula = scanner.nextLine();
+
+        Coche coche = concesionario.buscarCochePorMatricula(matricula);
+
+        if (coche != null) {
+            Cliente clienteComprador = concesionario.buscarClientePorCocheComprado(coche);
+
+            if (clienteComprador != null) {
+                System.out.println("El coche con matrícula " + matricula + " fue comprado por:");
+                System.out.println("Nombre: " + clienteComprador.getNombre());
+                System.out.println("DNI: " + clienteComprador.getDni());
+                System.out.println("Dirección: " + clienteComprador.getDireccion());
+                System.out.println("Teléfono: " + clienteComprador.getTelefono());
+            } else {
+                System.out.println("El coche con matrícula " + matricula + " no tiene un cliente asociado.");
+            }
+        } else {
+            System.out.println("El coche con matrícula " + matricula + " no existe en el concesionario.");
+        }
+    }
+    // exposiciones
+    public void imprimirExposiciones(){
+        concesionario.imprimirExposiciones();
+    }
+
+
     // getters and setters
     public ArrayList<Coche> getCochesVendidos() {
         return cochesVendidos;

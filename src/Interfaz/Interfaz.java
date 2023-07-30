@@ -29,11 +29,9 @@ import java.util.Scanner;
          vendedor = new Vendedor(concesionario);
          mecanico = new Mecanico(concesionario);
  }
-    public void interfazPrograma() {
+        public void interfazPrograma() {
         Scanner scanner = new Scanner(System.in);
-        //inicializarDatosDePrueba(); // Datos de prueba
 
-        // identificar tipo de usuario
 
          int opcion = -1;
          while (opcion != 5) {
@@ -60,9 +58,9 @@ import java.util.Scanner;
                      System.exit(0);
              }
          }
-     }
+     } // identificar tipo de usuario
 
-     public static void mostrarMenuIdentificaion() {
+        public static void mostrarMenuIdentificaion() {
          System.out.println("\n--- IDENTIFIQUESE ---");
          System.out.println("\n--- ¿Que tipo de usuario es? ---");
          System.out.println("1. Cliente");
@@ -73,9 +71,21 @@ import java.util.Scanner;
          System.out.print("Selecciona una opción: ");
      }
 
-     private void mostrarMenuDirectorComercial() {
+        private void mostrarMenuDirectorComercial() {
          System.out.println("\n--- Menú Director Comercial ---");
-         System.out.println("1.  Crear coche a concesionario");
+         System.out.println("1. Menu Coches");
+         System.out.println("2. Menu Clientes");
+         System.out.println("3. Menu Vendedores");
+         System.out.println("4. Menu Exposiciones");
+         System.out.println("5. Menu Reparaciones");
+         System.out.println("6. Otras consultas");
+         System.out.println("7. Salir");
+
+
+
+
+
+         /* System.out.println("1.  Crear coche a concesionario");
          System.out.println("2.  Eliminar coche de concesionario");
          System.out.println("3.  Listar coches en stock");
          System.out.println("4.  Listar coches en reparación");
@@ -90,190 +100,576 @@ import java.util.Scanner;
          System.out.println("13. Mostar que coches hay en una exposición");
          System.out.println("14. Imprimir exposiciones");
          System.out.println("15. Salir");
-         System.out.print("Selecciona una opción: ");
+         System.out.println("15. Salir");
+         System.out.println("15. Salir");
+         System.out.println("15. Salir");
+         System.out.print("Selecciona una opción: "); */
      }
 
-     public void interfazDirectorComercial() {
+        public void interfazDirectorComercial() {
          Scanner scanner = new Scanner(System.in);
 
 
          int opcion = -1;
-         while (opcion != 15) {
+         while (opcion != 7) {
              mostrarMenuDirectorComercial();
              opcion = scanner.nextInt();
              scanner.nextLine();
 
              switch (opcion) {
                  case 1:
-                     concesionario.listarCochesEnVenta();  // coches disponibles para reservar
-                     director.crearCoche();
-                     concesionario.listarCochesEnVenta();
+                     iDirectorCoches();
                      break;
                  case 2:
-                     concesionario.listarCochesEnVenta();
-                     director.borrarCoche();
-                     concesionario.listarCochesEnVenta();
+                     iDirectorClientes();
                      break;
                  case 3:
-                     director.cochesEnStock();
+                     iDirectorVendedores();
                      break;
                  case 4:
-                     director.cochesEnReparacion();
+                     iDirectorExposiciones();
                      break;
                  case 5:
-                     director.cochesEnReserva();
+                     iDirectorReparaciones();
                      break;
                  case 6:
-                     director.añadirVendedor();
-                     concesionario.imprimirVendedores();
-                     //clienteQueComproCoche(scanner);
+                     iDirectorOtrasConsultas();
                      break;
                  case 7:
-                     director.anadirCliente();
-                     concesionario.imprimirClientes();
-                     //clienteQueComproCoche(scanner);
-                     break;
-                 case 8:
-                     director.queReservasTieneX_Cliente();
-                     break;
-                 case 9:
-                     director.queVentasTieneX_Vendedor();
-                     break;
-                 case 10:
-                     director.añadirExposicion();
-                     concesionario.imprimirExposiciones();
-                     break;
-                 case 11:
-                     director.darDeAltaCocheA_Exposicion();
-                     break;
-                 case 12:
-                     director.darDeBajaCocheA_Exposicion();
-                     break;
-                 case 13:
-                     director.queCochesHayEnX_Exposicion();
-
-                     break;
-                 case 14:
-                     concesionario.imprimirExposiciones();
-                     break;
-                 case 15:
                      System.out.println("¡Hasta luego!");
                      break;
              }
          }
      }
 
-     public static void mostrarMenuMecanico(){
-         System.out.println("\n--- Menú de Mecánico ---");
-         System.out.println("1. Agregar coche a reparaciones");
-         System.out.println("2. Devolver coche a stock");
-         System.out.println("3. Consultar reparaciones de cualquier coche");
-         System.out.println("4. Salir");
-         System.out.print("Selecciona una opción: ");
-
-     }
-
-     public void interfazMecanico() {
-         Scanner scanner = new Scanner(System.in);
-
-         int opcion = -1;
-         while (opcion != 4) {
-             mostrarMenuMecanico();
-             opcion = scanner.nextInt();
-             scanner.nextLine();
-
-             switch (opcion) {
-                 case 1:
-                     mecanico.agregarReparacion();
-                     break;
-                 case 2:
-                     mecanico.cochesEnReparacion();
-                     mecanico.elegirCocheEnReparacion();
-                     break;
-                 case 3:
-                    // mecanico.elegirCocheParaVerReparaciones(); //no funciona
-                     break;
-                 case 4:
-                     System.out.println("¡Hasta luego!");
-                     break;
-             }
-         }
-     }
-
-     public static void mostrarMenuCliente() {
-         System.out.println("\n--- Menú de Clientes ---");
-         System.out.println("1. Consultar coches en stock");
-         System.out.println("2. Salir");
-         System.out.print("Selecciona una opción: ");
-     }
-
-     public void interfazCliente() {
-         Scanner scanner = new Scanner(System.in);
-
-         int opcion = -1;
-         while (opcion != 2) {
-             mostrarMenuCliente();
-             opcion = scanner.nextInt();
-             scanner.nextLine();
-
-             switch (opcion) {
-                 case 1:
-                     concesionario.listarCochesEnVenta();
-                     break;
-                 case 2:
-                     // listarCochesReservados();
-                     System.out.println("¡Hasta luego!");
-                     break;
-             }
-         }
-     }
-
-     public void mostrarMenuVendedor() {
-         System.out.println("\n--- Menú de Vendedores ---");
-         System.out.println("1. Vender coche");
-         System.out.println("2. Reservar coche");
-         System.out.println("3. Cancelar reserva de cliente");
-         System.out.println("4. Consultas sobre clientes");
-         System.out.println("5. Consultas sobre coches");
-         System.out.println("6. Consultas sobre exposiciones");
-         System.out.println("7. Salir");
-         System.out.print("Selecciona una opción: ");
-     }
-
-     public void interfazVendedor() {
+             private void iDirectorCoches() {
          Scanner scanner = new Scanner(System.in);
 
 
          int opcion = -1;
          while (opcion != 7) {
-             mostrarMenuVendedor();
+             mostrarMenuDirectorComercialCoches();
              opcion = scanner.nextInt();
              scanner.nextLine();
 
              switch (opcion) {
                  case 1:
-                     vendedor.venderCoche();
+                     director.crearCoche();
+                     director.cochesEnStock();
+                     mensajeTodoCorrecto();
                      break;
                  case 2:
-                     vendedor.reservarCoche();
+                     director.modificarCoche();
+                     mensajeTodoCorrecto();
                      break;
                  case 3:
-                     vendedor.cancelarReserva();
+                     director.borrarCoche();
+                     mensajeTodoCorrecto();
                      break;
                  case 4:
-                     concesionario.imprimirClientes();
+                     director.cochesEnStock();
+                     mensajeTodoCorrecto();
                      break;
                  case 5:
-                     director.cochesEnStock();
+                     director.cochesEnReparacion();
+                     mensajeTodoCorrecto();
                      break;
                  case 6:
-
+                     director.cochesEnReserva();
+                     mensajeTodoCorrecto();
                      break;
                  case 7:
-                     System.out.println("¡Hasta luego!");
+
                      break;
              }
          }
      }
+             private void mostrarMenuDirectorComercialCoches () {
+         System.out.println("\n--- Menú Coches Del Director Comercial ---");
+         System.out.println("1.  Crear coche");
+         System.out.println("2.  Modificar Coche");
+         System.out.println("3.  Eliminar coche");
+         System.out.println("4.  Listar coches en stock");
+         System.out.println("5.  Listar coches en reparación");
+         System.out.println("6.  Listar coches reservados");
+         System.out.println("7.  Salir");
+     }
+             private void iDirectorExposiciones() {
+         Scanner scanner = new Scanner(System.in);
 
- }
+
+         int opcion = -1;
+         while (opcion != 8) {
+             mostrarMenuDirectorComercialExposiciones();
+             opcion = scanner.nextInt();
+             scanner.nextLine();
+
+             switch (opcion) {
+                 case 1:
+                     director.crearExposicion();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 2:
+                     director.modificarExposicion();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 3:
+                     director.imprimirExposiciones();
+                     director.eliminarExposicion();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 4:
+                     director.imprimirExposiciones();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 5:
+                     director.imprimirExposiciones();
+                     director.queCochesHayEnX_Exposicion();
+                     break;
+                 case 6:
+                     director.darDeAltaCocheA_Exposicion();
+                     break;
+                 case 7:
+                     director.darDeBajaCocheA_Exposicion();
+                     break;
+                 case 8:
+
+                     break;
+             }
+         }
+     }
+             private void mostrarMenuDirectorComercialExposiciones () {
+         System.out.println("\n--- Menú de Exposiciones del Director Comercial ---");
+         System.out.println("1.  Crear Exposición");
+         System.out.println("2.  Modificar Exposición");
+         System.out.println("3.  Eliminar Exposición");
+         System.out.println("4.  Listar Exposiciones");
+         System.out.println("5.  Listar coches en una exposición");
+         System.out.println("6.  Dar de alta un coche");
+         System.out.println("7.  Dar de baja un coche");
+         System.out.println("8.  Salir");
+     }
+             private void iDirectorReparaciones() {
+         Scanner scanner = new Scanner(System.in);
+
+
+         int opcion = -1;
+         while (opcion != 8) {
+             mostrarMenuDirectorComercialReparaciones();
+             opcion = scanner.nextInt();
+             scanner.nextLine();
+
+             switch (opcion) {
+                 case 1:
+                     director.crearExposicion();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 2:
+                     director.modificarExposicion();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 3:
+                     director.imprimirExposiciones();
+                     director.eliminarExposicion();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 4:
+                     director.imprimirExposiciones();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 5:
+                     director.imprimirExposiciones();
+                     director.queCochesHayEnX_Exposicion();
+                     break;
+                 case 6:
+                     director.darDeAltaCocheA_Exposicion();
+                     break;
+                 case 7:
+                     director.darDeBajaCocheA_Exposicion();
+                     break;
+                 case 8:
+
+                     break;
+             }
+         }
+     }
+             private void mostrarMenuDirectorComercialReparaciones () {
+         System.out.println("\n--- Menú de Reparaciones del Director Comercial ---");
+         System.out.println("1.  Crear Exposición");
+         System.out.println("2.  Modificar Exposición");
+         System.out.println("3.  Eliminar Exposición");
+         System.out.println("4.  Listar Exposiciones");
+         System.out.println("5.  Listar coches en una exposición");
+         System.out.println("6.  Dar de alta un coche");
+         System.out.println("7.  Dar de baja un coche");
+         System.out.println("8.  Salir");
+     }
+             private void iDirectorOtrasConsultas() {
+         Scanner scanner = new Scanner(System.in);
+
+
+         int opcion = -1;
+         while (opcion != 8) {
+             mostrarMenuDirectorComercialOtrasConsultas();
+             opcion = scanner.nextInt();
+             scanner.nextLine();
+
+             switch (opcion) {
+                 case 1:
+                     director.crearExposicion();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 2:
+                     director.modificarExposicion();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 3:
+                     director.imprimirExposiciones();
+                     director.eliminarExposicion();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 4:
+                     director.imprimirExposiciones();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 5:
+                     director.imprimirExposiciones();
+                     director.queCochesHayEnX_Exposicion();
+                     break;
+                 case 6:
+                     director.darDeAltaCocheA_Exposicion();
+                     break;
+                 case 7:
+                     director.darDeBajaCocheA_Exposicion();
+                     break;
+                 case 8:
+
+                     break;
+             }
+         }
+     }
+             private void mostrarMenuDirectorComercialOtrasConsultas () {
+         System.out.println("\n--- Menú de Reparaciones del Director Comercial ---");
+         System.out.println("1.  Crear Exposición");
+         System.out.println("2.  Modificar Exposición");
+         System.out.println("3.  Eliminar Exposición");
+         System.out.println("4.  Listar Exposiciones");
+         System.out.println("5.  Listar coches en una exposición");
+         System.out.println("6.  Dar de alta un coche");
+         System.out.println("7.  Dar de baja un coche");
+         System.out.println("8.  Salir");
+     }
+             private void iDirectorClientes() {
+             Scanner scanner = new Scanner(System.in);
+
+
+             int opcion = -1;
+             while (opcion != 8) {
+             mostrarMenuDirectorComercialClientes();
+             opcion = scanner.nextInt();
+             scanner.nextLine();
+
+             switch (opcion) {
+                 case 1:
+                     director.anadirCliente();
+                     director.imprimirClientes();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 2:
+                     director.modificarCliente();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 3:
+                     director.borrarCliente();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 4:
+                     director.imprimirClientes();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 5:
+                     director.queReservasTieneX_Cliente();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 6:
+                     director.queComprasTieneX_Cliente();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 7:
+                    director.queClienteComproX_Coche();
+                    mensajeTodoCorrecto();
+                     break;
+                 case 8:
+
+                     break;
+             }
+         }
+     }
+             private void mostrarMenuDirectorComercialClientes () {
+         System.out.println("\n--- Menú de Clientes el Director Comercial ---");
+         System.out.println("1.  Crear cliente");
+         System.out.println("2.  Modificar Cliente");
+         System.out.println("3.  Eliminar Cliente");
+         System.out.println("4.  Listar Clientes");
+         System.out.println("5.  Consultar reservas de clientes");
+         System.out.println("6.  Consultar compras de clientes");
+         System.out.println("7.  Consultar que cliente compró un coche");
+         System.out.println("8.  Salir");
+
+     }
+             private void iDirectorVendedores() {
+         Scanner scanner = new Scanner(System.in);
+
+
+         int opcion = -1;
+         while (opcion != 6) {
+             mostrarMenuDirectorComercialVendedores();
+             opcion = scanner.nextInt();
+             scanner.nextLine();
+
+             switch (opcion) {
+                 case 1:
+                     director.añadirVendedor();
+                     director.imprimirVendedores();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 2:
+                     director.modificarVendedor();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 3:
+                     director.borrarVendedor();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 4:
+                     director.imprimirVendedores();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 5:
+                     director.queVentasTieneX_Vendedor();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 6:
+
+                     break;
+             }
+         }
+     }
+             private void mostrarMenuDirectorComercialVendedores () {
+         System.out.println("\n--- Menú de Vendedores del Director Comercial ---");
+         System.out.println("1.  Crear Vendedor");
+         System.out.println("2.  Modificar Vendedor");
+         System.out.println("3.  Eliminar Vendedor");
+         System.out.println("4.  Listar Vendedores");
+         System.out.println("5.  Consultar ventas que tiene un vendedor");
+         System.out.println("6.  Salir");
+
+     }
+             public static void mostrarMenuMecanico () {
+                 System.out.println("\n--- Menú de Mecánico ---");
+                 System.out.println("1. Agregar coche a reparaciones");
+                 System.out.println("2. Devolver coche a stock");
+                 System.out.println("3. Consultar reparaciones de cualquier coche");
+                 System.out.println("4. Salir");
+                 System.out.print("Selecciona una opción: ");
+
+             }
+             public void interfazMecanico () {
+                 Scanner scanner = new Scanner(System.in);
+
+                 int opcion = -1;
+                 while (opcion != 4) {
+                     mostrarMenuMecanico();
+                     opcion = scanner.nextInt();
+                     scanner.nextLine();
+
+                     switch (opcion) {
+                         case 1:
+                             mecanico.agregarReparacion();
+                             break;
+                         case 2:
+                             mecanico.cochesEnReparacion();
+                             mecanico.elegirCocheEnReparacion();
+                             break;
+                         case 3:
+                             // mecanico.elegirCocheParaVerReparaciones(); //no funciona
+                             break;
+                         case 4:
+                             System.out.println("¡Hasta luego!");
+                             break;
+                     }
+                 }
+             }
+             public static void mostrarMenuCliente () {
+                 System.out.println("\n--- Menú de Clientes ---");
+                 System.out.println("1. Consultar coches en stock");
+                 System.out.println("2. Consultar coches reservados");
+                 System.out.println("3. Consultar coches comprados");
+                 System.out.println("4. Salir");
+                 System.out.print("Selecciona una opción: ");
+             }
+             public void interfazCliente () {
+                 Scanner scanner = new Scanner(System.in);
+
+                 int opcion = -1;
+                 while (opcion != 4) {
+                     mostrarMenuCliente();
+                     opcion = scanner.nextInt();
+                     scanner.nextLine();
+
+                     switch (opcion) {
+                         case 1:
+                             cliente.imprimirCochesEnVenta();
+                             break;
+                         case 2:
+                             cliente.imprimirCochesReservados();
+                             break;
+                         case 3:
+                             cliente.imprimirCochesComprados();
+                         case 4:
+
+                             break;
+                     }
+                 }
+             }
+             public void mostrarMenuVendedor () {
+                 System.out.println("\n--- Menú de Vendedores ---");
+                 System.out.println("1. Vender coche");
+                 System.out.println("2. Reservar coche");
+                 System.out.println("3. Cancelar reserva de cliente");
+                 System.out.println("4. Consultas sobre clientes");
+                 System.out.println("5. Consultas sobre coches");
+                 System.out.println("6. Consultas sobre exposiciones");
+                 System.out.println("7. Salir");
+                 System.out.print("Selecciona una opción: ");
+             }
+             public void interfazVendedor () {
+                 Scanner scanner = new Scanner(System.in);
+
+
+                 int opcion = -1;
+                 while (opcion != 7) {
+                     mostrarMenuVendedor();
+                     opcion = scanner.nextInt();
+                     scanner.nextLine();
+
+                     switch (opcion) {
+                         case 1:
+                             vendedor.venderCoche();
+                             break;
+                         case 2:
+                             vendedor.reservarCoche();
+                             break;
+                         case 3:
+                             vendedor.cancelarReserva();
+                             break;
+                         case 4:
+                             interfazVendedorConsultasClientes();
+                             break;
+                         case 5:
+                             interfazVendedorConsultasCoches();
+                             break;
+                         case 6:
+                             interfazVendedorConsultasExposiciones();
+                             break;
+                         case 7:
+
+                             break;
+                     }
+                 }
+             }
+             public void mostrarMenuVendedorConsultasClientes () {
+         System.out.println("\n--- Menú de clientes de Vendedores ---");
+         System.out.println("1.  Listar Clientes");
+         System.out.println("2.  Consultar reservas de clientes");
+         System.out.println("3.  Consultar compras de clientes");
+         System.out.println("4.  Salir");
+         System.out.print("Selecciona una opción: ");
+     }
+             public void interfazVendedorConsultasClientes () {
+         Scanner scanner = new Scanner(System.in);
+
+
+         int opcion = -1;
+         while (opcion != 4) {
+             mostrarMenuVendedorConsultasClientes();
+             opcion = scanner.nextInt();
+             scanner.nextLine();
+
+             switch (opcion) {
+                 case 1:
+                     vendedor.verListaDeClientes();
+                     break;
+                 case 2:
+                     vendedor.queReservasTieneX_Cliente();
+                     break;
+                 case 3:
+                     vendedor.queComprasTieneX_Cliente();
+                     break;
+                 case 4:
+
+                     break;
+             }
+         }
+     }
+             public void mostrarMenuVendedorConsultasCoches () {
+         System.out.println("\n--- Menú de coches de Vendedores ---");
+         System.out.println("1.  Ver coches en stock");
+         System.out.println("2.  Imprimir coches vendidos");
+         System.out.println("3.  Consultar compras de clientes");
+         System.out.println("4.  Consultar que cliente compro un coche determinado");
+         System.out.println("5.  Salir");
+         System.out.print("Selecciona una opción: ");
+     }
+             public void interfazVendedorConsultasCoches () {
+         Scanner scanner = new Scanner(System.in);
+
+
+         int opcion = -1;
+         while (opcion != 3) {
+             mostrarMenuVendedorConsultasCoches();
+             opcion = scanner.nextInt();
+             scanner.nextLine();
+
+             switch (opcion) {
+                 case 1:
+                     vendedor.verCochesEnStock();
+                     break;
+                 case 2:
+                     vendedor.imprimirCochesVendidos();
+                     break;
+                 case 3:
+                     break;
+             }
+         }
+     }
+             public void mostrarMenuVendedorConsultasExposiciones () {
+         System.out.println("\n--- Menú de exposiciones de Vendedores ---");
+         System.out.println("1.  Listar Exposiciones");
+         System.out.println("2.  Salir");;
+         System.out.print("Selecciona una opción: ");
+     }
+             public void interfazVendedorConsultasExposiciones () {
+         Scanner scanner = new Scanner(System.in);
+
+
+         int opcion = -1;
+         while (opcion != 2) {
+             mostrarMenuVendedorConsultasExposiciones();
+             opcion = scanner.nextInt();
+             scanner.nextLine();
+
+             switch (opcion) {
+                 case 1:
+                     vendedor.imprimirExposiciones();
+                     break;
+                 case 2:
+
+                     break;
+             }
+         }
+     }
+             public void mensajeTodoCorrecto () {
+                 System.out.println("Proceso finalizado correctamente");
+             }
+         }

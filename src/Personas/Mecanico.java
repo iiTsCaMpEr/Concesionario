@@ -15,7 +15,7 @@ public class Mecanico extends Persona {
 
     }
 
-    public Mecanico(Concesionario concesionario, String nombre, String direccion, String dni, int telefono) {
+    public Mecanico(Concesionario concesionario, String nombre, String direccion, String dni, String telefono) {
         super(concesionario, nombre, direccion, dni, telefono);
     }
 
