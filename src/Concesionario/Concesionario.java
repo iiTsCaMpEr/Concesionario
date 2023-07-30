@@ -1,9 +1,7 @@
 package Concesionario;
 
-import Interfaz.Interfaz;
 import Inventario.Exposicion;
 import Personas.Cliente;
-import Personas.Mecanico;
 import Personas.Vendedor;
 import Vehiculos.Coche;
 import Vehiculos.Estado;
@@ -12,94 +10,137 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Concesionario {
-    private Interfaz interfaz;
     private HashMap<String, Coche> coches;
     private HashMap<String, Vendedor> vendedores;
     private HashMap<String, Cliente> clientes;
     private HashMap<Integer, Exposicion> exposiciones;
-    private HashMap<String, Mecanico> mecanicos;
 
     public Concesionario() {
         coches = new HashMap<>();
         vendedores = new HashMap<>();
         clientes = new HashMap<>();
         exposiciones = new HashMap<>();
-        mecanicos = new HashMap<>();
     }
 
-    // Métodos para agregar coches, vendedores, clientes y exposiciones
+
+        // Métodos para agregar coches, vendedores, clientes y exposiciones
+
 
     public void listarCochesEnVenta() {
         System.out.println("Coches en venta: ");
         for (Coche coche : coches.values()) {
             if (coche.getEstado() == (Estado.Stock))
 
-                System.out.println("Matricula : " + coche.getMatricula() +
-                        "  ||  Marca : " + coche.getMarca() +
-                        "  ||  Modelo : " + coche.getModelo() +
-                        "  ||  Tipo : " + coche.getTipo() +
-                        "  ||  Precio compra : " + coche.getPrecioCompra() + " €" +
-                        "  ||  Precio venta : " + coche.getPrecioVenta() + " €");
+                    System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
 
         }
-} // para los clientes y vendedores
-
-
-    public void añadirCoche (Coche coche) {
-        coches.put(coche.getMatricula(), coche);
     }
 
-    public void addVendedor(Vendedor vendedor) {
-        vendedores.put(vendedor.getDni(), vendedor);
-    }
-    public void addCliente(Cliente cliente) {
-        clientes.put(cliente.getDni(), cliente);
-    }
-    public void addMecanico(Mecanico mecanico) {
-        mecanicos.put(mecanico.getDni(), mecanico);
-    }
-
-    public HashMap listarEnStock() {
-
-        System.out.println("Los coches en stock son: ");
-
-
-        HashMap<String, Coche> cochesEnVenta = new HashMap<>();
-        for (Coche coche : coches.values()) {
-            if (coche.getEstado() == Estado.Stock) {
-
-                cochesEnVenta.put(coche.getMatricula(), coche);
-            }
-            }
-        return cochesEnVenta;
-
-    } // para el director comercial
-    public HashMap listarEnReserva() {
-
-        System.out.println("Los coches en reservados son: ");
-
-
-        HashMap<String, Coche> cochesReservados = new HashMap<>();
-        for (Coche coche : coches.values()) {
-            if (coche.getEstado() == Estado.Reservado) {
-
-                cochesReservados.put(coche.getMatricula(), coche);
+        // Listado de coches reservados
+        public void listarCochesReservados () {
+            System.out.println("Coches reservados:");
+            for (Coche coche : coches.values()) {
+                if (coche.getEstado() == (Estado.Reservado)) {
+                    System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
+                }
             }
         }
-        return cochesReservados;
 
-    } // para el director comercial
-    public HashMap listarEnReparacion() {
-
-
-        HashMap<String, Coche> cochesReparacion = new HashMap<>();
-        for (Coche coche : coches.values()) {
-            if (coche.getEstado() == (Estado.Reparando)) {
-
-                cochesReparacion.put(coche.getMatricula(), coche);
+        // Listado de coches en reparación
+        public void listarCochesEnReparacion () {
+            System.out.println("Coches en reparación: ");
+            for (Coche coche : coches.values()) {
+                System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
             }
         }
-        return cochesReparacion;
+
+        // Listado de coches vendidos por un vendedor a comisión
+        public void listarCochesVendidosPorVendedor (Vendedor vendedor){
+            System.out.println("Coches vendidos por " + vendedor.getNombre() + ":");
+            int contadorCochesVendidos = 0;
+            for (Coche coche : vendedor.getCochesVendidos()) {
+                System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
+                contadorCochesVendidos++;
+            }
+            System.out.println("Sueldo de " + vendedor.getNombre() + ": " + (contadorCochesVendidos * 200) + " euros");
+        }
+        // Listado de clientes que tienen un coche reservado
+        public void listarClientesConCocheReservado () {
+            System.out.println("Coches en venta:");
+            for (Coche coche : coches.values()) {
+                if (coche.getEstado().equals("Reservado")) {
+                    System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
+                }
+            }
+        }
+        public void reservarCoche (String matricula, String dni){
+
+            if (coches.containsKey(matricula) && (clientes.containsKey(dni))) {
+                Coche coche = coches.get(matricula);
+                coches.remove(matricula);
+                coche.setEstado(Estado.Reservado);
+
+                Cliente cliente = clientes.get(dni);
+                cliente.reservarCoche(coche);
+
+
+            }
+        }
+
+
+        public void añadirCoche (Coche coche){
+            coches.put(coche.getMatricula(), coche);
+        }
+
+        public void addVendedor (Vendedor vendedor){
+            vendedores.put(vendedor.getDni(), vendedor);
+        }
+        public void addCliente (Cliente cliente){
+            clientes.put(cliente.getDni(), cliente);
+        }
+
+        public HashMap listarEnStock () {
+
+            System.out.println("Los coches en stock son: ");
+
+
+            HashMap<String, Coche> cochesEnVenta = new HashMap<>();
+            for (Coche coche : coches.values()) {
+                if (coche.getEstado() == Estado.Stock) {
+
+                    cochesEnVenta.put(coche.getMatricula(), coche);
+                }
+            }
+            return cochesEnVenta;
+
+        } // para el director comercial
+        public HashMap listarEnReserva () {
+
+            System.out.println("Los coches en reservados son: ");
+
+
+            HashMap<String, Coche> cochesReservados = new HashMap<>();
+            for (Coche coche : coches.values()) {
+                if (coche.getEstado() == Estado.Reservado) {
+
+                    cochesReservados.put(coche.getMatricula(), coche);
+                }
+            }
+            return cochesReservados;
+
+        } // para el director comercial
+        public HashMap listarEnReparacion () {
+
+
+
+            HashMap<String, Coche> cochesReparacion = new HashMap<>();
+            for (Coche coche : coches.values()) {
+                if (coche.getEstado() == (Estado.Reparando)) {
+
+                    cochesReparacion.put(coche.getMatricula(), coche);
+                }
+            }
+            return cochesReparacion;
 
     } // para el director comercial
     public Coche buscarCochePorMatricula(String matricula) {
@@ -110,10 +151,6 @@ public class Concesionario {
         HashMap<String, Cliente> clientes = getClientes();
         return clientes.get(dni);
     } // para el director comercial
-    public Mecanico buscarMecanicoPorDni(String dni) {
-        HashMap<String, Mecanico> mecanico = getMecanicos();
-        return mecanico.get(dni);
-    }  // para el login
     public Vendedor buscarVendedorPorDni(String dni) {
         HashMap<String, Vendedor> vendedores = getVendedores();
         return vendedores.get(dni);
@@ -138,58 +175,52 @@ public class Concesionario {
     public void imprimirVendedores() {
         for (Vendedor vendedor : vendedores.values()) {
 
-            System.out.println(vendedor.toString());
+                System.out.println(vendedor.toString());
+            }
+        }
+        public void imprimirClientes () {
+            for (Cliente cliente : clientes.values()) {
 
+                System.out.println(cliente.toString());
+            }
+        }
+        public void imprimirExposiciones () {
+            for (Exposicion exposicion : exposiciones.values()) {
 
+                System.out.println(exposicion.toString());
+            }
+        }
+
+        // getters and setters
+        public HashMap<String, Coche> getCoches () {
+            return coches;
+        }
+
+        public void setCoches (HashMap < String, Coche > coches){
+            this.coches = coches;
+        }
+
+        public HashMap<String, Vendedor> getVendedores () {
+            return vendedores;
+        }
+
+        public void setVendedores (HashMap < String, Vendedor > vendedores){
+            this.vendedores = vendedores;
+        }
+
+        public HashMap<String, Cliente> getClientes () {
+            return clientes;
+        }
+
+        public void setClientes (HashMap < String, Cliente > clientes){
+            this.clientes = clientes;
+        }
+
+        public HashMap<Integer, Exposicion> getExposiciones () {
+            return exposiciones;
+        }
+
+        public void setExposiciones (HashMap < Integer, Exposicion > exposiciones){
+            this.exposiciones = exposiciones;
         }
     }
-    public void imprimirClientes() {
-        for (Cliente cliente : clientes.values()) {
-
-            System.out.println(cliente.toString());
-        }
-    }
-    public void imprimirExposiciones() {
-        for (Exposicion exposicion : exposiciones.values()) {
-
-            System.out.println(exposicion.toString());
-        }
-    }
-
-
-    // getters and setters
-    public HashMap<String, Coche> getCoches() {
-        return coches;
-    }
-
-    public void setCoches(HashMap<String, Coche> coches) {
-        this.coches = coches;
-    }
-
-    public HashMap<String, Vendedor> getVendedores() {
-        return vendedores;
-    }
-    public HashMap<String, Mecanico> getMecanicos() {
-        return mecanicos;
-    }
-
-    public void setVendedores(HashMap<String, Vendedor> vendedores) {
-        this.vendedores = vendedores;
-    }
-
-    public HashMap<String, Cliente> getClientes() {
-        return clientes;
-    }
-
-    public void setClientes(HashMap<String, Cliente> clientes) {
-        this.clientes = clientes;
-    }
-
-    public HashMap<Integer, Exposicion> getExposiciones() {
-        return exposiciones;
-    }
-
-    public void setExposiciones(HashMap<Integer, Exposicion> exposiciones) {
-        this.exposiciones = exposiciones;
-    }
-}

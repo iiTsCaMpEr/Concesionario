@@ -1,7 +1,5 @@
 package Inventario;
 
-import Personas.Mecanico;
-
 import java.util.Date;
 
 
