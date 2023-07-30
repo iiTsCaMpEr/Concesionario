@@ -1,5 +1,6 @@
 package Personas;
 
+import Excepciones.InvalidException;
 import Vehiculos.Coche;
 import Concesionario.Concesionario;
 import Vehiculos.Estado;

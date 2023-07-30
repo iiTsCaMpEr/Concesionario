@@ -1,6 +1,7 @@
 package Interfaz;
 
 import Inventario.Exposicion;
+import Inventario.Reparacion;
 import Personas.Cliente;
 import Personas.DirectorComercial;
 import Concesionario.Concesionario;
@@ -10,6 +11,7 @@ import Vehiculos.Coche;
 import Vehiculos.Estado;
 
 
+import java.util.List;
 import java.util.Scanner;
 
  public class Interfaz {
@@ -191,7 +193,7 @@ import java.util.Scanner;
                      mecanico.elegirCocheEnReparacion();
                      break;
                  case 3:
-                    // mecanico.elegirCocheParaVerReparaciones(); //no funciona
+                 mecanico.listarCochesEnReparacion();
                      break;
                  case 4:
                      System.out.println("¡Hasta luego!");
@@ -267,6 +269,7 @@ import java.util.Scanner;
                      director.cochesEnStock();
                      break;
                  case 6:
+
 
                      break;
                  case 7:

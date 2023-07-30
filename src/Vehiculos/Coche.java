@@ -36,11 +36,16 @@ public class Coche {
         this.reparaciones = new ArrayList<>();
     }
 
-
     public void agregarReparacion(Date fecha, TipoReparacion reparacion) {
         reparaciones.add(new Reparacion(reparacion, fecha));
         estado = Estado.Reparando;
 
+    }
+    public Reparacion getUltimaReparacion(){
+        if (reparaciones.isEmpty()){
+            return null;
+        }
+        return reparaciones.get(reparaciones.size()-1);
     }
 
     public void completarReparacion() {
