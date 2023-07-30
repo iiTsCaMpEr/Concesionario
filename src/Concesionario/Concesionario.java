@@ -6,6 +6,7 @@ import Personas.Vendedor;
 import Vehiculos.Coche;
 import Vehiculos.Estado;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Concesionario {
@@ -25,16 +26,15 @@ public class Concesionario {
         // Métodos para agregar coches, vendedores, clientes y exposiciones
 
 
-        // Listado de coches en venta
-            public void listarCochesEnVenta() {
-            System.out.println("Coches en venta: ");
-            for (Coche coche : coches.values()) {
-                if (coche.getEstado() == (Estado.Stock))
+    public void listarCochesEnVenta() {
+        System.out.println("Coches en venta: ");
+        for (Coche coche : coches.values()) {
+            if (coche.getEstado() == (Estado.Stock))
 
                     System.out.println(coche.getMarca() + " " + coche.getModelo() + " (Matrícula: " + coche.getMatricula() + ")");
 
-            }
         }
+    }
 
         // Listado de coches reservados
         public void listarCochesReservados () {
@@ -142,11 +142,38 @@ public class Concesionario {
             }
             return cochesReparacion;
 
-        } // para el director comercial
+    } // para el director comercial
+    public Coche buscarCochePorMatricula(String matricula) {
+        HashMap<String, Coche> coches = getCoches();
+        return coches.get(matricula);
+    } // para el director comercial
+    public Cliente buscarClientePorDni(String dni) {
+        HashMap<String, Cliente> clientes = getClientes();
+        return clientes.get(dni);
+    } // para el director comercial
+    public Vendedor buscarVendedorPorDni(String dni) {
+        HashMap<String, Vendedor> vendedores = getVendedores();
+        return vendedores.get(dni);
+    } // para el director comercial
+    public Exposicion buscarExposicionPorNum(Integer numExpo) {
+        HashMap<Integer, Exposicion> exposiciones = getExposiciones();
+        return exposiciones.get(numExpo);
+    } // para el director comercial
+    public Cliente buscarClientePorCocheComprado(Coche coche) {
 
+        for (Cliente cliente : clientes.values()) {
 
-        public void imprimirVendedores () {
-            for (Vendedor vendedor : vendedores.values()) {
+            ArrayList<Coche> cochesComprados = cliente.getCochesComprados();
+
+            if (cochesComprados.contains(coche)) {
+                return cliente;
+            }
+        }
+        return null; // Si no se encontró ningún cliente que haya comprado el coche, devolvemos null
+    } // para el director comercial
+
+    public void imprimirVendedores() {
+        for (Vendedor vendedor : vendedores.values()) {
 
                 System.out.println(vendedor.toString());
             }

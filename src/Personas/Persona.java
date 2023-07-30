@@ -8,10 +8,10 @@ public abstract class Persona {
     protected String nombre;
     protected String direccion;
     protected String dni;
-    protected int telefono;
+    protected String telefono;
 
 
-    public Persona(Concesionario concesionario, String nombre, String direccion, String dni, int telefono) {
+    public Persona(Concesionario concesionario, String nombre, String direccion, String dni, String telefono) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.dni = dni;
@@ -30,7 +30,7 @@ public abstract class Persona {
         return nombre;
     }
 
-    private void setNombre(String nombre) {
+    protected void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
@@ -38,7 +38,7 @@ public abstract class Persona {
         return direccion;
     }
 
-    private void setDireccion(String direccion) {
+    protected void setDireccion(String direccion) {
         this.direccion = direccion;
     }
 
@@ -50,11 +50,11 @@ public abstract class Persona {
         this.dni = dni;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    private void setTelefono(int telefono) {
+    protected void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
