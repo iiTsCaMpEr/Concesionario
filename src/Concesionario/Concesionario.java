@@ -28,7 +28,7 @@ public class Concesionario {
     }
 
 
-    // Métodos para agregar coches, vendedores, clientes y exposiciones
+    // Métodos para agregar coches, vendedores, clientes y exposicioness
 
 
     public void listarCochesEnVenta() {
