@@ -43,14 +43,30 @@ public class DirectorComercial extends Persona {
             System.out.println("Precio de compra del coche: ");
             double precioCompra = scanner.nextDouble();
 
-            System.out.println("Tipo de coche: ");
-            scanner.nextLine();
-            Tipo tipo = Tipo.valueOf(scanner.nextLine());
+
+            System.out.println("Escoja el tipo de coche: ");
+            System.out.println("1. Todoterreno");
+            System.out.println("2. Turismo");
+            System.out.println("3. Industrial");
+            Tipo tipo = null;
+            int c = scanner.nextInt();
+            switch (c) {
+                case 1:
+                    tipo = Tipo.Todoterreno;
+                    break;
+                case 2:
+                    tipo = Tipo.Turismo;
+                    break;
+                case 3:
+                    tipo = Tipo.Industrial;
+                    break;
+            }
 
             HashMap<String, Coche> nuevoCoche = concesionario.getCoches();
-            nuevoCoche.put(matricula, new Coche(marca, modelo, matricula, precioVenta, precioCompra, tipo, Estado.Stock));
+            nuevoCoche.put(matricula, new Coche(marca, modelo, matricula, precioVenta, precioCompra, tipo, Estado.Stock,concesionario));
             concesionario.setCoches(nuevoCoche);
         }
+
         public void modificarCoche() {
         String matricula; double nuevoPrecioCompra; double nuevoPrecioVenta; int nuevoEstado;
         Scanner scanner = new Scanner(System.in);
@@ -87,12 +103,16 @@ public class DirectorComercial extends Persona {
                                 break;
                             case 2:
                                 coche.setEstado(Estado.Reparando);
+                                break;
                             case 3:
                                 coche.setEstado(Estado.Reservado);
+                                break;
                             case 4:
                                 coche.setEstado(Estado.Expuesto);
+                                break;
                             case 5:
                                 coche.setEstado(Estado.Vendido);
+                                break;
                         }
                 }
             } else {

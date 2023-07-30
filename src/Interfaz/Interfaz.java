@@ -7,6 +7,7 @@ import Personas.DirectorComercial;
 import Concesionario.Concesionario;
 import Personas.Mecanico;
 import Personas.Vendedor;
+import Validaciones.Validaciones;
 import Vehiculos.Coche;
 import Vehiculos.Estado;
 
@@ -38,7 +39,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 5) {
              mostrarMenuIdentificaion();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
 
@@ -70,7 +71,7 @@ import java.util.Scanner;
          System.out.println("3. Director Comercial");
          System.out.println("4. Mecánico");
          System.out.println("5. Salir");
-         System.out.print("Selecciona una opción: ");
+
      }
 
         private void mostrarMenuDirectorComercial() {
@@ -115,7 +116,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 7) {
              mostrarMenuDirectorComercial();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -151,7 +152,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 7) {
              mostrarMenuDirectorComercialCoches();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -203,7 +204,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 8) {
              mostrarMenuDirectorComercialExposiciones();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -258,7 +259,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 8) {
              mostrarMenuDirectorComercialReparaciones();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -313,7 +314,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 8) {
              mostrarMenuDirectorComercialOtrasConsultas();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -368,7 +369,7 @@ import java.util.Scanner;
              int opcion = -1;
              while (opcion != 8) {
              mostrarMenuDirectorComercialClientes();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -426,7 +427,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 6) {
              mostrarMenuDirectorComercialVendedores();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -473,7 +474,7 @@ import java.util.Scanner;
                  System.out.println("2. Devolver coche a stock");
                  System.out.println("3. Consultar reparaciones de cualquier coche");
                  System.out.println("4. Salir");
-                 System.out.print("Selecciona una opción: ");
+
 
              }
              public void interfazMecanico () {
@@ -482,7 +483,7 @@ import java.util.Scanner;
                  int opcion = -1;
                  while (opcion != 4) {
                      mostrarMenuMecanico();
-                     opcion = scanner.nextInt();
+                     opcion = Validaciones.ValidacionSwitch(scanner);
                      scanner.nextLine();
 
                      switch (opcion) {
@@ -494,7 +495,8 @@ import java.util.Scanner;
                              mecanico.elegirCocheEnReparacion();
                              break;
                          case 3:
-                             // mecanico.elegirCocheParaVerReparaciones(); //no funciona
+                             mecanico.listarCocheEspecificoEnReparacion();
+
                              break;
                          case 4:
                              System.out.println("¡Hasta luego!");
@@ -508,7 +510,7 @@ import java.util.Scanner;
                  System.out.println("2. Consultar coches reservados");
                  System.out.println("3. Consultar coches comprados");
                  System.out.println("4. Salir");
-                 System.out.print("Selecciona una opción: ");
+
              }
              public void interfazCliente () {
                  Scanner scanner = new Scanner(System.in);
@@ -516,7 +518,7 @@ import java.util.Scanner;
                  int opcion = -1;
                  while (opcion != 4) {
                      mostrarMenuCliente();
-                     opcion = scanner.nextInt();
+                     opcion = Validaciones.ValidacionSwitch(scanner);;
                      scanner.nextLine();
 
                      switch (opcion) {
@@ -543,7 +545,6 @@ import java.util.Scanner;
                  System.out.println("5. Consultas sobre coches");
                  System.out.println("6. Consultas sobre exposiciones");
                  System.out.println("7. Salir");
-                 System.out.print("Selecciona una opción: ");
              }
              public void interfazVendedor () {
                  Scanner scanner = new Scanner(System.in);
@@ -552,8 +553,7 @@ import java.util.Scanner;
                  int opcion = -1;
                  while (opcion != 7) {
                      mostrarMenuVendedor();
-                     opcion = scanner.nextInt();
-                     scanner.nextLine();
+                     opcion = Validaciones.ValidacionSwitch(scanner);
 
                      switch (opcion) {
                          case 1:
@@ -564,6 +564,7 @@ import java.util.Scanner;
                              break;
                          case 3:
                              vendedor.cancelarReserva();
+
                              break;
                          case 4:
                              interfazVendedorConsultasClientes();
@@ -586,7 +587,6 @@ import java.util.Scanner;
          System.out.println("2.  Consultar reservas de clientes");
          System.out.println("3.  Consultar compras de clientes");
          System.out.println("4.  Salir");
-         System.out.print("Selecciona una opción: ");
      }
              public void interfazVendedorConsultasClientes () {
          Scanner scanner = new Scanner(System.in);
@@ -595,7 +595,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 4) {
              mostrarMenuVendedorConsultasClientes();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -621,7 +621,7 @@ import java.util.Scanner;
          System.out.println("3.  Consultar compras de clientes");
          System.out.println("4.  Consultar que cliente compro un coche determinado");
          System.out.println("5.  Salir");
-         System.out.print("Selecciona una opción: ");
+
      }
              public void interfazVendedorConsultasCoches () {
          Scanner scanner = new Scanner(System.in);
@@ -630,7 +630,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 3) {
              mostrarMenuVendedorConsultasCoches();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -649,7 +649,7 @@ import java.util.Scanner;
          System.out.println("\n--- Menú de exposiciones de Vendedores ---");
          System.out.println("1.  Listar Exposiciones");
          System.out.println("2.  Salir");;
-         System.out.print("Selecciona una opción: ");
+
      }
              public void interfazVendedorConsultasExposiciones () {
          Scanner scanner = new Scanner(System.in);
@@ -658,7 +658,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 2) {
              mostrarMenuVendedorConsultasExposiciones();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {

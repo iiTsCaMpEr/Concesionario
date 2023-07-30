@@ -1,5 +1,6 @@
 package Vehiculos;
 
+import Concesionario.Concesionario;
 import Inventario.Reparacion;
 import Inventario.TipoReparacion;
 import Personas.Cliente;
@@ -19,13 +20,14 @@ public class Coche {
     private Tipo tipo;
     private TipoReparacion reparacion;
     private List<Reparacion> reparaciones;
+    private  Concesionario concesionario;
 
     public Coche() {
 
     }
 
 
-    public Coche(String marca, String modelo, String matricula, double precioVenta, double precioCompra, Tipo tipo, Estado estado) { // constructor para vendedores
+    public Coche(String marca, String modelo, String matricula, double precioVenta, double precioCompra, Tipo tipo, Estado estado, Concesionario concesionario) { // constructor para vendedores
         this.marca = marca;
         this.modelo = modelo;
         this.matricula = matricula;
@@ -34,6 +36,7 @@ public class Coche {
         this.estado = Estado.Stock;
         this.tipo = tipo;
         this.reparaciones = new ArrayList<>();
+        this.concesionario =concesionario;
     }
 
     public void agregarReparacion(Date fecha, TipoReparacion reparacion) {

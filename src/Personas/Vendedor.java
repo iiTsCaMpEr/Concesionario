@@ -1,8 +1,10 @@
 package Personas;
+import Excepciones.NoSuchMatriculaException;
 import Inventario.Exposicion;
 import Vehiculos.Coche;
 import Concesionario.Concesionario;
 import Vehiculos.Estado;
+import Validaciones.Validaciones;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -31,66 +33,58 @@ public class Vendedor extends Persona {
     public void venderCoche() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Ingrese la matrícula del vehículo que desea vender");
-        String matricula = scanner.nextLine();
-
-        System.out.println("Ingrese el DNI del cliente que va a hacer la compra");
-        String dni = scanner.nextLine();
-
-        if (concesionario.getCoches().containsKey(matricula) && (concesionario.getClientes().containsKey(dni))) {
-            Coche coche = concesionario.getCoches().get(matricula);
-            coche.setEstado(Estado.Vendido);
-
-            Cliente cliente = concesionario.getClientes().get(dni);
-            cliente.comprarCoche(coche);
-
-            cochesVendidos.add(coche);
-
+        if (concesionario == null || concesionario.getCoches() == null || concesionario.getClientes() == null) {
+            throw new NullPointerException("El concesionario, la lista de coches o la lista de clientes es nula");
         }
 
+        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches());
+        String dni = Validaciones.leerDniCliente(scanner, concesionario.getClientes());
 
+        Coche coche = concesionario.getCoches().get(matricula);
+        Cliente cliente = concesionario.getClientes().get(dni);
 
+        coche.setEstado(Estado.Vendido);
+        cliente.comprarCoche(coche);
+        cochesVendidos.add(coche);
+    }
 
-
-        }
     public void cancelarReserva() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Ingrese el DNI del cliente que quiere cancelar su reserva");
-        String dni = scanner.nextLine();
 
-        System.out.println("Ingrese la matrícula del vehículo para cancelar su reserva");
-        String matricula = scanner.nextLine();
+                    if (concesionario == null || concesionario.getCoches() == null || concesionario.getClientes() == null) {
+                        throw new NullPointerException("El concesionario, la lista de coches o la lista de clientes es nula");
+                    }
 
-        if (concesionario.getCoches().containsKey(matricula) && (concesionario.getClientes().containsKey(dni))) {
-            Coche coche = concesionario.getCoches().get(matricula);
-            coche.setEstado(Estado.Stock);
+                    String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches());
+                    String dni = Validaciones.leerDniCliente(scanner, concesionario.getClientes());
+
+                    Coche coche = concesionario.getCoches().get(matricula);
+                    Cliente cliente = concesionario.getClientes().get(dni);
+
+                    coche.setEstado(Estado.Stock);
+                    cliente.cancelarReserva(coche);
+            }
 
 
-            Cliente cliente = concesionario.getClientes().get(dni);
-            cliente.cancelarReserva(coche);
 
-        }
-    }
+
     public void reservarCoche() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Ingrese la matrícula del vehículo que desea reservar");
-        String matricula = scanner.nextLine();
+        if (concesionario == null || concesionario.getCoches() == null || concesionario.getClientes() == null) {
+            throw new NullPointerException("El concesionario, la lista de coches o la lista de clientes es nula");
+        }
+        String matricula =Validaciones.leerMatricula(scanner,concesionario.getCoches());
+        String dni = Validaciones.leerDniCliente(scanner,concesionario.getClientes());
 
-        System.out.println("Ingrese el DNI del cliente que va a hacer la reserva");
-        String dni = scanner.nextLine();
+        Coche coche = concesionario.getCoches().get(matricula);
+        Cliente cliente = concesionario.getClientes().get(dni);
 
-        if (concesionario.getCoches().containsKey(matricula) && (concesionario.getClientes().containsKey(dni))) {
-            Coche coche = concesionario.getCoches().get(matricula);
-            coche.setEstado(Estado.Reservado);
-
-            Cliente cliente = concesionario.getClientes().get(dni);
-            cliente.reservarCoche(coche);
+        coche.setEstado(Estado.Reservado);
+        cliente.reservarCoche(coche);
 
 
         }
-
-    }
     public void imprimirCochesVendidos() {
         for (Coche coche : cochesVendidos){
             System.out.println(coche.toString());
