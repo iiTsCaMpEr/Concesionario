@@ -1,5 +1,6 @@
 package Inventario;
 
+
 public enum TipoReparacion {
 
     mecanica,

@@ -20,7 +20,13 @@ public class Coche {
     private Tipo tipo;
     private TipoReparacion reparacion;
     private List<Reparacion> reparaciones;
-    private Concesionario concesionario;
+    private  Concesionario concesionario;
+
+    public Coche() {
+
+    }
+
+
     public Coche(String marca, String modelo, String matricula, double precioVenta, double precioCompra, Tipo tipo, Estado estado, Concesionario concesionario) { // constructor para vendedores
         this.marca = marca;
         this.modelo = modelo;
@@ -30,14 +36,19 @@ public class Coche {
         this.estado = Estado.Stock;
         this.tipo = tipo;
         this.reparaciones = new ArrayList<>();
-        this.concesionario = concesionario;
+        this.concesionario =concesionario;
     }
-
 
     public void agregarReparacion(Date fecha, TipoReparacion reparacion) {
         reparaciones.add(new Reparacion(reparacion, fecha));
         estado = Estado.Reparando;
 
+    }
+    public Reparacion getUltimaReparacion(){
+        if (reparaciones.isEmpty()){
+            return null;
+        }
+        return reparaciones.get(reparaciones.size()-1);
     }
 
     public void completarReparacion() {
@@ -119,7 +130,6 @@ public class Coche {
                 "  ||  Tipo : " + tipo +
                 "  ||  Precio compra : " + precioCompra + " €" +
                 "  ||  Precio venta : " + precioVenta + " €";
-
     }
 }
 
