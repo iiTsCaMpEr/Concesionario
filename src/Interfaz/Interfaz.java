@@ -1,15 +1,18 @@
 package Interfaz;
 
 import Inventario.Exposicion;
+import Inventario.Reparacion;
 import Personas.Cliente;
 import Personas.DirectorComercial;
 import Concesionario.Concesionario;
 import Personas.Mecanico;
 import Personas.Vendedor;
+import Validaciones.Validaciones;
 import Vehiculos.Coche;
 import Vehiculos.Estado;
 
 
+import java.util.List;
 import java.util.Scanner;
 
  public class Interfaz {
@@ -17,6 +20,7 @@ import java.util.Scanner;
      private Concesionario concesionario;
      private DirectorComercial director;
      private Cliente cliente;
+     private Coche coche;
      private Vendedor vendedor;
      private Mecanico mecanico;
 
@@ -34,7 +38,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 5) {
              mostrarMenuIdentificaion();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
 
@@ -66,21 +70,22 @@ import java.util.Scanner;
          System.out.println("3. Director Comercial");
          System.out.println("4. Mecánico");
          System.out.println("5. Salir");
-         System.out.print("Selecciona una opción: ");
+
      }
 
-        private void mostrarMenuDirectorComercial() {
-            System.out.println("\n--- Menú Director Comercial ---");
-            System.out.println("1. Menu Coches");
-            System.out.println("2. Menu Clientes");
-            System.out.println("3. Menu Vendedores");
-            System.out.println("4. Menu Exposiciones");
-            System.out.println("5. Menu Reparaciones");
-            System.out.println("6. Otras consultas");
-            System.out.println("7. Salir");
-        }
+     private void mostrarMenuDirectorComercial() {
+         System.out.println("\n--- Menú Director Comercial ---");
+         System.out.println("1. Menu Coches");
+         System.out.println("2. Menu Clientes");
+         System.out.println("3. Menu Vendedores");
+         System.out.println("4. Menu Exposiciones");
+         System.out.println("5. Menu Reparaciones");
+         System.out.println("6. Otras consultas");
+         System.out.println("7. Salir");
+     }
 
-        // director comercial
+     // director comercial
+
 
         public void interfazDirectorComercial() {
          Scanner scanner = new Scanner(System.in);
@@ -89,7 +94,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 7) {
              mostrarMenuDirectorComercial();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -125,7 +130,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 7) {
              mostrarMenuDirectorComercialCoches();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -175,9 +180,9 @@ import java.util.Scanner;
 
 
          int opcion = -1;
-         while (opcion != 8) {
+                 while (opcion != 8) {
              mostrarMenuDirectorComercialExposiciones();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -230,76 +235,66 @@ import java.util.Scanner;
 
 
          int opcion = -1;
-         while (opcion != 4) {
+                 while (opcion != 4) {
              mostrarMenuDirectorComercialReparaciones();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
                  case 1:
                      director.agregarReparacion();
+                     mensajeTodoCorrecto();
                      break;
                  case 2:
                      director.cochesEnReparacion();
                      director.elegirCocheEnReparacion();
+                     mensajeTodoCorrecto();
                      break;
                  case 3:
                      director.listarCocheEspecificoEnReparacion();
                      break;
                  case 4:
-
                      break;
-
              }
          }
      }
-             private void mostrarMenuDirectorComercialReparaciones () {
+     private void mostrarMenuDirectorComercialReparaciones () {
          System.out.println("\n--- Menú de Reparaciones del Director Comercial ---");
-                 System.out.println("1. Agregar coche a reparaciones");
-                 System.out.println("2. Devolver coche a stock");
-                 System.out.println("3. Consultar reparaciones de cualquier coche");
-                 System.out.println("4. Salir");
-                 System.out.print("Selecciona una opción: ");
+         System.out.println("1. Agregar coche a reparaciones");
+         System.out.println("2. Devolver coche a stock");
+         System.out.println("3. Consultar reparaciones de cualquier coche");
      }
              private void iDirectorOtrasConsultas() {
          Scanner scanner = new Scanner(System.in);
 
 
-         int opcion = -1;
-         while (opcion != 8) {
-             mostrarMenuDirectorComercialOtrasConsultas();
-             opcion = scanner.nextInt();
-             scanner.nextLine();
-
-             switch (opcion) {
-                 case 1:
-
-                     break;
-                 case 2:
-
-                     break;
-                 case 3:
-
-                     break;
-                 case 4:
-
-                     break;
-                 case 5:
-
-                     break;
-                 case 6:
-
-                     break;
-                 case 7:
-
-                     break;
-                 case 8:
+                 int opcion = -1;
+                 while (opcion != 8) {
+                     mostrarMenuDirectorComercialOtrasConsultas();
+                     opcion = scanner.nextInt();
+                     scanner.nextLine();
+                     switch (opcion) {
+                         case 1:
+                             break;
+                         case 2:
+                             break;
+                         case 3:
+                             break;
+                         case 4:
+                             break;
+                         case 5:
+                             break;
+                         case 6:
+                             break;
+                         case 7:
+                             break;
+                         case 8:
 
                      break;
              }
          }
      }
-             private void mostrarMenuDirectorComercialOtrasConsultas () {
+     private void mostrarMenuDirectorComercialOtrasConsultas () {
          System.out.println("\n--- Menú de Otras Consultas del Director Comercial ---");
          System.out.println("1.  ");
          System.out.println("8.  Salir");
@@ -311,7 +306,7 @@ import java.util.Scanner;
              int opcion = -1;
              while (opcion != 8) {
              mostrarMenuDirectorComercialClientes();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -350,16 +345,16 @@ import java.util.Scanner;
              }
          }
      }
-             private void mostrarMenuDirectorComercialClientes () {
-             System.out.println("\n--- Menú de Clientes el Director Comercial ---");
-             System.out.println("1.  Crear cliente");
-             System.out.println("2.  Modificar Cliente");
-             System.out.println("3.  Eliminar Cliente");
-             System.out.println("4.  Listar Clientes");
-             System.out.println("5.  Consultar reservas de clientes");
-             System.out.println("6.  Consultar compras de clientes");
-             System.out.println("7.  Consultar que cliente compró un coche");
-             System.out.println("8.  Salir");
+     private void mostrarMenuDirectorComercialClientes () {
+         System.out.println("\n--- Menú de Clientes el Director Comercial ---");
+         System.out.println("1.  Crear cliente");
+         System.out.println("2.  Modificar Cliente");
+         System.out.println("3.  Eliminar Cliente");
+         System.out.println("4.  Listar Clientes");
+         System.out.println("5.  Consultar reservas de clientes");
+         System.out.println("6.  Consultar compras de clientes");
+         System.out.println("7.  Consultar que cliente compró un coche");
+         System.out.println("8.  Salir");
 
      }
              private void iDirectorVendedores() {
@@ -369,7 +364,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 6) {
              mostrarMenuDirectorComercialVendedores();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -410,61 +405,49 @@ import java.util.Scanner;
          System.out.println("6.  Salir");
 
      }
-                // mecanico
+     // mecanico
              public static void mostrarMenuMecanico () {
                  System.out.println("\n--- Menú de Mecánico ---");
                  System.out.println("1. Agregar coche a reparaciones");
                  System.out.println("2. Devolver coche a stock");
                  System.out.println("3. Consultar reparaciones de cualquier coche");
-                 System.out.println("4. Salir");
                  System.out.print("Selecciona una opción: ");
-
              }
-             public void loginMecanico () {
+     public void loginMecanico () {
          Scanner scanner = new Scanner(System.in);
          System.out.println("¿Es usted un mecanico existente? (S/N)");
          String respuesta = scanner.nextLine();
-
          if (respuesta.equalsIgnoreCase("S")) {
              System.out.println("Introduzca su DNI: ");
              String dniMecanico = scanner.nextLine();
-
              Mecanico mecanicoExistente = concesionario.buscarMecanicoPorDni(dniMecanico);
-
              if (mecanicoExistente != null) {
-
                  interfazMecanico(mecanicoExistente);
              } else {
                  System.out.println("Mecanico no encontrado.");
              }
          } else if (respuesta.equalsIgnoreCase("N")) {
-
              System.out.println("Crear nuevo mecanico:");
              System.out.print("Nombre: ");
              String nombre = scanner.nextLine();
-
              System.out.print("Dirección: ");
              String direccion = scanner.nextLine();
-
              System.out.print("Dni: ");
              String dni = scanner.nextLine();
-
              System.out.print("Teléfono: ");
              String telefono = scanner.nextLine();
-
              Mecanico nuevoMecanico = new Mecanico(concesionario, nombre, direccion, dni, telefono);
              concesionario.addMecanico(nuevoMecanico);
-
              System.out.println("¡Nuevo mecánico creado exitosamente!");
          }
      }
-             public void interfazMecanico (Mecanico mecanico) {
+             public void interfazMecanico () {
                  Scanner scanner = new Scanner(System.in);
 
                  int opcion = -1;
                  while (opcion != 4) {
                      mostrarMenuMecanico();
-                     opcion = scanner.nextInt();
+                     opcion = Validaciones.ValidacionSwitch(scanner);
                      scanner.nextLine();
 
                      switch (opcion) {
@@ -477,6 +460,7 @@ import java.util.Scanner;
                              break;
                          case 3:
                              mecanico.listarCocheEspecificoEnReparacion();
+
                              break;
                          case 4:
                              System.out.println("¡Hasta luego!");
@@ -484,77 +468,65 @@ import java.util.Scanner;
                      }
                  }
              }
-                // cliente
-             public static void mostrarMenuCliente () {
-                 System.out.println("\n--- Menú de Clientes ---");
-                 System.out.println("1. Consultar coches en stock");
-                 System.out.println("2. Consultar coches reservados");
-                 System.out.println("3. Consultar coches comprados");
-                 System.out.println("4. Salir");
-                 System.out.print("Selecciona una opción: ");
+     // cliente
+     public static void mostrarMenuCliente () {
+         System.out.println("\n--- Menú de Clientes ---");
+         System.out.println("1. Consultar coches en stock");
+         System.out.println("2. Consultar coches reservados");
+         System.out.println("3. Consultar coches comprados");
+         System.out.println("4. Salir");
+         System.out.print("Selecciona una opción: ");
+     }
+     public void loginCliente () {
+         Scanner scanner = new Scanner(System.in);
+         System.out.println("¿Es usted un cliente existente? (S/N)");
+         String respuesta = scanner.nextLine();
+         if (respuesta.equalsIgnoreCase("S")) {
+             System.out.println("Introduzca su DNI: ");
+             String dniCliente = scanner.nextLine();
+             Cliente clienteExistente = concesionario.buscarClientePorDni(dniCliente);
+             if (clienteExistente != null) {
+                 interfazCliente(clienteExistente);
+             } else {
+                 System.out.println("Cliente no encontrado.");
              }
-             public void loginCliente () {
-                 Scanner scanner = new Scanner(System.in);
-                 System.out.println("¿Es usted un cliente existente? (S/N)");
-                 String respuesta = scanner.nextLine();
-
-                 if (respuesta.equalsIgnoreCase("S")) {
-                     System.out.println("Introduzca su DNI: ");
-                     String dniCliente = scanner.nextLine();
-
-                     Cliente clienteExistente = concesionario.buscarClientePorDni(dniCliente);
-
-                     if (clienteExistente != null) {
-
-                         interfazCliente(clienteExistente);
-                     } else {
-                         System.out.println("Cliente no encontrado.");
-                     }
-                 } else if (respuesta.equalsIgnoreCase("N")) {
-                     // Nuevo cliente, pedimos los datos y lo creamos
-                     System.out.println("Crear nuevo cliente:");
-                     System.out.print("Nombre: ");
-                     String nombre = scanner.nextLine();
-
-                     System.out.print("Dirección: ");
-                     String direccion = scanner.nextLine();
-
-                     System.out.print("Dni: ");
-                     String dni = scanner.nextLine();
-
-                     System.out.print("Teléfono: ");
-                     String telefono = scanner.nextLine();
-
-                     Cliente nuevoCliente = new Cliente(concesionario, nombre, direccion, dni, telefono);
-                     concesionario.addCliente(nuevoCliente);
-
-                     System.out.println("¡Nuevo cliente creado exitosamente!");
-                 }
+         } else if (respuesta.equalsIgnoreCase("N")) {
+             // Nuevo cliente, pedimos los datos y lo creamos
+             System.out.println("Crear nuevo cliente:");
+             System.out.print("Nombre: ");
+             String nombre = scanner.nextLine();
+             System.out.print("Dirección: ");
+             String direccion = scanner.nextLine();
+             System.out.print("Dni: ");
+             String dni = scanner.nextLine();
+             System.out.print("Teléfono: ");
+             String telefono = scanner.nextLine();
+             Cliente nuevoCliente = new Cliente(concesionario, nombre, direccion, dni, telefono);
+             concesionario.addCliente(nuevoCliente);
+             System.out.println("¡Nuevo cliente creado exitosamente!");
+         }
+     }
+     public void interfazCliente (Cliente cliente){
+         Scanner scanner = new Scanner(System.in);
+         int opcion = -1;
+         while (opcion != 4) {
+             mostrarMenuCliente();
+             opcion = scanner.nextInt();
+             scanner.nextLine();
+             switch (opcion) {
+                 case 1:
+                     cliente.imprimirCochesEnVenta();
+                     break;
+                 case 2:
+                     cliente.imprimirCochesReservados();
+                     break;
+                 case 3:
+                     cliente.imprimirCochesComprados();
+                 case 4:
+                     break;
              }
-             public void interfazCliente (Cliente cliente){
-                         Scanner scanner = new Scanner(System.in);
-                         int opcion = -1;
-                         while (opcion != 4) {
-                             mostrarMenuCliente();
-                             opcion = scanner.nextInt();
-                             scanner.nextLine();
-
-                             switch (opcion) {
-                                 case 1:
-                                     cliente.imprimirCochesEnVenta();
-                                     break;
-                                 case 2:
-                                     cliente.imprimirCochesReservados();
-                                     break;
-                                 case 3:
-                                     cliente.imprimirCochesComprados();
-                                 case 4:
-
-                                     break;
-                             }
-                         }
-                     }
-                     // vendedor
+         }
+     }
              public void mostrarMenuVendedor () {
                  System.out.println("\n--- Menú de Vendedores ---");
                  System.out.println("1. Vender coche");
@@ -564,17 +536,15 @@ import java.util.Scanner;
                  System.out.println("5. Consultas sobre coches");
                  System.out.println("6. Consultas sobre exposiciones");
                  System.out.println("7. Salir");
-                 System.out.print("Selecciona una opción: ");
              }
-             public void interfazVendedor (Vendedor vendedor) {
+     public void interfazVendedor (Vendedor vendedor) {
                  Scanner scanner = new Scanner(System.in);
 
 
                  int opcion = -1;
                  while (opcion != 7) {
                      mostrarMenuVendedor();
-                     opcion = scanner.nextInt();
-                     scanner.nextLine();
+                     opcion = Validaciones.ValidacionSwitch(scanner);
 
                      switch (opcion) {
                          case 1:
@@ -585,6 +555,7 @@ import java.util.Scanner;
                              break;
                          case 3:
                              vendedor.cancelarReserva();
+
                              break;
                          case 4:
                              interfazVendedorConsultasClientes();
@@ -601,52 +572,40 @@ import java.util.Scanner;
                      }
                  }
              }
-             public void loginVendedor () {
+     public void loginVendedor () {
          Scanner scanner = new Scanner(System.in);
          System.out.println("¿Es usted un cliente existente? (S/N)");
          String respuesta = scanner.nextLine();
-
          if (respuesta.equalsIgnoreCase("S")) {
              System.out.println("Introduzca su DNI: ");
              String dniVendedor = scanner.nextLine();
-
              Vendedor vendedorExistente = concesionario.buscarVendedorPorDni(dniVendedor);
-
              if (vendedorExistente != null) {
-
                  interfazVendedor(vendedorExistente);
              } else {
                  System.out.println("Cliente no encontrado.");
              }
          } else if (respuesta.equalsIgnoreCase("N")) {
-
              System.out.println("Crear nuevo vendedor:");
              System.out.print("Nombre: ");
              String nombre = scanner.nextLine();
-
              System.out.print("Dirección: ");
              String direccion = scanner.nextLine();
-
              System.out.print("Dni: ");
              String dni = scanner.nextLine();
-
              System.out.print("Teléfono: ");
              String telefono = scanner.nextLine();
-
              Vendedor nuevoVendedor = new Vendedor(concesionario, nombre, direccion, dni, telefono);
              concesionario.addVendedor(nuevoVendedor);
-
              System.out.println("¡Nuevo vendedor creado exitosamente!");
          }
      }
-
              public void mostrarMenuVendedorConsultasClientes () {
          System.out.println("\n--- Menú de clientes de Vendedores ---");
          System.out.println("1.  Listar Clientes");
          System.out.println("2.  Consultar reservas de clientes");
          System.out.println("3.  Consultar compras de clientes");
          System.out.println("4.  Salir");
-         System.out.print("Selecciona una opción: ");
      }
              public void interfazVendedorConsultasClientes () {
          Scanner scanner = new Scanner(System.in);
@@ -655,7 +614,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 4) {
              mostrarMenuVendedorConsultasClientes();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -680,18 +639,18 @@ import java.util.Scanner;
          System.out.println("2.  Imprimir coches vendidos");
          System.out.println("3.  Consultar compras de clientes");
          System.out.println("4.  Consultar que cliente compro un coche determinado");
-         System.out.println("5.  Consultar que reservas tiene un cliente");
-         System.out.println("6.  Salir");
-         System.out.print("Selecciona una opción: ");
+                 System.out.println("5.  Consultar que reservas tiene un cliente");
+                 System.out.println("6.  Salir");
+
      }
              public void interfazVendedorConsultasCoches () {
          Scanner scanner = new Scanner(System.in);
 
 
          int opcion = -1;
-         while (opcion != 6) {
+                 while (opcion != 6) {
              mostrarMenuVendedorConsultasCoches();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -719,7 +678,7 @@ import java.util.Scanner;
          System.out.println("\n--- Menú de exposiciones de Vendedores ---");
          System.out.println("1.  Listar Exposiciones");
          System.out.println("2.  Salir");;
-         System.out.print("Selecciona una opción: ");
+
      }
              public void interfazVendedorConsultasExposiciones () {
          Scanner scanner = new Scanner(System.in);
@@ -728,7 +687,7 @@ import java.util.Scanner;
          int opcion = -1;
          while (opcion != 2) {
              mostrarMenuVendedorConsultasExposiciones();
-             opcion = scanner.nextInt();
+             opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
 
              switch (opcion) {
@@ -741,9 +700,7 @@ import java.util.Scanner;
              }
          }
      }
-
-             // otros
              public void mensajeTodoCorrecto () {
-                 System.out.println("¡Proceso finalizado correctamente!");
+                 System.out.println("Proceso finalizado correctamente");
              }
          }
