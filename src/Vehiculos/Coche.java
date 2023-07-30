@@ -22,11 +22,6 @@ public class Coche {
     private List<Reparacion> reparaciones;
     private  Concesionario concesionario;
 
-    public Coche() {
-
-    }
-
-
     public Coche(String marca, String modelo, String matricula, double precioVenta, double precioCompra, Tipo tipo, Estado estado, Concesionario concesionario) { // constructor para vendedores
         this.marca = marca;
         this.modelo = modelo;
@@ -51,35 +46,18 @@ public class Coche {
         return reparaciones.get(reparaciones.size()-1);
     }
 
-    public void completarReparacion() {
-        estado = Estado.Stock;
-    }
-
     // getters and setters
-
 
     public String getMarca() {
         return marca;
-    }
-
-    public void setMarca(String marca) {
-        this.marca = marca;
     }
 
     public String getModelo() {
         return modelo;
     }
 
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
-    }
-
     public String getMatricula() {
         return matricula;
-    }
-
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
     }
 
     public double getPrecioCompra() {
@@ -110,18 +88,9 @@ public class Coche {
         return tipo;
     }
 
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
-    }
-
     public List<Reparacion> getReparaciones() {
         return reparaciones;
     }
-
-    public void setReparaciones(List<Reparacion> reparaciones) {
-        this.reparaciones = reparaciones;
-    }
-
     @Override
     public String toString() {
         return  "Matricula : " + matricula +
@@ -132,7 +101,3 @@ public class Coche {
                 "  ||  Precio venta : " + precioVenta + " €";
     }
 }
-
-
-
-

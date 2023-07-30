@@ -4,7 +4,6 @@ import Concesionario.Concesionario;
 import Inventario.Exposicion;
 import Inventario.Reparacion;
 import Inventario.TipoReparacion;
-import Personas.Persona;
 
 import Validaciones.Validaciones;
 import Vehiculos.Coche;
@@ -17,14 +16,8 @@ import java.util.*;
 
 public class DirectorComercial extends Persona {
 
-    public DirectorComercial (Concesionario concesionario) {
-        super(concesionario);
-    }
-
-
     public DirectorComercial(Concesionario concesionario, String nombre, String direccion, String dni, String telefono) {
         super(concesionario, nombre, direccion, dni, telefono);
-
     }
 
         // coches
@@ -69,7 +62,6 @@ public class DirectorComercial extends Persona {
             nuevoCoche.put(matricula, new Coche(marca, modelo, matricula, precioVenta, precioCompra, tipo, Estado.Stock,concesionario));
             concesionario.setCoches(nuevoCoche);
         }
-
         public void modificarCoche() {
         String matricula; double nuevoPrecioCompra; double nuevoPrecioVenta; int nuevoEstado;
         Scanner scanner = new Scanner(System.in);
@@ -232,7 +224,6 @@ public class DirectorComercial extends Persona {
 
             System.out.println("A que vendedor desea consultarle las ventas");
             String dni = scanner.nextLine();
-
             if (concesionario.getClientes().containsKey(dni)){
                 Vendedor v = concesionario.getVendedores().get(dni);
                 System.out.println("Estos son los coches vendidos por el vendedor: ");
@@ -546,5 +537,4 @@ public class DirectorComercial extends Persona {
         Coche coche = concesionario.getCoches().get(matricula);
         coche.setEstado(Estado.Stock);
     }
-
 }

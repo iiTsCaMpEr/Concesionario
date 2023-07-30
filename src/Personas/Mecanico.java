@@ -1,8 +1,6 @@
 package Personas;
 
 import Concesionario.Concesionario;
-import Excepciones.InvalidException;
-import Excepciones.NoSuchMatriculaException;
 import Inventario.Reparacion;
 import Inventario.TipoReparacion;
 import Validaciones.Validaciones;
@@ -14,11 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Mecanico extends Persona {
-    public Mecanico(Concesionario concesionario) {
-        super(concesionario);
-
-    }
-
     public Mecanico(Concesionario concesionario, String nombre, String direccion, String dni, String telefono) {
         super(concesionario, nombre, direccion, dni, telefono);
     }

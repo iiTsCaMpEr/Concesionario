@@ -3,7 +3,6 @@ import Personas.Mecanico;
 
 import java.util.Date;
 
-
 public class Reparacion {
 
     private TipoReparacion tipo;
@@ -21,18 +20,8 @@ public class Reparacion {
         return tipo;
     }
 
-    public void setTipo(TipoReparacion tipo) {
-        this.tipo = tipo;
-    }
-
     public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
 }
-
-

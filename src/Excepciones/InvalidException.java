@@ -5,5 +5,3 @@ public class InvalidException extends Exception{
         super(mensaje);
     }
 }
-
-

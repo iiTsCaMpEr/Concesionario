@@ -65,10 +65,6 @@ public class Cliente extends Persona {
         return cochesComprados;
     }
 
-    public void setCochesComprados(ArrayList<Coche> cochesComprados) {
-        this.cochesComprados = cochesComprados;
-    }
-
     public ArrayList<Coche> getCochesReservados() {
         return cochesReservados;
     }

@@ -9,16 +9,9 @@ import Validaciones.Validaciones;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class Vendedor extends Persona {
     private ArrayList<Coche> cochesVendidos;
 
-    public Vendedor (Concesionario concesionario) {
-        super(concesionario);
-        this.cochesVendidos = new ArrayList<>()
-        ;
-
-    }
     public Vendedor(Concesionario concesionario, String nombre, String direccion, String dni, String telefono) {
         super(concesionario, nombre, direccion, dni, telefono);
         this.nombre = nombre;
@@ -47,7 +40,6 @@ public class Vendedor extends Persona {
         cliente.comprarCoche(coche);
         cochesVendidos.add(coche);
     }
-
     public void cancelarReserva() {
         Scanner scanner = new Scanner(System.in);
 
@@ -64,10 +56,6 @@ public class Vendedor extends Persona {
                     coche.setEstado(Estado.Stock);
                     cliente.cancelarReserva(coche);
             }
-
-
-
-
     public void reservarCoche() {
         Scanner scanner = new Scanner(System.in);
 
@@ -159,14 +147,8 @@ public class Vendedor extends Persona {
         concesionario.imprimirExposiciones();
     }
 
-
     // getters and setters
     public ArrayList<Coche> getCochesVendidos() {
         return cochesVendidos;
     }
-    public void setCochesVendidos(ArrayList<Coche> cochesVendidos) {
-        this.cochesVendidos = cochesVendidos;
-    }
-
-
 }

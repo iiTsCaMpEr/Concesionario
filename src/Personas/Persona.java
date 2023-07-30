@@ -1,6 +1,5 @@
 package Personas;
 import Concesionario.Concesionario;
-import Inventario.Exposicion;
 
 public abstract class Persona {
 
@@ -20,10 +19,7 @@ public abstract class Persona {
     }
     public Persona (Concesionario concesionario) {
         this.concesionario = concesionario;
-
-
     }
-
 
     //getter y setter
     public String getNombre() {
@@ -33,37 +29,27 @@ public abstract class Persona {
     protected void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
     public String getDireccion() {
         return direccion;
     }
-
     protected void setDireccion(String direccion) {
         this.direccion = direccion;
     }
-
     public String getDni() {
         return dni;
     }
-
-    private void setDni(String dni) {
-        this.dni = dni;
-    }
-
     public String getTelefono() {
         return telefono;
     }
-
     protected void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
     @Override
     public String toString() {
-        return "nombre='" + nombre + '\'' +
-                ", dni='" + dni + '\'' +
-                ", telefono=" + telefono +
-                '}';
+        return  "Nombre : " + nombre +
+                "  ||  Dni : " + dni +
+                "  ||  Dirección : " + direccion +
+                "  ||  Telefono : " + telefono;
     }
 }
 
