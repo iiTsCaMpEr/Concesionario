@@ -10,13 +10,6 @@ import java.util.Scanner;
 
 public class Vendedor extends Persona {
     private ArrayList<Coche> cochesVendidos;
-
-    public Vendedor (Concesionario concesionario) {
-        super(concesionario);
-        this.cochesVendidos = new ArrayList<>()
-        ;
-
-    }
     public Vendedor(Concesionario concesionario, String nombre, String direccion, String dni, String telefono) {
         super(concesionario, nombre, direccion, dni, telefono);
         this.nombre = nombre;
@@ -74,7 +67,7 @@ public class Vendedor extends Persona {
     public void reservarCoche() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Ingrese la matrícula del vehículo que desea reservar");
+        System.out.println("    Ingrese la matrícula del vehículo que desea reservar");
         String matricula = scanner.nextLine();
 
         System.out.println("Ingrese el DNI del cliente que va a hacer la reserva");

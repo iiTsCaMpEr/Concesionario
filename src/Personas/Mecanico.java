@@ -1,19 +1,17 @@
 package Personas;
 
 import Concesionario.Concesionario;
+import Excepciones.NoSuchMatriculaException;
 import Inventario.Reparacion;
 import Inventario.TipoReparacion;
 import Vehiculos.Coche;
 import Vehiculos.Estado;
 import Vehiculos.Tipo;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Mecanico extends Persona {
-    public Mecanico(Concesionario concesionario) {
-        super(concesionario);
-
-    }
 
     public Mecanico(Concesionario concesionario, String nombre, String direccion, String dni, String telefono) {
         super(concesionario, nombre, direccion, dni, telefono);
@@ -35,6 +33,8 @@ public class Mecanico extends Persona {
     }
     public void cochesEnReparacion() {
 
+        System.out.println("Los coches en reparacion son: ");
+
         HashMap<String, Coche> cochesReparacion = concesionario.listarEnReparacion();
 
         for (Coche coche : cochesReparacion.values()) {
@@ -51,34 +51,27 @@ public class Mecanico extends Persona {
         Coche coche = concesionario.getCoches().get(matricula);
         coche.setEstado(Estado.Stock);
     }
+        public void listarCocheEspecificoEnReparacion(){
+    HashMap<String, Coche> cochesEnReparacion = concesionario.listarEnReparacion();
 
-    public void elegirCocheParaVerReparaciones(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Indique la matrícula del coche del cual desea ver las reparaciones");
-        String matricula = scanner.nextLine();
-        HashMap reparaciones = concesionario.listarEnReparacion();
-        ArrayList<Reparacion> reparacionesCoche = new ArrayList<>();
-
-        for(Object reparacion : reparaciones.values()){
-            if (concesionario.getCoches().equals(matricula)){
-                reparacionesCoche.add((Reparacion) reparacion);
-            }
-            if (reparacionesCoche.isEmpty()){
-                System.out.println("No hay reparaciones en este coche");
-            } else {
-                reparacionesCoche.sort(Comparator.comparing(Reparacion::getFecha).reversed());
-                System.out.println("Reparaciones del coche " + matricula);
-                for (Reparacion reparacion1: reparacionesCoche){
-                    System.out.println(reparacion.toString());
-                }
-            }
+    cochesEnReparacion();
+    Scanner scanner = new Scanner(System.in);
+        System.out.print("Ingrese la matrícula del coche que desea consultar las reparaciones: ");
+    String matricula = scanner.nextLine();
+    Coche coche = cochesEnReparacion.get(matricula);
+        if (coche != null) {
+        List<Reparacion> reparaciones = coche.getReparaciones();
+        Collections.sort(reparaciones, (r1, r2) -> r2.getFecha().compareTo(r1.getFecha()));
+        for (Reparacion reparacion : reparaciones) {
+            SimpleDateFormat a = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaReparacion = a.format(reparacion.getFecha());
+            System.out.println("Fecha de reparación: " + fechaReparacion);
+            System.out.println("Tipo de reparación: " + reparacion.getTipo().toString());
+            System.out.println("-------------------------");
         }
-
-
-
+    } else {
+        throw new NoSuchMatriculaException("No se encontró ningún coche con esa matrícula en reparación.");
     }
-
-
-
-
 }
+}
+

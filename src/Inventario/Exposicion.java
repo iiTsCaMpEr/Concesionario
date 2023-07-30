@@ -13,12 +13,14 @@ public class Exposicion {
     private String direccion;
     private String telefono;
     private ArrayList<Coche> cochesEnExposicion;
+    private Concesionario concesionario;
     
-    public Exposicion(Integer numeroExposicion, String direccion, String telefono) {
+    public Exposicion(Concesionario concesionario,Integer numeroExposicion, String direccion, String telefono) {
         this.numeroExposicion = numeroExposicion;
         this.direccion = direccion;
         this.telefono = telefono;
         this.cochesEnExposicion = new ArrayList<>();
+        this.concesionario = concesionario;
     }
 
 
