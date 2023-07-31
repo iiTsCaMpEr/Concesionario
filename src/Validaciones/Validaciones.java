@@ -78,4 +78,9 @@ public class Validaciones {
 
         return reparacion;
     }
+    public static String validarDNI(String dni) {
+        // Expresión regular para verificar que el DNI tenga el formato adecuado (8 números, un guión y una letra mayúscula)
+        String regex = "^\\d{8}-[A-Z]$";
+        return String.valueOf(dni.matches(regex));
+    }
 }
