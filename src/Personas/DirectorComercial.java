@@ -236,6 +236,7 @@ public class DirectorComercial extends Persona {
         public void imprimirVendedores() {
         concesionario.imprimirVendedores();
     }
+        // public ArrayList
 
         // clientes
         public void anadirCliente(){
