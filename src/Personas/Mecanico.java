@@ -18,7 +18,7 @@ public class Mecanico extends Persona {
 
     public void agregarReparacion(){
         Scanner scanner =  new Scanner(System.in);
-        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches());
+        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches(),false);
         if (concesionario == null || concesionario.listarEnReparacion() == null) {
             throw new NullPointerException("El concesionario o la lista de coches en reparación están vacíos");    //Imprimir Null
         }
@@ -51,7 +51,7 @@ public class Mecanico extends Persona {
         if (concesionario == null || concesionario.getCoches() == null) {
             throw new NullPointerException("El concesionario o la lista de coches en reparación están vacíos");  //Imprimir Null
         }
-        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches());
+        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches(),false);
 
         Coche coche = concesionario.getCoches().get(matricula);
         coche.setEstado(Estado.Stock);
@@ -65,7 +65,7 @@ public class Mecanico extends Persona {
             throw new NullPointerException("El concesionario o la lista de coches en reparación están vacíos");  //Imprimir Null
         }
 
-        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches());
+        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches(),false);
         Coche coche = cochesEnReparacion.get(matricula);
         if (coche != null) {
             List<Reparacion> reparaciones = coche.getReparaciones();

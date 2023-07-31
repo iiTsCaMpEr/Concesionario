@@ -421,8 +421,7 @@ import java.util.Scanner;
          System.out.println("¿Es usted un mecanico existente? (S/N)");
          String respuesta = scanner.nextLine();
          if (respuesta.equalsIgnoreCase("S")) {
-             System.out.println("Introduzca su DNI: ");
-             String dniMecanico = scanner.nextLine();
+             String dniMecanico = Validaciones.leerDniMecanico(scanner,concesionario.getMecanicos(), false);
              Mecanico mecanicoExistente = concesionario.buscarMecanicoPorDni(dniMecanico);
              if (mecanicoExistente != null) {
                  interfazMecanico(mecanicoExistente);
@@ -431,14 +430,14 @@ import java.util.Scanner;
              }
          } else if (respuesta.equalsIgnoreCase("N")) {
              System.out.println("Crear nuevo mecanico:");
-             System.out.print("Nombre: ");
-             String nombre = scanner.nextLine();
-             System.out.print("Dirección: ");
-             String direccion = scanner.nextLine();
-             System.out.print("Dni: ");
-             String dni = scanner.nextLine();
+
+             String nombre = Validaciones.leerNombreMecanicoCompleto(scanner);
+
+             String direccion = Validaciones.leerDireccionMecanico(scanner);
+
+             String dni = Validaciones.leerDniMecanico(scanner,concesionario.getMecanicos(), true);
              System.out.print("Teléfono: ");
-             String telefono = scanner.nextLine();
+             String telefono = Validaciones.leerNumeroEntero(scanner);
              Mecanico nuevoMecanico = new Mecanico(concesionario, nombre, direccion, dni, telefono);
              concesionario.addMecanico(nuevoMecanico);
              System.out.println("¡Nuevo mecánico creado exitosamente!");
@@ -484,8 +483,7 @@ import java.util.Scanner;
          System.out.println("¿Es usted un cliente existente? (S/N)");
          String respuesta = scanner.nextLine();
          if (respuesta.equalsIgnoreCase("S")) {
-             System.out.println("Introduzca su DNI: ");
-             String dniCliente = scanner.nextLine();
+             String dniCliente = Validaciones.leerDniCliente(scanner,concesionario.getClientes(), false);
              Cliente clienteExistente = concesionario.buscarClientePorDni(dniCliente);
              if (clienteExistente != null) {
                  interfazCliente(clienteExistente);
@@ -493,16 +491,16 @@ import java.util.Scanner;
                  System.out.println("Cliente no encontrado.");
              }
          } else if (respuesta.equalsIgnoreCase("N")) {
-             // Nuevo cliente, pedimos los datos y lo creamos
+
              System.out.println("Crear nuevo cliente:");
-             System.out.print("Nombre: ");
-             String nombre = scanner.nextLine();
-             System.out.print("Dirección: ");
-             String direccion = scanner.nextLine();
-             System.out.print("Dni: ");
-             String dni = scanner.nextLine();
+
+             String nombre = Validaciones.leerNombreClienteCompleto(scanner);
+
+             String direccion = Validaciones.leerDireccionCliente(scanner);
+
+             String dni = Validaciones.leerDniCliente(scanner,concesionario.getClientes(), true);
              System.out.print("Teléfono: ");
-             String telefono = scanner.nextLine();
+             String telefono = Validaciones.leerNumeroEntero(scanner);
              Cliente nuevoCliente = new Cliente(concesionario, nombre, direccion, dni, telefono);
              concesionario.addCliente(nuevoCliente);
              System.out.println("¡Nuevo cliente creado exitosamente!");
@@ -580,8 +578,7 @@ import java.util.Scanner;
          System.out.println("¿Es usted un vendedor existente? (S/N)");
          String respuesta = scanner.nextLine();
          if (respuesta.equalsIgnoreCase("S")) {
-             System.out.println("Introduzca su DNI: ");
-             String dniVendedor = scanner.nextLine();
+             String dniVendedor = Validaciones.leerDniVendedor(scanner,concesionario.getVendedores(),false);
              Vendedor vendedorExistente = concesionario.buscarVendedorPorDni(dniVendedor);
              if (vendedorExistente != null) {
                  interfazVendedor(vendedorExistente);
@@ -590,14 +587,14 @@ import java.util.Scanner;
              }
          } else if (respuesta.equalsIgnoreCase("N")) {
              System.out.println("Crear nuevo vendedor:");
-             System.out.print("Nombre: ");
-             String nombre = scanner.nextLine();
-             System.out.print("Dirección: ");
-             String direccion = scanner.nextLine();
-             System.out.print("Dni: ");
-             String dni = scanner.nextLine();
+
+             String nombre = Validaciones.leerNombreVendedorCompleto(scanner);
+
+             String direccion = Validaciones.leerDireccionVendedor(scanner);
+
+             String dni = Validaciones.leerDniVendedor(scanner,concesionario.getVendedores(),true);
              System.out.print("Teléfono: ");
-             String telefono = scanner.nextLine();
+             String telefono = Validaciones.leerNumeroEntero(scanner);
              Vendedor nuevoVendedor = new Vendedor(concesionario, nombre, direccion, dni, telefono);
              concesionario.addVendedor(nuevoVendedor);
              System.out.println("¡Nuevo vendedor creado exitosamente!");

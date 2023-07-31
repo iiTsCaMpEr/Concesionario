@@ -11,6 +11,7 @@ import Vehiculos.Coche;
 import Vehiculos.Estado;
 import Vehiculos.Tipo;
 
+import java.sql.SQLOutput;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -25,20 +26,20 @@ public class DirectorComercial extends Persona {
         public void crearCoche() {
             Scanner scanner = new Scanner(System.in);
 
-            System.out.println("Marca del coche: ");
-            String marca = scanner.nextLine();
 
-            System.out.println("Modelo del coche: ");
-            String modelo = scanner.nextLine();
+            String marca = Validaciones.leerMarcaCoche(scanner);
 
-            System.out.println("Matricula del coche: ");
-            String matricula = scanner.nextLine();
 
-            System.out.println("Precio de venta del coche: ");
-            double precioVenta = scanner.nextDouble();
+            String modelo = Validaciones.leerModeloCoche(scanner);
 
-            System.out.println("Precio de compra del coche: ");
-            double precioCompra = scanner.nextDouble();
+
+            String matricula = Validaciones.leerMatricula(scanner,concesionario.getCoches(), true);
+
+            System.out.println("Ingrese un precio de venta: ");
+            double precioVenta = Validaciones.leerPreciosCompraYVenta(scanner);
+
+            System.out.println("Ingrese un precio de compra: ");
+            double precioCompra = Validaciones.leerPreciosCompraYVenta(scanner);;
 
 
             System.out.println("Escoja el tipo de coche: ");
@@ -66,8 +67,7 @@ public class DirectorComercial extends Persona {
         public void modificarCoche() {
         String matricula; double nuevoPrecioCompra; double nuevoPrecioVenta; int nuevoEstado;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Introduce la matrícula del coche a modificar: ");
-        matricula = scanner.nextLine();
+        matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches(),true);
         Coche coche = concesionario.buscarCochePorMatricula(matricula);
             if (coche != null) {
                 System.out.println("Que desea modificar?");
@@ -78,12 +78,12 @@ public class DirectorComercial extends Persona {
                 switch (c) {
                     case 1:
                         System.out.println("Introduce el nuevo precio de compra");
-                        nuevoPrecioCompra = scanner.nextDouble();
+                        nuevoPrecioCompra = Validaciones.leerPreciosCompraYVenta(scanner);
                         coche.setPrecioCompra(nuevoPrecioCompra);
                         break;
                     case 2:
                         System.out.println("Introduce el nuevo precio de venta");
-                        nuevoPrecioVenta = scanner.nextDouble();
+                        nuevoPrecioVenta = Validaciones.leerPreciosCompraYVenta(scanner);
                         coche.setPrecioVenta(nuevoPrecioVenta);
                         break;
                     case 3:
@@ -92,7 +92,7 @@ public class DirectorComercial extends Persona {
                         System.out.println("3. Reservado");
                         System.out.println("4. Expuesto");
                         System.out.println("5. Vendido");
-                        nuevoEstado = scanner.nextInt();
+                        nuevoEstado = Validaciones.ValidacionSwitch(scanner);
                         switch (nuevoEstado) {
                             case 1:
                                 coche.setEstado(Estado.Stock);
@@ -111,8 +111,6 @@ public class DirectorComercial extends Persona {
                                 break;
                         }
                 }
-            } else {
-                System.out.println("No se encontró un coche con la matrícula " + matricula);
             }
 
             System.out.println("El coche con matrícula " + matricula + " ha sido modificado con los nuevos valores.");
@@ -121,8 +119,7 @@ public class DirectorComercial extends Persona {
             Scanner scanner = new Scanner(System.in);
 
 
-            System.out.println("Introduce la matrícula del coche que deseas borrar: ");
-            String matricula = scanner.nextLine();
+            String matricula = Validaciones.leerMatricula(scanner,concesionario.getCoches(),false);
 
 
             HashMap<String, Coche> eliminarCoche = concesionario.getCoches();
@@ -158,14 +155,15 @@ public class DirectorComercial extends Persona {
         // vendedores
         public void añadirVendedor() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Ingrese el nombre del vendedor:");
-        String nombre = scanner.nextLine();
-        System.out.println("Ingrese el DNI del vendedor:");
-        String dni = scanner.nextLine();
-        System.out.println("Ingrese el domicilio del vendedor:");
-        String direccion = scanner.nextLine();
+
+
+            String nombre = Validaciones.leerNombreVendedorCompleto(scanner);
+
+        String dni = Validaciones.leerDniVendedor(scanner,concesionario.getVendedores(), true);
+
+        String direccion = Validaciones.leerDireccionVendedor(scanner);
         System.out.println("Ingrese el teléfono del vendedor:");
-        String telefono = scanner.nextLine();
+        String telefono = Validaciones.leerNumeroEntero(scanner);
 
         HashMap<String, Vendedor> nuevoVendedor = concesionario.getVendedores();
         nuevoVendedor.put(dni, new Vendedor (concesionario, nombre, direccion, dni, telefono));
@@ -175,8 +173,7 @@ public class DirectorComercial extends Persona {
         public void modificarVendedor() {
         String dni; String nombre; String direccion; String telefono;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Introduce el dni del vendedor a modificar: ");
-        dni = scanner.nextLine();
+        dni = Validaciones.leerDniVendedor(scanner,concesionario.getVendedores(), false);
         Persona persona = concesionario.buscarVendedorPorDni(dni);
         if (persona != null) {
             System.out.println("Que desea modificar?");
@@ -186,32 +183,27 @@ public class DirectorComercial extends Persona {
             int c = scanner.nextInt();
             switch (c) {
                 case 1:
-                    System.out.println("Introduce el nuevo nombre");
-                    nombre = scanner.nextLine();
+                    nombre = Validaciones.leerNombreVendedorCompleto(scanner);
                     persona.setNombre(nombre);
                     break;
                 case 2:
-                    System.out.println("Introduce la nueva dirección");
-                    direccion = scanner.nextLine();
+                    direccion = Validaciones.leerDireccionVendedor(scanner);
                     persona.setDireccion(direccion);
                     break;
                 case 3:
                     System.out.println("Introduce el nuevo teléfono");
-                    telefono = scanner.nextLine();
+                    telefono = Validaciones.leerNumeroEntero(scanner);
                     persona.setTelefono(telefono);
             }
-        } else {
-            System.out.println("No se encontró un vendedor con el dni:  " + dni);
         }
-
         System.out.println("El vendedor con dni " + dni + " ha sido modificado con los nuevos valores.");
     }
         public void borrarVendedor() {
             Scanner scanner = new Scanner(System.in);
 
 
-            System.out.println("Introduce el dni del vendedor que desea borrar: ");
-            String dni = scanner.nextLine();
+
+            String dni = Validaciones.leerDniVendedor(scanner,concesionario.getVendedores(), false);
 
 
             HashMap<String, Vendedor> eliminarVendedor = concesionario.getVendedores();
@@ -224,7 +216,7 @@ public class DirectorComercial extends Persona {
 
 
             System.out.println("A que vendedor desea consultarle las ventas");
-            String dni = scanner.nextLine();
+            String dni = Validaciones.leerDniVendedor(scanner,concesionario.getVendedores(), false);
             if (concesionario.getClientes().containsKey(dni)){
                 Vendedor v = concesionario.getVendedores().get(dni);
                 System.out.println("Estos son los coches vendidos por el vendedor: ");
@@ -255,17 +247,16 @@ public class DirectorComercial extends Persona {
         public void anadirCliente(){
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Nombre del cliente: ");
-        String nombre = scanner.nextLine();
 
-        System.out.println("Direccion del cliente: ");
-        String direccion = scanner.nextLine();
+            String nombre = Validaciones.leerNombreClienteCompleto(scanner);
 
-        System.out.println("DNI cliente: ");
-        String dni = scanner.nextLine();
+
+        String direccion = Validaciones.leerDireccionCliente(scanner);
+
+        String dni = Validaciones.leerDniCliente(scanner,concesionario.getClientes(),true);
 
         System.out.println("Teléfono del cliente: ");
-        String telefono = scanner.nextLine();
+        String telefono = Validaciones.leerNumeroEntero(scanner);
 
 
 
@@ -277,8 +268,7 @@ public class DirectorComercial extends Persona {
         public void modificarCliente() {
         String dni; String nombre; String direccion; String telefono;
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Introduce el dni del cliente a modificar: ");
-        dni = scanner.nextLine();
+        dni = Validaciones.leerDniCliente(scanner,concesionario.getClientes(), true);
         Persona persona = concesionario.buscarClientePorDni(dni);
         if (persona != null) {
             System.out.println("Que desea modificar?");
@@ -288,18 +278,17 @@ public class DirectorComercial extends Persona {
             int c = scanner.nextInt();
             switch (c) {
                 case 1:
-                    System.out.println("Introduce el nuevo nombre");
-                    nombre = scanner.nextLine();
+                    nombre = Validaciones.leerNombreClienteCompleto(scanner);
                     persona.setNombre(nombre);
                     break;
                 case 2:
-                    System.out.println("Introduce la nueva dirección");
-                    direccion = scanner.nextLine();
+
+                    direccion = Validaciones.leerDireccionCliente(scanner);
                     persona.setDireccion(direccion);
                     break;
                 case 3:
                     System.out.println("Introduce el nuevo teléfono");
-                    telefono = scanner.nextLine();
+                    telefono = Validaciones.leerNumeroEntero(scanner);
                     persona.setTelefono(telefono);
             }
         } else {
@@ -312,8 +301,7 @@ public class DirectorComercial extends Persona {
         Scanner scanner = new Scanner(System.in);
 
 
-        System.out.println("Introduce el dni del cliente que desea borrar: ");
-        String dni = scanner.nextLine();
+        String dni = Validaciones.leerDniCliente(scanner,concesionario.getClientes(), false);
 
 
         HashMap<String, Cliente> eliminarCliente = concesionario.getClientes();
@@ -328,7 +316,7 @@ public class DirectorComercial extends Persona {
 
 
         System.out.println("A que cliente desea consultarle las reservas");
-        String dni = scanner.nextLine();
+        String dni =  Validaciones.leerDniCliente(scanner,concesionario.getClientes(), false);
 
         if (concesionario.getClientes().containsKey(dni)){
             Cliente c = concesionario.getClientes().get(dni);
@@ -342,7 +330,7 @@ public class DirectorComercial extends Persona {
 
 
         System.out.println("A que cliente desea consultarle las compras");
-        String dni = scanner.nextLine();
+        String dni =  Validaciones.leerDniCliente(scanner,concesionario.getClientes(), false);
 
         if (concesionario.getClientes().containsKey(dni)){
             Cliente c = concesionario.getClientes().get(dni);
@@ -354,8 +342,8 @@ public class DirectorComercial extends Persona {
         public void queClienteComproX_Coche() {
             Scanner scanner = new Scanner(System.in);
 
-            System.out.println("Introduzca la matricula del coche que quiere consultar por quien fue comprado");
-            String matricula = scanner.nextLine();
+
+            String matricula =Validaciones.leerMatricula(scanner,concesionario.getCoches(),false);
 
             Coche coche = concesionario.buscarCochePorMatricula(matricula);
 
@@ -380,16 +368,15 @@ public class DirectorComercial extends Persona {
         public void crearExposicion() {
             Scanner scanner = new Scanner(System.in);
 
-            System.out.println("Número de la exposición: ");
-            Integer num = scanner.nextInt();
+
+            Integer num = Validaciones.leerNumeroExposicion(scanner);
 
             scanner.nextLine();
 
-            System.out.println("Direccion de la exposición: ");
-            String direccion = scanner.nextLine();
+            String direccion = Validaciones.leerDireccionExposicion(scanner);
 
             System.out.println("Teléfono de la exposición: ");
-            String telefono = scanner.nextLine();
+            String telefono = Validaciones.leerNumeroEntero(scanner);
 
 
 
@@ -412,31 +399,30 @@ public class DirectorComercial extends Persona {
             int c = scanner.nextInt();
             switch (c) {
                 case 1:
-                    System.out.println("Introduce el nuevo número");
-                    numExpo = scanner.nextInt();
+
+                    numExpo = Validaciones.leerNumeroExposicion(scanner);
                     exposicion.setNumeroExposicion(numExpo);
                     break;
                 case 2:
-                    System.out.println("Introduce la nueva dirección");
-                    direccion = scanner.nextLine();
+                    direccion = Validaciones.leerDireccionExposicion(scanner);
                     exposicion.setDireccion(direccion);
                     break;
                 case 3:
                     System.out.println("Introduce el nuevo teléfono");
-                    telefono = scanner.nextLine();
+                    telefono = Validaciones.leerNumeroEntero(scanner);
                     exposicion.setTelefono(telefono);
             }
         } else {
-            System.out.println("No se encontró un cliente con el dni:  " + numExpo);
+            System.out.println("No se encontró una exposición con el numero:  " + numExpo);
         }
 
-        System.out.println("El cliente con dni " + numExpo + " ha sido modificado con los nuevos valores.");
+        System.out.println("La exposicion con el numero " + numExpo + " ha sido modificado con los nuevos valores.");
     }
         public void eliminarExposicion() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Número de la exposición que desea eliminar: ");
-        Integer numExpo = scanner.nextInt();
+
+        Integer numExpo = Validaciones.leerNumeroExposicion(scanner);
 
         scanner.nextLine();
 
@@ -451,13 +437,13 @@ public class DirectorComercial extends Persona {
         public void darDeAltaCocheA_Exposicion() {
             Scanner scanner = new Scanner(System.in);
 
-            System.out.println("Introduzca el numero de la exposición: ");
-            Integer numExpo = scanner.nextInt();
+
+            Integer numExpo = Validaciones.leerNumeroExposicion(scanner);;
 
             scanner.nextLine();
 
-            System.out.println("Introduzca la matrícula del coche que desea añadir: ");
-            String matricula = scanner.nextLine();
+
+            String matricula = Validaciones.leerMatricula(scanner,concesionario.getCoches(),false);
 
 
             if (concesionario.getCoches().containsKey(matricula) &&  (concesionario.getExposiciones().containsKey(numExpo))) {
@@ -471,11 +457,11 @@ public class DirectorComercial extends Persona {
         public void darDeBajaCocheA_Exposicion() {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Introduzca el numero de la exposición: ");
-        Integer numExpo = scanner.nextInt();
 
-        System.out.println("Introduzca la matrícula del coche que desea dar de baja: ");
-        String matricula = scanner.nextLine();
+        Integer numExpo = Validaciones.leerNumeroExposicion(scanner);
+
+
+        String matricula = Validaciones.leerMatricula(scanner,concesionario.getCoches(),false);
 
             Exposicion e = concesionario.getExposiciones().get(numExpo);
 
@@ -490,8 +476,8 @@ public class DirectorComercial extends Persona {
             concesionario.imprimirExposiciones();
 
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Escriba el numero de exposición de la exposición que desea consultar");
-            Integer numExpo = scanner.nextInt();
+
+            Integer numExpo = Validaciones.leerNumeroExposicion(scanner);
 
             if (concesionario.getExposiciones().containsKey(numExpo)){
                 Exposicion e = concesionario.getExposiciones().get(numExpo);
@@ -511,7 +497,7 @@ public class DirectorComercial extends Persona {
             throw new NullPointerException("El concesionario o la lista de coches en reparación están vacíos");  //Imprimir Null
         }
 
-        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches());
+        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches(),false);
         Coche coche = cochesEnReparacion.get(matricula);
         if (coche != null) {
             List<Reparacion> reparaciones = coche.getReparaciones();
@@ -528,7 +514,7 @@ public class DirectorComercial extends Persona {
     }
         public void agregarReparacion(){
         Scanner scanner =  new Scanner(System.in);
-        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches());
+        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches(),false);
         if (concesionario == null || concesionario.listarEnReparacion() == null) {
             throw new NullPointerException("El concesionario o la lista de coches en reparación están vacíos");    //Imprimir Null
         }
@@ -546,7 +532,7 @@ public class DirectorComercial extends Persona {
         if (concesionario == null || concesionario.getCoches() == null) {
             throw new NullPointerException("El concesionario o la lista de coches en reparación están vacíos");  //Imprimir Null
         }
-        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches());
+        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches(),false);
 
         Coche coche = concesionario.getCoches().get(matricula);
         coche.setEstado(Estado.Stock);

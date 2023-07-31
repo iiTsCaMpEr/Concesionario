@@ -29,8 +29,8 @@ public class Vendedor extends Persona {
             throw new NullPointerException("El concesionario, la lista de coches o la lista de clientes es nula");
         }
 
-        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches());
-        String dni = Validaciones.leerDniCliente(scanner, concesionario.getClientes());
+        String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches(),false);
+        String dni = Validaciones.leerDniCliente(scanner, concesionario.getClientes(), false);
 
         Coche coche = concesionario.getCoches().get(matricula);
         Cliente cliente = concesionario.getClientes().get(dni);
@@ -46,8 +46,8 @@ public class Vendedor extends Persona {
                         throw new NullPointerException("El concesionario, la lista de coches o la lista de clientes es nula");
                     }
 
-                    String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches());
-                    String dni = Validaciones.leerDniCliente(scanner, concesionario.getClientes());
+                    String matricula = Validaciones.leerMatricula(scanner, concesionario.getCoches(), false);
+                    String dni = Validaciones.leerDniCliente(scanner, concesionario.getClientes(), false);
 
                     Coche coche = concesionario.getCoches().get(matricula);
                     Cliente cliente = concesionario.getClientes().get(dni);
@@ -61,8 +61,8 @@ public class Vendedor extends Persona {
         if (concesionario == null || concesionario.getCoches() == null || concesionario.getClientes() == null) {
             throw new NullPointerException("El concesionario, la lista de coches o la lista de clientes es nula");
         }
-        String matricula =Validaciones.leerMatricula(scanner,concesionario.getCoches());
-        String dni = Validaciones.leerDniCliente(scanner,concesionario.getClientes());
+        String matricula =Validaciones.leerMatricula(scanner,concesionario.getCoches(),false);
+        String dni = Validaciones.leerDniCliente(scanner,concesionario.getClientes(), false);
 
         Coche coche = concesionario.getCoches().get(matricula);
         Cliente cliente = concesionario.getClientes().get(dni);
