@@ -1,6 +1,5 @@
 package Personas;
-import Excepciones.NoSuchMatriculaException;
-import Inventario.Exposicion;
+
 import Vehiculos.Coche;
 import Concesionario.Concesionario;
 import Vehiculos.Estado;
