@@ -6,7 +6,7 @@ import Concesionario.Concesionario;
 import Vehiculos.Estado;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class Cliente extends Persona {
 
@@ -15,7 +15,7 @@ public class Cliente extends Persona {
     private ArrayList<Coche> cochesReservados;
 
     public Cliente(Concesionario concesionario, String nombre, String direccion, String dni, String telefono) {
-        super(concesionario,nombre, direccion, dni, telefono);
+        super(concesionario, nombre, direccion, dni, telefono);
 
         this.nombre = nombre;
         this.dni = dni;
@@ -27,6 +27,7 @@ public class Cliente extends Persona {
         this.cochesReservados = new ArrayList<>();
 
     }
+
     public void imprimirCochesEnVenta() {
         concesionario.listarCochesEnVenta();
     }
@@ -46,13 +47,15 @@ public class Cliente extends Persona {
         cochesReservados.remove(coche);
 
     }
-    public  void imprimirCochesReservados() {
-        for (Coche coche : cochesReservados){
+
+    public void imprimirCochesReservados() {
+        for (Coche coche : cochesReservados) {
             System.out.println(coche.toString());
         }
     }
-    public  void imprimirCochesComprados() {
-        for (Coche coche : cochesComprados){
+
+    public void imprimirCochesComprados() {
+        for (Coche coche : cochesComprados) {
             System.out.println(coche.toString());
         }
     }
@@ -64,12 +67,5 @@ public class Cliente extends Persona {
     public ArrayList<Coche> getCochesComprados() {
         return cochesComprados;
     }
-
-    public ArrayList<Coche> getCochesReservados() {
-        return cochesReservados;
-    }
-
-    public void setCochesReservados(ArrayList<Coche> cochesReservados) {
-        this.cochesReservados = cochesReservados;
-    }
 }
+

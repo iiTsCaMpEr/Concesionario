@@ -6,6 +6,7 @@ import Inventario.Reparacion;
 import Inventario.TipoReparacion;
 
 import Validaciones.Validaciones;
+import Validaciones.VendedorComparator;
 import Vehiculos.Coche;
 import Vehiculos.Estado;
 import Vehiculos.Tipo;
@@ -162,7 +163,7 @@ public class DirectorComercial extends Persona {
         System.out.println("Ingrese el DNI del vendedor:");
         String dni = scanner.nextLine();
         System.out.println("Ingrese el domicilio del vendedor:");
-        String domicilio = scanner.nextLine();
+        String direccion = scanner.nextLine();
         System.out.println("Ingrese el teléfono del vendedor:");
         String telefono = scanner.nextLine();
 
@@ -236,7 +237,19 @@ public class DirectorComercial extends Persona {
         public void imprimirVendedores() {
         concesionario.imprimirVendedores();
     }
-        // public ArrayList
+        public void obtenerVendedoresOrdenadosPorCochesVendidos() {
+
+            ArrayList<Vendedor> vendedores = new ArrayList<>(concesionario.getVendedores().values());
+
+            Collections.sort(vendedores, new VendedorComparator());
+
+            for (Vendedor vendedor : vendedores) {
+                System.out.println("Vendedor con Dni: " + vendedor.getDni());
+                vendedor.imprimirNumCochesVendidos();
+                vendedor.imprimirSueldo();
+
+            }
+        }
 
         // clientes
         public void anadirCliente(){

@@ -81,10 +81,13 @@ public class Vendedor extends Persona {
     public void verCochesEnStock() {
         concesionario.listarCochesEnVenta();
     }
-
+    public void imprimirNumCochesVendidos() {
+        System.out.println("Ha vendido : " + cochesVendidos.size());
+    }
     public void imprimirSueldo() {
         int sueldo = cochesVendidos.size() * 200;
-        System.out.println("El sueldo del vendedor con DNI" + getDni() + " es :" + sueldo);
+        System.out.println("El sueldo del vendedor con DNI  " + getDni() + " es :" + sueldo + "€");
+        System.out.println("");
     }
     // clientes
     public void verListaDeClientes() {

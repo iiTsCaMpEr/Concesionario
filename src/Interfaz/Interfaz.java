@@ -36,7 +36,7 @@ import java.util.Scanner;
 
 
          int opcion = -1;
-         while (opcion != 5) {
+         while (opcion != 0) {
              mostrarMenuIdentificaion();
              opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
@@ -55,7 +55,7 @@ import java.util.Scanner;
                  case 4:
                      loginMecanico();
                      break;
-                 case 5:
+                 case 0:
                      System.out.println("¡Hasta luego!");
                      System.exit(0);
              }
@@ -69,7 +69,7 @@ import java.util.Scanner;
          System.out.println("2. Vendedor");
          System.out.println("3. Director Comercial");
          System.out.println("4. Mecánico");
-         System.out.println("5. Salir");
+         System.out.println("0. Salir");
 
      }
 
@@ -81,7 +81,7 @@ import java.util.Scanner;
          System.out.println("4. Menu Exposiciones");
          System.out.println("5. Menu Reparaciones");
          System.out.println("6. Otras consultas");
-         System.out.println("7. Salir");
+         System.out.println("0. Salir");
      }
 
              // director comercial
@@ -90,7 +90,7 @@ import java.util.Scanner;
 
 
          int opcion = -1;
-         while (opcion != 7) {
+         while (opcion != 0) {
              mostrarMenuDirectorComercial();
              opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
@@ -114,7 +114,7 @@ import java.util.Scanner;
                  case 6:
                      iDirectorOtrasConsultas();
                      break;
-                 case 7:
+                 case 0:
                      System.out.println("¡Hasta luego!");
                      break;
              }
@@ -125,7 +125,7 @@ import java.util.Scanner;
 
 
          int opcion = -1;
-         while (opcion != 7) {
+         while (opcion != 0) {
              mostrarMenuDirectorComercialCoches();
              opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
@@ -156,7 +156,7 @@ import java.util.Scanner;
                      director.cochesEnReserva();
                      mensajeTodoCorrecto();
                      break;
-                 case 7:
+                 case 0:
 
                      break;
              }
@@ -170,14 +170,14 @@ import java.util.Scanner;
          System.out.println("4.  Listar coches en stock");
          System.out.println("5.  Listar coches en reparación");
          System.out.println("6.  Listar coches reservados");
-         System.out.println("7.  Salir");
+         System.out.println("0.  Salir");
      }
              private void iDirectorExposiciones() {
          Scanner scanner = new Scanner(System.in);
 
 
          int opcion = -1;
-                 while (opcion != 8) {
+                 while (opcion != 0) {
              mostrarMenuDirectorComercialExposiciones();
              opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
@@ -210,7 +210,7 @@ import java.util.Scanner;
                  case 7:
                      director.darDeBajaCocheA_Exposicion();
                      break;
-                 case 8:
+                 case 0:
 
                      break;
              }
@@ -225,14 +225,14 @@ import java.util.Scanner;
          System.out.println("5.  Listar coches en una exposición");
          System.out.println("6.  Dar de alta un coche");
          System.out.println("7.  Dar de baja un coche");
-         System.out.println("8.  Salir");
+         System.out.println("0.  Salir");
      }
              private void iDirectorReparaciones() {
          Scanner scanner = new Scanner(System.in);
 
 
          int opcion = -1;
-                 while (opcion != 4) {
+                 while (opcion != 0) {
              mostrarMenuDirectorComercialReparaciones();
              opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
@@ -250,7 +250,7 @@ import java.util.Scanner;
                  case 3:
                      director.listarCocheEspecificoEnReparacion();
                      break;
-                 case 4:
+                 case 0:
                      break;
              }
          }
@@ -259,16 +259,16 @@ import java.util.Scanner;
          System.out.println("\n--- Menú de Reparaciones del Director Comercial ---");
          System.out.println("1. Agregar coche a reparaciones");
          System.out.println("2. Devolver coche a stock");
-         System.out.println("3. Consultar reparaciones de cualquier coche");
+         System.out.println("0. Consultar reparaciones de cualquier coche");
      }
              private void iDirectorOtrasConsultas() {
          Scanner scanner = new Scanner(System.in);
 
 
                  int opcion = -1;
-                 while (opcion != 8) {
+                 while (opcion != 0) {
                      mostrarMenuDirectorComercialOtrasConsultas();
-                     opcion = scanner.nextInt();
+                     opcion = Validaciones.ValidacionSwitch(scanner);
                      scanner.nextLine();
                      switch (opcion) {
                          case 1:
@@ -285,7 +285,7 @@ import java.util.Scanner;
                              break;
                          case 7:
                              break;
-                         case 8:
+                         case 0:
 
                      break;
              }
@@ -294,14 +294,14 @@ import java.util.Scanner;
              private void mostrarMenuDirectorComercialOtrasConsultas () {
          System.out.println("\n--- Menú de Otras Consultas del Director Comercial ---");
          System.out.println("1.  ");
-         System.out.println("8.  Salir");
+         System.out.println("0.  Salir");
      }
              private void iDirectorClientes() {
              Scanner scanner = new Scanner(System.in);
 
 
              int opcion = -1;
-             while (opcion != 8) {
+             while (opcion != 0) {
              mostrarMenuDirectorComercialClientes();
              opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
@@ -336,7 +336,7 @@ import java.util.Scanner;
                     director.queClienteComproX_Coche();
                     mensajeTodoCorrecto();
                      break;
-                 case 8:
+                 case 0:
 
                      break;
              }
@@ -351,7 +351,7 @@ import java.util.Scanner;
          System.out.println("5.  Consultar reservas de clientes");
          System.out.println("6.  Consultar compras de clientes");
          System.out.println("7.  Consultar que cliente compró un coche");
-         System.out.println("8.  Salir");
+         System.out.println("0.  Salir");
 
      }
              private void iDirectorVendedores() {
@@ -359,7 +359,7 @@ import java.util.Scanner;
 
 
          int opcion = -1;
-         while (opcion != 6) {
+         while (opcion != 0) {
              mostrarMenuDirectorComercialVendedores();
              opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
@@ -370,11 +370,12 @@ import java.util.Scanner;
                      director.imprimirVendedores();
                      mensajeTodoCorrecto();
                      break;
-                 case 2:
+                 case 2:director.imprimirVendedores();
                      director.modificarVendedor();
                      mensajeTodoCorrecto();
                      break;
                  case 3:
+                     director.imprimirVendedores();
                      director.borrarVendedor();
                      mensajeTodoCorrecto();
                      break;
@@ -383,11 +384,15 @@ import java.util.Scanner;
                      mensajeTodoCorrecto();
                      break;
                  case 5:
+                     director.imprimirVendedores();
                      director.queVentasTieneX_Vendedor();
                      mensajeTodoCorrecto();
                      break;
                  case 6:
-
+                     director.obtenerVendedoresOrdenadosPorCochesVendidos();
+                     mensajeTodoCorrecto();
+                     break;
+                 case 7:
                      break;
              }
          }
@@ -399,7 +404,8 @@ import java.util.Scanner;
          System.out.println("3.  Eliminar Vendedor");
          System.out.println("4.  Listar Vendedores");
          System.out.println("5.  Consultar ventas que tiene un vendedor");
-         System.out.println("6.  Salir");
+         System.out.println("6.  Mostrar vendedores ordenados por coches vendidos");
+         System.out.println("0.  Salir");
 
      }
                  // mecanico
@@ -408,7 +414,7 @@ import java.util.Scanner;
                  System.out.println("1. Agregar coche a reparaciones");
                  System.out.println("2. Devolver coche a stock");
                  System.out.println("3. Consultar reparaciones de cualquier coche");
-                 System.out.println("4. Salir");
+                 System.out.println("0. Salir");
              }
              public void loginMecanico () {
          Scanner scanner = new Scanner(System.in);
@@ -442,7 +448,7 @@ import java.util.Scanner;
                  Scanner scanner = new Scanner(System.in);
 
                  int opcion = -1;
-                 while (opcion != 4) {
+                 while (opcion != 0) {
                      mostrarMenuMecanico();
                      opcion = Validaciones.ValidacionSwitch(scanner);
                      scanner.nextLine();
@@ -458,7 +464,7 @@ import java.util.Scanner;
                          case 3:
                              mecanico.listarCocheEspecificoEnReparacion();
                              break;
-                         case 4:
+                         case 0:
                              System.out.println("¡Hasta luego!");
                              break;
                      }
@@ -470,7 +476,7 @@ import java.util.Scanner;
          System.out.println("1. Consultar coches en stock");
          System.out.println("2. Consultar coches reservados");
          System.out.println("3. Consultar coches comprados");
-         System.out.println("4. Salir");
+         System.out.println("0. Salir");
          System.out.print("Selecciona una opción: ");
      }
              public void loginCliente () {
@@ -505,7 +511,7 @@ import java.util.Scanner;
              public void interfazCliente (Cliente cliente){
          Scanner scanner = new Scanner(System.in);
          int opcion = -1;
-         while (opcion != 4) {
+         while (opcion != 0) {
              mostrarMenuCliente();
              opcion = scanner.nextInt();
              scanner.nextLine();
@@ -518,7 +524,7 @@ import java.util.Scanner;
                      break;
                  case 3:
                      cliente.imprimirCochesComprados();
-                 case 4:
+                 case 0:
                      break;
              }
          }
@@ -532,14 +538,14 @@ import java.util.Scanner;
                  System.out.println("4. Consultas sobre clientes");
                  System.out.println("5. Consultas sobre coches");
                  System.out.println("6. Consultas sobre exposiciones");
-                 System.out.println("7. Salir");
+                 System.out.println("0. Salir");
              }
              public void interfazVendedor (Vendedor vendedor) {
                  Scanner scanner = new Scanner(System.in);
 
 
                  int opcion = -1;
-                 while (opcion != 7) {
+                 while (opcion != 0) {
                      mostrarMenuVendedor();
                      opcion = Validaciones.ValidacionSwitch(scanner);
 
@@ -563,7 +569,7 @@ import java.util.Scanner;
                          case 6:
                              interfazVendedorConsultasExposiciones();
                              break;
-                         case 7:
+                         case 0:
 
                              break;
                      }
@@ -571,7 +577,7 @@ import java.util.Scanner;
              }
              public void loginVendedor () {
          Scanner scanner = new Scanner(System.in);
-         System.out.println("¿Es usted un cliente existente? (S/N)");
+         System.out.println("¿Es usted un vendedor existente? (S/N)");
          String respuesta = scanner.nextLine();
          if (respuesta.equalsIgnoreCase("S")) {
              System.out.println("Introduzca su DNI: ");
@@ -580,7 +586,7 @@ import java.util.Scanner;
              if (vendedorExistente != null) {
                  interfazVendedor(vendedorExistente);
              } else {
-                 System.out.println("Cliente no encontrado.");
+                 System.out.println("Vendedor no encontrado.");
              }
          } else if (respuesta.equalsIgnoreCase("N")) {
              System.out.println("Crear nuevo vendedor:");
@@ -602,14 +608,14 @@ import java.util.Scanner;
          System.out.println("1.  Listar Clientes");
          System.out.println("2.  Consultar reservas de clientes");
          System.out.println("3.  Consultar compras de clientes");
-         System.out.println("4.  Salir");
+         System.out.println("0.  Salir");
      }
              public void interfazVendedorConsultasClientes () {
          Scanner scanner = new Scanner(System.in);
 
 
          int opcion = -1;
-         while (opcion != 4) {
+         while (opcion != 0) {
              mostrarMenuVendedorConsultasClientes();
              opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
@@ -624,7 +630,7 @@ import java.util.Scanner;
                  case 3:
                      vendedor.queComprasTieneX_Cliente();
                      break;
-                 case 4:
+                 case 0:
 
                      break;
              }
@@ -636,8 +642,8 @@ import java.util.Scanner;
          System.out.println("2.  Imprimir coches vendidos");
          System.out.println("3.  Consultar compras de clientes");
          System.out.println("4.  Consultar que cliente compro un coche determinado");
-                 System.out.println("5.  Consultar que reservas tiene un cliente");
-                 System.out.println("6.  Salir");
+         System.out.println("5.  Consultar que reservas tiene un cliente");
+         System.out.println("0.  Salir");
 
      }
              public void interfazVendedorConsultasCoches () {
@@ -645,7 +651,7 @@ import java.util.Scanner;
 
 
          int opcion = -1;
-                 while (opcion != 6) {
+                 while (opcion != 0) {
              mostrarMenuVendedorConsultasCoches();
              opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
@@ -674,7 +680,7 @@ import java.util.Scanner;
              public void mostrarMenuVendedorConsultasExposiciones () {
          System.out.println("\n--- Menú de exposiciones de Vendedores ---");
          System.out.println("1.  Listar Exposiciones");
-         System.out.println("2.  Salir");;
+         System.out.println("0.  Salir");;
 
      }
              public void interfazVendedorConsultasExposiciones () {
@@ -682,7 +688,7 @@ import java.util.Scanner;
 
 
          int opcion = -1;
-         while (opcion != 2) {
+         while (opcion != 0) {
              mostrarMenuVendedorConsultasExposiciones();
              opcion = Validaciones.ValidacionSwitch(scanner);
              scanner.nextLine();
@@ -691,7 +697,7 @@ import java.util.Scanner;
                  case 1:
                      vendedor.imprimirExposiciones();
                      break;
-                 case 2:
+                 case 0:
 
                      break;
              }

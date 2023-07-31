@@ -17,9 +17,6 @@ public abstract class Persona {
         this.telefono = telefono;
         this.concesionario = concesionario;
     }
-    public Persona (Concesionario concesionario) {
-        this.concesionario = concesionario;
-    }
 
     //getter y setter
     public String getNombre() {
