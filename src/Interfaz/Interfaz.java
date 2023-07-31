@@ -73,7 +73,7 @@ import java.util.Scanner;
 
      }
 
-     private void mostrarMenuDirectorComercial() {
+        private void mostrarMenuDirectorComercial() {
          System.out.println("\n--- Menú Director Comercial ---");
          System.out.println("1. Menu Coches");
          System.out.println("2. Menu Clientes");
@@ -137,10 +137,12 @@ import java.util.Scanner;
                      mensajeTodoCorrecto();
                      break;
                  case 2:
+                     director.imprimirCoches();
                      director.modificarCoche();
                      mensajeTodoCorrecto();
                      break;
                  case 3:
+                     director.imprimirCoches();
                      director.borrarCoche();
                      mensajeTodoCorrecto();
                      break;

@@ -146,6 +146,12 @@ public class Concesionario {
                 System.out.println(cliente.toString());
             }
         }
+     public void imprimirCoches () {
+        for (Coche coche : coches.values()) {
+
+            System.out.println(coche.toString());
+        }
+    }
         public void imprimirExposiciones () {
             for (Exposicion exposicion : exposiciones.values()) {
 

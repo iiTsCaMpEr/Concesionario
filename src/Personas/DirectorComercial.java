@@ -152,6 +152,10 @@ public class DirectorComercial extends Persona {
             System.out.println(coche.toString());
         }
     }
+        public void imprimirCoches() {
+        concesionario.imprimirCoches();
+    }
+
         // vendedores
         public void añadirVendedor() {
         Scanner scanner = new Scanner(System.in);
